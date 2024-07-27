@@ -1,6 +1,6 @@
 # requirements.txt
 werkzeug===2.2.2
 Flask
-lask-login
+flask-login
 flask-wtf
 Flask-SQLAlchemy

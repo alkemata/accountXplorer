@@ -6,10 +6,7 @@ services:
     build: .
     volumes:
       - ./app:/app/
-    environment:
-      - SECRET_KEY=${SECRET_KEY}
-      - INITIAL_USERNAME=${INITIAL_USERNAME}
-      - INITIAL_PASSWORD=${INITIAL_PASSWORD}
+    env_file: ".env"
     labels:
       traefik.enable: true
       traefik.docker.network: traefik_web
