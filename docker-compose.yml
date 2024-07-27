@@ -5,7 +5,7 @@ services:
   flaskapp:
     build: .
     volumes:
-      - ./app:/app/
+      - ./app/:/app/
     env_file: ".env"
     labels:
       traefik.enable: true
