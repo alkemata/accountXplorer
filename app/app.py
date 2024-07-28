@@ -7,9 +7,9 @@ from wtforms.validators import DataRequired
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User
 import config
-import dash
-import dash_html_components as html
-import dash_core_components as dcc
+#import dash
+#import dash_html_components as html
+#import dash_core_components as dcc
 
 
 app = Flask(__name__)
