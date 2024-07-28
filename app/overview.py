@@ -30,7 +30,7 @@ def create_dash_app(server):
         style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
         fixed_rows={'headers': True},
     ),
-    html.Div(id='output-box', children=', '.join(map(str, distinct_values)), style={'border': '1px solid black', 'padding': '10px', 'margin-top': '10px'})
+    html.Div(id='output-box', children=', '.join(map(str, accounts)), style={'border': '1px solid black', 'padding': '10px', 'margin-top': '10px'})
 
     ])
 
