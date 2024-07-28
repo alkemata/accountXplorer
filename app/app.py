@@ -60,17 +60,6 @@ def login():
         flash('Invalid username or password')
     return render_template('login.html', form=form)
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data, method='sha256')
-        new_user = User(username=form.username.data, password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        flash('User registered successfully')
-        return redirect(url_for('login'))
-    return render_template('register.html', form=form)
 
 @app.route('/logout')
 @login_required
