@@ -8,7 +8,7 @@ def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/app1/')
     df = pd.read_csv('./ressources/dataliste.csv',sep=';')
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
-    df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','Steuerkategorie','Parentkategorie','Splitbuchung','Abweichenderempfaenger'])
+    df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','SplitBuchung','AbweichenderEmpfaenger'])
     accounts=df['Konto'].unique()
 
     style_data_conditional = [
