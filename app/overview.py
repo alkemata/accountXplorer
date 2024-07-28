@@ -10,6 +10,7 @@ def create_dash_app(server):
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
     accounts=df['Konto'].unique()
+    dfs = {k: v for k, v in df.groupby('konto')}
 
     style_data_conditional = [
         {
@@ -19,20 +20,25 @@ def create_dash_app(server):
         }
     ]
 
-    app.layout = html.Div([
 
-    dash_table.DataTable(
-        id='table',
-        columns=[{'name': col, 'id': col} for col in df.columns],
-        data=df.to_dict('records'),
-        style_data_conditional=style_data_conditional,
-        style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
-        style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
-        fixed_rows={'headers': True},
-    ),
-    html.Div(id='output-box', children=', '.join(map(str, accounts)), style={'border': '1px solid black', 'padding': '10px', 'margin-top': '10px'})
+app.layout = html.Div(
+    children=[
+        html.H1("DataFrames by 'konto' Value"),
+        *[html.Div([
+            html.H2(f"DataFrame for konto = {k}"),
+            dash_table.DataTable(
+                id=f'table-{k}',
+                columns=[{"name": i, "id": i} for i in v.columns],
+                data=v.to_dict('records'),
+                style_data_conditional=style_data_conditional,
+                style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
+            style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
+            fixed_rows={'headers': True},
+            )
+        ]) for k, v in dfs.items()]
+    ]
+)
 
-    ])
 
    
     return app
