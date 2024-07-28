@@ -44,7 +44,7 @@ class RegisterForm(FlaskForm):
 def home():
     return f'Hello, {current_user.username}!'
 
-@server.route('/overview')
+@app.route('/overview')
 @login_required
 def render_app1():
     return overview.index()
