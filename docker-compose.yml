@@ -5,8 +5,8 @@ services:
   flaskapp:
     build: .
     volumes:
-      - ./app/:/app/
-    env_file: ".env"
+      - ./app:/app/
+    env_file: "config.env"
     labels:
       traefik.enable: true
       traefik.docker.network: traefik_web

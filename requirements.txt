@@ -4,3 +4,4 @@ Flask
 flask-login
 flask-wtf
 Flask-SQLAlchemy
+python-dotenv

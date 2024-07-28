@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'supersecretkey'
@@ -6,3 +9,4 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     INITIAL_USERNAME = os.environ.get('INITIAL_USERNAME')
     INITIAL_PASSWORD = os.environ.get('INITIAL_PASSWORD')
+    print (INITIAL_USERNAME)
