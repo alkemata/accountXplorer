@@ -26,6 +26,13 @@ def create_dash_app(server):
             html.H1("DataFrames by 'konto' Value"),
             *[html.Div([
                 html.H2(f"DataFrame for konto = {k}"),
+                            dcc.Input(
+                id=f'input-{k}',
+                type='text',
+                placeholder='column: content',
+                debounce=True
+                ),
+            
                 dash_table.DataTable(
                     id=f'table-{k}',
                     columns=[{"name": i, "id": i} for i in v.columns],
@@ -39,6 +46,26 @@ def create_dash_app(server):
         ]
     )
 
-  
+    # Callback for each table
+    for k in dfs.keys():
+        @app.callback(
+            Output(f'table-{k}', 'data'),
+            [Input(f'input-{k}', 'value')],
+            [State(f'table-{k}', 'data')]
+        )
+        def update_table(input_value, rows, k=k):
+            if input_value:
+                try:
+                    column, content = input_value.split(':')
+                    column = column.strip()
+                    content = content.strip()
+                    filtered_df = dfs[k][dfs[k][column].astype(str).str.contains(content, case=False, na=False)]
+                except Exception as e:
+                    filtered_df = dfs[k]  # If there's an error in input, show the unfiltered table
+            else:
+                filtered_df = dfs[k]
+
+            return filtered_df.to_dict('records')
+    
     return app
  
