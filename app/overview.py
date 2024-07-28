@@ -36,10 +36,8 @@ app.layout = html.Div(
             fixed_rows={'headers': True},
             )
         ]) for k, v in dfs.items()]
-    ]
-)
+    ])
 
-
-   
+  
     return app
  
