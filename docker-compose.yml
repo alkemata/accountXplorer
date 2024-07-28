@@ -7,7 +7,6 @@ services:
     volumes:
       - ./app:/app/
       - db_data:/app/users.db 
-    env_file: ".env"
     labels:
       traefik.enable: true
       traefik.docker.network: traefik_web
