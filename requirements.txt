@@ -5,3 +5,6 @@ flask-login
 flask-wtf
 Flask-SQLAlchemy
 python-dotenv
+dash
+dash-bootstrap-components
+pandas
