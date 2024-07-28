@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output, State
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/app1/')
     df = pd.read_csv('./ressources/dataliste.csv',sep=';')
-    print(df)
+    print(df.to_dict('records'))
     style_data_conditional = [
         {
             'if': {'filter_query': '{Betrag} > 0', 'column_id': 'betrag'},
