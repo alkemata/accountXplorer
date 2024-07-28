@@ -6,9 +6,8 @@ from dash.dependencies import Input, Output, State
 
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/app1/')
-    df = pd.read_csv('./ressources/dataliste.csv',sep=';')
-    df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
-    print(df['Betrag'])
+    df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','Steuerkategorie','Parentkategorie','Splitbuchung','Abweichenderempfaenger'])
+    accounts=ddf['Konto'].unique()
 
     style_data_conditional = [
         {
@@ -27,8 +26,10 @@ def create_dash_app(server):
         style_data_conditional=style_data_conditional,
         style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
         style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
-        fixed_rows={'headers': True}, 
-    )
+        fixed_rows={'headers': True},
+    ),
+    html.Div(id='output-box', children=', '.join(map(str, distinct_values)), style={'border': '1px solid black', 'padding': '10px', 'margin-top': '10px'})
+
     ])
 
    
