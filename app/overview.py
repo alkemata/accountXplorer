@@ -12,7 +12,7 @@ def create_dash_app(server):
 
     style_data_conditional = [
         {
-            'if': {'filter_query': '{Betrag} > 0', 'column_id': 'Betrag'},
+            'if': {'filter_query': '{Betrag} > 0'},
             'backgroundColor': 'green',
             'color': 'white'
         }
