@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output, State
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/app1/')
     df = pd.read_csv('./ressources/dataliste.csv',sep=';')
-    df['Betrag'] = pd.to_numeric(df['Betrag'], errors='coerce')
+    df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
     print(df['Betrag'])
 
     style_data_conditional = [
