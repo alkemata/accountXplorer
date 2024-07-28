@@ -9,7 +9,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
 
-def init_db(app):
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
+#def init_db(app):
+#    db.init_app(app)
+#    with app.app_context():
+#        db.create_all()
