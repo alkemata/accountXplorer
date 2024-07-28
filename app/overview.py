@@ -84,7 +84,7 @@ def create_dash_app(server):
             }
         ]
 
-    return data, style_data_conditional
+        return data, style_data_conditional
 
 
     return app
