@@ -9,4 +9,3 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     INITIAL_USERNAME = os.environ.get('INITIAL_USERNAME')
     INITIAL_PASSWORD = os.environ.get('INITIAL_PASSWORD')
-    print (INITIAL_USERNAME)
