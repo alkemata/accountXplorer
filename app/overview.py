@@ -7,7 +7,6 @@ from dash.dependencies import Input, Output, State
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/app1/')
     df = pd.read_csv('./ressources/dataliste.csv',sep=';')
-    print(df.head())
 
     style_data_conditional = [
         {
@@ -23,7 +22,7 @@ def create_dash_app(server):
         id='table',
         columns=[{'name': col, 'id': col} for col in df.columns],
         data=[df.to_dict('records')],
-        style_data_conditional=style_data_conditional,
+        style_data_conditional=[],
         style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
         style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
         fixed_rows={'headers': True}, 
