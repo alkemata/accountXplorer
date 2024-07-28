@@ -17,7 +17,7 @@ services:
       - traefik_web
 
 volumes:
-  - db_data:
+  db_data:
 
 networks:
   traefik_web:
