@@ -10,7 +10,7 @@ def create_dash_app(server):
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
     accounts=df['Konto'].unique()
-    dfs = {k: v for k, v in df.groupby('konto')}
+    dfs = {k: v for k, v in df.groupby('Konto')}
 
     style_data_conditional = [
         {
