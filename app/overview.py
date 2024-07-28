@@ -27,14 +27,14 @@ def create_dash_app(server):
             *[html.Div([
                 html.H2(f"DataFrame for konto = {k}"),
                             dcc.Input(
-                id=f'input-{k}',
+                id=f'input-{k[0:3]}',
                 type='text',
                 placeholder='column: content',
                 debounce=True
                 ),
             
                 dash_table.DataTable(
-                    id=f'table-{k}',
+                    id=f'table-{k[0:3]}',
                     columns=[{"name": i, "id": i} for i in v.columns],
                     data=v.to_dict('records'),
                     style_data_conditional=style_data_conditional,
@@ -49,9 +49,9 @@ def create_dash_app(server):
     # Callback for each table
     for k in dfs.keys():
         @app.callback(
-            Output(f'table-{k}', 'data'),
-            [Input(f'input-{k}', 'value')],
-            [State(f'table-{k}', 'data')]
+            Output(f'table-{k[0:3]}', 'data'),
+            [Input(f'input-{k[0:3]}', 'value')],
+            [State(f'table-{k[0:3]}', 'data')]
         )
         def update_table(input_value, rows, k=k):
             if input_value:
