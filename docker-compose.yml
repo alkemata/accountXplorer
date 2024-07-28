@@ -6,6 +6,7 @@ services:
     build: .
     volumes:
       - ./app:/app/
+      - db_data:/app/users.db 
     env_file: "config.env"
     labels:
       traefik.enable: true
