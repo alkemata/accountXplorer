@@ -53,7 +53,7 @@ def create_dash_app(server):
             dfs[k] = calculate_differences(initial_value, v)
 
     for k,v in dfs.items():
-        v['BuchungsDatum'] = pd.to_datetime(v['Buchungsdatum'])
+        v['BuchungsDatum'] = pd.to_datetime(v['Buchungsdatum'], format='%d-%m-%Y')
 
     style_data_conditional = [
         {
