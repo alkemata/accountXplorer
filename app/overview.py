@@ -8,7 +8,7 @@ import csv
 def load_account_data(filename):
     account_data = {}
     with open(filename, mode='r') as file:
-        reader = csv.reader(file)
+        reader = csv.reader(file,delimiter=';')
         #next(reader)  # Skip the header row if there is one
         for row in reader:
             print(row)
