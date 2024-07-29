@@ -19,8 +19,10 @@ def load_account_data(filename):
 
 def calculate_differences(initial_value, df, column_name='Betrag'):
     # Initialize the new column with the first value being the difference between the initial value and the first element in column a
-    print(df)
     df['Saldo'] = 0
+        # Ensure the column exists in the DataFrame
+    if column_name not in df.columns:
+        raise KeyError(f"Column '{column_name}' not found in DataFrame")
     df.at[0, 'Saldo'] = initial_value + df.at[0, column_name]
 
     # Calculate the differences for the rest of the rows
