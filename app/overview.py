@@ -75,7 +75,7 @@ def create_dash_app(server):
     )
 
     fig.add_trace(
-        go.Scatter(x=['DE47700400480857576300']['Buchungsdatum'], y=dfs['DE47700400480857576300']['Saldo'], mode='lines', name='DataFrame 2', fill='tozeroy'),
+        go.Scatter(x=dfs['DE47700400480857576300']['Buchungsdatum'], y=dfs['DE47700400480857576300']['Saldo'], mode='lines', name='DataFrame 2', fill='tozeroy'),
         row=2, col=1
     )
 
