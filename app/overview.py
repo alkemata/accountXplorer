@@ -11,7 +11,6 @@ def load_account_data(filename):
         reader = csv.reader(file,delimiter=';')
         #next(reader)  # Skip the header row if there is one
         for row in reader:
-            print(row)
             account_code = row[0]
             account_name = row[1]
             account_value = float(row[2])  # Assuming the value column contains numeric data
@@ -39,8 +38,10 @@ def create_dash_app(server):
 
     filename = 'config.txt'  # Replace with your CSV file path
     account_data = load_account_data(filename)
+    print(load_account_data)
 
     for k,v in dfs.items():
+            print(k[0:3])
             initial_value = account_data[k[0:3]]['value']
             dfs[k] = calculate_differences(initial_value, v)
 
