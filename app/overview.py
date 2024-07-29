@@ -27,15 +27,13 @@ def calculate_differences(initial_value, df, column_name='Betrag'):
     first_index = df.index[0]
 
     # Calculate the first difference
-    print(initial_value)
-    print(df.at[first_index, column_name])
-    df.at[first_index, 'difference'] = initial_value + df.at[first_index, column_name]
+    df.at[first_index, 'Saldo'] = initial_value + df.at[first_index, column_name]
 
     # Calculate the differences for the rest of the rows
     for i in range(1, len(df)):
         current_index = df.index[i]
         previous_index = df.index[i-1]
-        df.at[current_index, 'difference'] = df.at[previous_index, 'difference'] + df.at[current_index, column_name]
+        df.at[current_index, 'Saldo'] = df.at[previous_index, 'Saldo'] + df.at[current_index, column_name]
 
     return df
 
