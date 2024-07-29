@@ -64,6 +64,27 @@ def create_dash_app(server):
         }
     ]
 
+    # Create subplots
+    fig = make_subplots(rows=2, cols=1, shared_xaxes=True)
+
+    # Add traces
+    fig.add_trace(
+        go.Scatter(x=dfs['DE39360100430206819439']['BuchungsDatum'], y=dfs['DE39360100430206819439']['Saldo'], mode='lines', name='DataFrame 1', fill='tozeroy'),
+        row=1, col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(x=['DE47700400480857576300']['Buchungsdatum'], y=dfs['DE47700400480857576300']['Saldo'], mode='lines', name='DataFrame 2', fill='tozeroy'),
+        row=2, col=1
+    )
+
+    # Update layout
+    fig.update_layout(
+        title='Saldo Over Time',
+        xaxis_title='Date',
+        yaxis_title='Saldo',
+        height=600
+    )
 
     app.layout = html.Div(
         children=[
@@ -90,33 +111,9 @@ def create_dash_app(server):
             html.H1(children='Saldo Over Time'),
 
             dcc.Graph(
-                id='area-plot',
-                figure={
-                    'data': [
-                        go.Scatter(
-                            x=dfs['DE39360100430206819439']['BuchungsDatum'],
-                            y=dfs['DE39360100430206819439']['Saldo'],
-                            mode='lines',
-                            name='DataFrame 1',
-                            fill='tonexty',
-                             stackgroup='one'
-                        ),
-                        go.Scatter(
-                            x=dfs['DE47700400480857576300']['Buchungsdatum'],
-                            y=dfs['DE47700400480857576300']['Saldo'],
-                            mode='lines',
-                            name='DataFrame 2',
-                            fill='tonexty',
-                             stackgroup='two'
-                        )
-                    ],
-                    'layout': {
-                        'title': 'Saldo Over Time',
-                        'xaxis': {'title': 'Date'},
-                        'yaxis': {'title': 'Saldo'}
-                    }
-                }
-            )
+            id='area-plot',
+            figure=fig
+    )
         ]
     )
 
