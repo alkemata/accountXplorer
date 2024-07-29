@@ -19,12 +19,12 @@ def load_account_data(filename):
 
 def calculate_differences(initial_value, df, column_name='Betrag'):
     # Initialize the new column with the first value being the difference between the initial value and the first element in column a
-    df['difference'] = 0
-    df.at[0, 'difference'] = initial_value - df.at[0, column_name]
+    df['Saldo'] = 0
+    df.at[0, 'Saldo'] = initial_value - df.at[0, column_name]
 
     # Calculate the differences for the rest of the rows
     for i in range(1, len(df)):
-        df.at[i, 'difference'] = df.at[i-1, 'difference'] - df.at[i, column_name]
+        df.at[i, 'Saldo'] = df.at[i-1, 'Saldo'] - df.at[i, column_name]
 
     return df
 
