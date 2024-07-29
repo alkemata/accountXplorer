@@ -17,7 +17,7 @@ def load_account_data(filename):
             account_data[account_code] = {'name': account_name, 'value': account_value}
     return account_data
 
-def calculate_differences(initial_value, df, column_name='saldo'):
+def calculate_differences(initial_value, df, column_name='Betrag'):
     # Initialize the new column with the first value being the difference between the initial value and the first element in column a
     df['difference'] = 0
     df.at[0, 'difference'] = initial_value - df.at[0, column_name]
@@ -38,10 +38,8 @@ def create_dash_app(server):
 
     filename = 'config.txt'  # Replace with your CSV file path
     account_data = load_account_data(filename)
-    print(load_account_data)
 
     for k,v in dfs.items():
-            print(k[0:3])
             initial_value = account_data[k[0:3]]['value']
             dfs[k] = calculate_differences(initial_value, v)
 
