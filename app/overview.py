@@ -52,6 +52,9 @@ def create_dash_app(server):
             initial_value = account_data[k[0:3]]['value']
             dfs[k] = calculate_differences(initial_value, v)
 
+    for k,v in dfs.items():
+        v['BuchungsDatum'] = pd.to_datetime(v['Buchungsdatum'])
+
     style_data_conditional = [
         {
             'if': {'filter_query': '{Betrag} > 0'},
@@ -82,7 +85,35 @@ def create_dash_app(server):
                 style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
                 fixed_rows={'headers': True},
                 )
-            ]) for k, v in dfs.items()]
+            ]) for k, v in dfs.items()],
+            html.H1(children='Saldo Over Time'),
+
+            dcc.Graph(
+                id='area-plot',
+                figure={
+                    'data': [
+                        go.Scatter(
+                            x=dfs['DE3']['BuchungsDatum'],
+                            y=dfs['DE3']['Saldo'],
+                            mode='lines',
+                            name='DataFrame 1',
+                            fill='tozeroy'
+                        ),
+                        go.Scatter(
+                            x=dfs['DE4']['Buchungsdatum'],
+                            y=dfs['DE3']['Saldo'],
+                            mode='lines',
+                            name='DataFrame 2',
+                            fill='tozeroy'
+                        )
+                    ],
+                    'layout': {
+                        'title': 'Saldo Over Time',
+                        'xaxis': {'title': 'Date'},
+                        'yaxis': {'title': 'Saldo'}
+                    }
+                }
+            )
         ]
     )
 
