@@ -31,7 +31,7 @@ def calculate_differences(initial_value, df, column_name='Betrag'):
     df.at[first_index, 'Saldo'] = initial_value + df.at[first_index, column_name]
 
     # Calculate the differences for the rest of the rows
-    for i in range(1, len(df)):
+    for i in range(len(df) - 2, -1, -1):
         current_index = df.index[i]
         previous_index = df.index[i+1]
         df.at[current_index, 'Saldo'] = df.at[previous_index, 'Saldo'] + df.at[current_index, column_name]
