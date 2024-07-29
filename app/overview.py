@@ -9,7 +9,7 @@ def load_account_data(filename):
     account_data = {}
     with open(filename, mode='r') as file:
         reader = csv.reader(file)
-        next(reader)  # Skip the header row if there is one
+        #next(reader)  # Skip the header row if there is one
         for row in reader:
             account_code = row[0]
             account_name = row[1]
