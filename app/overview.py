@@ -11,6 +11,7 @@ def load_account_data(filename):
         reader = csv.reader(file)
         #next(reader)  # Skip the header row if there is one
         for row in reader:
+            print(row)
             account_code = row[0]
             account_name = row[1]
             account_value = float(row[2])  # Assuming the value column contains numeric data
