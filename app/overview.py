@@ -25,7 +25,7 @@ def calculate_differences(initial_value, df, column_name='Betrag'):
     if column_name not in df.columns:
         raise KeyError(f"Column '{column_name}' not found in DataFrame")
      # Get the index of the first row
-    first_index = df.index[0]
+    first_index = df.index[-1]
 
     # Calculate the first difference
     df.at[first_index, 'Saldo'] = initial_value + df.at[first_index, column_name]
@@ -33,7 +33,7 @@ def calculate_differences(initial_value, df, column_name='Betrag'):
     # Calculate the differences for the rest of the rows
     for i in range(1, len(df)):
         current_index = df.index[i]
-        previous_index = df.index[i-1]
+        previous_index = df.index[i+1]
         df.at[current_index, 'Saldo'] = df.at[previous_index, 'Saldo'] + df.at[current_index, column_name]
 
     return df
