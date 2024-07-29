@@ -98,14 +98,16 @@ def create_dash_app(server):
                             y=dfs['DE39360100430206819439']['Saldo'],
                             mode='lines',
                             name='DataFrame 1',
-                            fill='tozeroy'
+                            fill='tozeroy',
+                             stackgroup='one'
                         ),
                         go.Scatter(
                             x=dfs['DE47700400480857576300']['Buchungsdatum'],
                             y=dfs['DE47700400480857576300']['Saldo'],
                             mode='lines',
                             name='DataFrame 2',
-                            fill='tozeroy'
+                            fill='tozeroy',
+                             stackgroup='one'
                         )
                     ],
                     'layout': {
