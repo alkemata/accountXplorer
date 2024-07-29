@@ -3,6 +3,30 @@ import pandas as pd
 from dash import html
 from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output, State
+import csv
+
+def load_account_data(filename):
+    account_data = {}
+    with open(filename, mode='r') as file:
+        reader = csv.reader(file)
+        next(reader)  # Skip the header row if there is one
+        for row in reader:
+            account_code = row[0]
+            account_name = row[1]
+            account_value = float(row[2])  # Assuming the value column contains numeric data
+            account_data[account_code] = {'name': account_name, 'value': account_value}
+    return account_data
+
+def calculate_differences(initial_value, df, column_name='saldo'):
+    # Initialize the new column with the first value being the difference between the initial value and the first element in column a
+    df['difference'] = 0
+    df.at[0, 'difference'] = initial_value - df.at[0, column_name]
+
+    # Calculate the differences for the rest of the rows
+    for i in range(1, len(df)):
+        df.at[i, 'difference'] = df.at[i-1, 'difference'] - df.at[i, column_name]
+
+    return df
 
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/app1/')
@@ -11,6 +35,13 @@ def create_dash_app(server):
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
     accounts=df['Konto'].unique()
     dfs = {k: v for k, v in df.groupby('Konto')}
+
+    filename = 'config.txt'  # Replace with your CSV file path
+    account_data = load_account_data(filename)
+
+    for k,v in dfs.items():
+            initial_value = account_data[k[0:3]]['value']
+            dfs[k] = calculate_differences(initial_value, v)
 
     style_data_conditional = [
         {
