@@ -1,4 +1,4 @@
-4907;VISA;0
-DE39;Postbank;8512.94
-DE47;Commerzbank;238.64
-PayP;Paypal;0
+490;VISA;0
+DE3;Postbank;8512.94
+DE4;Commerzbank;238.64
+Pay;Paypal;0
