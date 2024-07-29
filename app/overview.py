@@ -4,6 +4,7 @@ from dash import html
 from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output, State
 import csv
+import plotly.graph_objs as go
 
 def load_account_data(filename):
     account_data = {}
