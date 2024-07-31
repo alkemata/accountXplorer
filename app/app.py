@@ -12,8 +12,7 @@ import config
 #import dash_core_components as dcc
 
 
-def create_dash_app(server):
-    app = dash.Dash(__name__, server=server, url_base_pathname='/edit/')
+    app = Dash(__name__)
     app.config.from_object(config.Config)
 
     from overview import create_dash_app
