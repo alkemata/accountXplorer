@@ -43,17 +43,14 @@ def create_dash_app(server):
     for sublist in categories.values():
         category_order.extend(sublist)
 
-    print(categories)
-
     # Set the category order
-   # df['Kategorie'] = pd.Categorical(df['Kategorie'], categories=category_order, ordered=True)
+    df['Kategorie'] = pd.Categorical(df['Kategorie'], categories=category_order, ordered=True)
 
     # Function to create pivot table
     def create_pivot_table(dataframe):
-        pivot_table = dataframe.pivot_table(values='Betrag', index='Kategorie', columns='Month', aggfunc='sum', fill_value=0)
-        #pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
+        pivot_table = dataframe.pivot_table(values='Betrag', index='Kategorie', columns='Month', aggfunc='sum', fill_value=0)  
         pivot_table.columns = pivot_table.columns.astype(str)  # Convert Period to str
-     
+        pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
         return pivot_table
 
     pivot_table = create_pivot_table(df)
