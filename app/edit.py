@@ -26,7 +26,7 @@ def load_categories(file_path):
 
 
 def create_dash_app(server):
-    app = dash.Dash(__name__, server=server, url_base_pathname='/overview/')
+    app = dash.Dash(__name__, server=server, url_base_pathname='/edit/')
 
     df = pd.read_csv('./ressources/dataliste.csv',sep=';')
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
