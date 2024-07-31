@@ -52,8 +52,7 @@ def create_dash_app(server):
         pivot_table = dataframe.pivot_table(values='Betrag', index='Kategorie', columns='Month', aggfunc='sum', fill_value=0)
         #pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
         pivot_table.columns = pivot_table.columns.astype(str)  # Convert Period to str
-       
-    return pivot_table
+     
         return pivot_table
 
     pivot_table = create_pivot_table(df)
