@@ -38,7 +38,6 @@ def create_dash_app(server):
     df['Month'] = df['Buchungsdatum'].dt.to_period('M')
 
     # Predefined list of categories
-    print('loading categories')
     categories = load_categories('./categories.txt')
     category_order  = []
     for sublist in categories.values():
@@ -54,9 +53,8 @@ def create_dash_app(server):
         #pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
         return pivot_table
 
-    print(df)
     pivot_table = create_pivot_table(df)
-
+    print(pivot_table)
     # Function to save DataFrame
     def save_df(dataframe):
         dataframe.to_csv('saved_dataframe.csv', index=False)
