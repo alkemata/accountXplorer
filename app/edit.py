@@ -2,6 +2,7 @@ import pandas as pd
 from dash import Dash, dcc, html, dash_table
 from dash.dependencies import Input, Output, State
 import plotly.express as px
+import dash
 
 def load_categories(file_path):
     with open(file_path, 'r') as file:
