@@ -95,18 +95,15 @@ def create_dash_app(server):
         [Input('pivot-table', 'active_cell')]
     )
     def display_details(active_cell):
-        print(active_cell)
         if active_cell:
             row = active_cell['row']
             col = active_cell['column_id']
-            print("Row index:", row)
-            print("Column ID:", col)
             category = pivot_table.index[row]
             month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             return filtered_df.to_dict('records')
-        return []
+        
 
     @app.callback(
         [Output('pivot-table', 'data'),
