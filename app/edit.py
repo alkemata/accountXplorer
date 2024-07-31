@@ -101,7 +101,8 @@ def create_dash_app(server):
             col = active_cell['column_id']
             category = pivot_table.index[row]
             month = pd.Period(col, freq='M')  # Convert string back to Period
-            
+            print(category)
+            print(month)
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             return filtered_df.to_dict('records')
