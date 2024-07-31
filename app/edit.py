@@ -71,7 +71,7 @@ def create_dash_app(server):
             style_data_conditional=[
                 {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
             ],
-            row_selectable='single',
+            #row_selectable='single',
             cell_selectable=True
         ),
         html.H2('Detailed Data'),
@@ -103,7 +103,6 @@ def create_dash_app(server):
             month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
-            filtered_df=df
             return filtered_df.to_dict('records')
         return []
 
