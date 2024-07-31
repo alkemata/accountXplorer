@@ -12,60 +12,68 @@ import config
 #import dash_core_components as dcc
 
 
-app = Flask(__name__)
-app.config.from_object(config.Config)
+def create_dash_app(server):
+    app = dash.Dash(__name__, server=server, url_base_pathname='/edit/')
+    app.config.from_object(config.Config)
 
-from overview import create_dash_app
-overview = create_dash_app(app)
+    from overview import create_dash_app
+    from edit import create_dash_app
+    overview = create_dash_app(app)
+    edit = create_dash_app(app)
 
-db.init_app(app)
+    db.init_app(app)
 
-# Flask-Login setup
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+    # Flask-Login setup
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Login')
+    class LoginForm(FlaskForm):
+        username = StringField('Username', validators=[DataRequired()])
+        password = PasswordField('Password', validators=[DataRequired()])
+        submit = SubmitField('Login')
 
-class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Register')
+    class RegisterForm(FlaskForm):
+        username = StringField('Username', validators=[DataRequired()])
+        password = PasswordField('Password', validators=[DataRequired()])
+        submit = SubmitField('Register')
 
-@app.route('/')
-@login_required
-def home():
-    return f'Hello, {current_user.username}!'
+    @app.route('/')
+    @login_required
+    def home():
+        return f'Hello, {current_user.username}!'
 
-@app.route('/overview')
-@login_required
-def render_app1():
-    return overview.index()
+    @app.route('/overview')
+    @login_required
+    def render_app1():
+        return edit.index()
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and check_password_hash(user.password, form.password.data):
-            login_user(user)
-            return redirect(url_for('home'))
-        flash('Invalid username or password')
-    return render_template('login.html', form=form)
+    @app.route('/edit')
+    @login_required
+    def render_app2():
+        return overview.index()
+
+    @app.route('/login', methods=['GET', 'POST'])
+    def login():
+        form = LoginForm()
+        if form.validate_on_submit():
+            user = User.query.filter_by(username=form.username.data).first()
+            if user and check_password_hash(user.password, form.password.data):
+                login_user(user)
+                return redirect(url_for('home'))
+            flash('Invalid username or password')
+        return render_template('login.html', form=form)
 
 
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('login'))
+    @app.route('/logout')
+    @login_required
+    def logout():
+        logout_user()
+        return redirect(url_for('login'))
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000,debug=True)
+    if __name__ == '__main__':
+        app.run(host='0.0.0.0', port=5000,debug=True)

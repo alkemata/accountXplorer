@@ -40,7 +40,7 @@ def calculate_differences(initial_value, df, column_name='Betrag'):
     return df
 
 def create_dash_app(server):
-    app = dash.Dash(__name__, server=server, url_base_pathname='/app1/')
+    app = dash.Dash(__name__, server=server, url_base_pathname='/overview/')
     df = pd.read_csv('./ressources/dataliste.csv',sep=';')
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
