@@ -38,6 +38,7 @@ def create_dash_app(server):
     df['Month'] = df['Buchungsdatum'].dt.to_period('M')
 
     # Predefined list of categories
+    print('loading categories')
     categories = load_categories('./categories.txt')
     category_order  = []
     for sublist in categories.values():
