@@ -43,7 +43,7 @@ def create_dash_app(server):
     for sublist in categories.values():
         category_order.extend(sublist)
 
-    print(category_order)
+    print(categories)
 
     # Set the category order
    # df['Kategorie'] = pd.Categorical(df['Kategorie'], categories=category_order, ordered=True)
