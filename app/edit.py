@@ -15,7 +15,7 @@ def load_categories(file_path):
         stripped_line = line.strip()
         if not stripped_line:
             continue
-        if line.startswith('\t'):  # Assuming sub-categories are indented
+        if line.startswith(' '):  # Assuming sub-categories are indented
             if current_category:
                 categories[current_category].append(stripped_line)
         else:
