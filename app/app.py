@@ -12,7 +12,7 @@ import config
 #import dash_core_components as dcc
 
 
-app = Dash(__name__)
+app = Flask(__name__)
 app.config.from_object(config.Config)
 
 from overview import create_dash_app
