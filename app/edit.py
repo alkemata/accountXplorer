@@ -33,7 +33,7 @@ def create_dash_app(server):
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
 
     # Convert Date to datetime
-    df['BUchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
+    df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     # Create a month-year column
     df['Month'] = df['Buchungsdatum'].dt.to_period('M')
 
