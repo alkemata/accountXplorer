@@ -98,6 +98,8 @@ def create_dash_app(server):
         if active_cell:
             row = active_cell['row']
             col = active_cell['column_id']
+            print("Row index:", row)
+            print("Column ID:", col)
             category = pivot_table.index[row]
             month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
