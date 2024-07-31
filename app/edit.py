@@ -53,6 +53,7 @@ def create_dash_app(server):
         #pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
         return pivot_table
 
+    print(df)
     pivot_table = create_pivot_table(df)
 
     # Function to save DataFrame
