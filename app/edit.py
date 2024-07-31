@@ -95,6 +95,7 @@ def create_dash_app(server):
         [Input('pivot-table', 'active_cell')]
     )
     def display_details(active_cell):
+        print(active_cell)
         if active_cell:
             row = active_cell['row']
             col = active_cell['column_id']
