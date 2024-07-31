@@ -49,12 +49,12 @@ def home():
 @app.route('/overview')
 @login_required
 def render_app1():
-    return edit.index()
+    return overview.index()
 
 @app.route('/edit')
 @login_required
 def render_app2():
-    return overview.index()
+    return edit.index()
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
