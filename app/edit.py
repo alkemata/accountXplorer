@@ -92,10 +92,9 @@ def create_dash_app(server):
 
     @app.callback(
         Output('detail-table', 'data'),
-        [Input('pivot-table', 'derived_virtual_selected_rows'),
-        Input('pivot-table', 'active_cell')]
+        [Input('pivot-table', 'active_cell')]
     )
-    def display_details(selected_rows, active_cell):
+    def display_details(active_cell):
         if active_cell:
             row = active_cell['row']
             col = active_cell['column_id']
