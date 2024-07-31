@@ -38,7 +38,7 @@ def create_dash_app(server):
 
     # Predefined list of categories
     categories = load_categories('./categories.txt')
-    category_order =  = []
+    category_order  = []
     for sublist in categories.values():
         category_order.extend(sublist)
 
