@@ -45,7 +45,7 @@ def create_dash_app(server):
 
 
     # Set the category order
-    df['Kategorie'] = pd.Categorical(df['Kategorie'], categories=category_order, ordered=True)
+   # df['Kategorie'] = pd.Categorical(df['Kategorie'], categories=category_order, ordered=True)
 
     # Function to create pivot table
     def create_pivot_table(dataframe):
