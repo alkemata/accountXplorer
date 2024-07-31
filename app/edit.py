@@ -59,8 +59,6 @@ def create_dash_app(server):
     def save_df(dataframe):
         dataframe.to_csv('saved_dataframe.csv', index=False)
 
-    # Dash app setup
-    app = Dash(__name__)
 
     app.layout = html.Div([
         html.H1('Pivot Table'),
