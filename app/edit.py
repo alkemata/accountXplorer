@@ -74,14 +74,16 @@ def create_dash_app(server):
             id='pivot-table',
             columns=[{"name": str(i), "id": str(i)} for i in pivot_table.reset_index().columns],
             data=pivot_table.reset_index().to_dict('records'),
-            style_table={'overflowX': 'auto'},
+            style_table={'overflowX': 'auto',
+            'height': '300px',  # Fixed height
+            'overflowY': 'auto'  # Enable vertical scrolling},
             style_data_conditional=[
                 {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
             ],
             style_cell={
             'textAlign': 'left',
             'padding': '2px',
-            'fontSize': '10px',
+            'fontSize': '14px',
             'height': 'auto',
             'whiteSpace': 'normal'
              },
