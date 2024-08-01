@@ -98,7 +98,8 @@ def create_dash_app(server):
     ])
 
     @app.callback(
-        Output('detail-table', 'data'),
+        [Output('detail-table', 'data'),
+        Output('output','children')],
         [Input('pivot-table', 'active_cell')]
     )
     def display_details(active_cell):
