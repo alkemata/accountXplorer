@@ -84,7 +84,6 @@ def create_dash_app(server):
         dash_table.DataTable(
             id='detail-table',
             columns=[{"name": col, "id": col} for col in df.columns],
-            data=df.to_dict('records'),
             row_selectable='multi',
         ),
         html.H2('Select Category'),
@@ -110,6 +109,7 @@ def create_dash_app(server):
             month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
+            filtered_df.drop(columns=['Month'])
             return filtered_df.to_dict('records')
         return 'nothing'
 
