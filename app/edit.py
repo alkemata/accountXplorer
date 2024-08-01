@@ -110,7 +110,7 @@ def create_dash_app(server):
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df=filtered_df.drop(columns=['Month'])
             logger.info(filtered_df.to_dict('records'))
-            return filtered_df.to_dict('records')
+            return filtered_df
         return 'nothing'
 
     @app.callback(
