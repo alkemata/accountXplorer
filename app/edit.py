@@ -113,7 +113,7 @@ def create_dash_app(server):
             filtered_df=filtered_df.drop(columns=['Month'])
             filtered_df['Buchungsdatum']=filtered_df['Buchungsdatum'].astype(str)
             return json.dumps(filtered_df.to_dict('records')),filtered_df.to_dict('records')
-        return 'nothing'
+        return 'nothing','nothing'
 
     @app.callback(
         [Output('pivot-table', 'data'),
