@@ -85,7 +85,6 @@ def create_dash_app(server):
         dash_table.DataTable(
             id='detail-table',
             columns=[{"name": col, "id": col} for col in df.drop(columns=['Month']).columns],
-            data=[{"Buchungsdatum": "2024-01-15", "Empfaenger": "HAGEBAUMARKT RATINGEN-BREIT SCHEID", "Verwendungszweck": "HAGEBAUMARKT RATINGEN- BREITSCHEID//Ratingen/DE 12 -01-2024T11:00:46 Folgenr. 09 Verfalld. 1227", "Buchungstext": '', "Betrag": -20.97, "IBAN": "DE36362500000353330195", "Kategorie": "Renovierung & Reparaturen", "Konto": "DE39360100430206819439", "Umbuchung": ''}],
             row_selectable='multi',
         ),
         html.H2('Select Category'),
@@ -99,7 +98,7 @@ def create_dash_app(server):
     ])
 
     @app.callback(
-        Output('output','children'),
+        Output('detail-table','data'),
         [Input('pivot-table', 'active_cell')]
     )
     def display_details(active_cell):
@@ -112,7 +111,7 @@ def create_dash_app(server):
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df=filtered_df.drop(columns=['Month'])
             filtered_df['Buchungsdatum']=filtered_df['Buchungsdatum'].astype(str)
-            return json.dumps(filtered_df.to_dict('records'))
+            return filtered_df.to_dict('records')
         return 'nothing'
 
     @app.callback(
