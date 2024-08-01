@@ -97,7 +97,7 @@ def create_dash_app(server):
     ])
 
     @app.callback(
-        Output('detail-table', 'data'),
+        Output('output', 'children'),
         [Input('pivot-table', 'active_cell')]
     )
     def display_details(active_cell):
@@ -109,7 +109,6 @@ def create_dash_app(server):
             month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
-            print(filtered_df)
             filtered_fd=filtered_df.drop(columns=['Month'])
             return filtered_df.to_dict('records')
         return 'nothing'
