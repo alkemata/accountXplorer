@@ -83,7 +83,8 @@ def create_dash_app(server):
         html.H2('Detailed Data'),
         dash_table.DataTable(
             id='detail-table',
-            #columns=[{"name": col, "id": col} for col in df.columns],
+            columns=[{"name": col, "id": col} for col in df.columns],
+            data=df.to_dict('records')
             row_selectable='multi',
         ),
         html.H2('Select Category'),
