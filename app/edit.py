@@ -109,7 +109,7 @@ def create_dash_app(server):
             month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
-            return filtered_df.to_dict('records')
+            return filtered_df
         return 'nothing'
 
     @app.callback(
