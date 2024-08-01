@@ -134,8 +134,8 @@ def create_dash_app(server):
             new_pivot_table = create_pivot_table(df)
             
             # Update data tables
-            return new_pivot_table.reset_index().to_dict('records'), detail_df.to_dict('records')
-        return dash.no_update, dash.no_update
+            return new_pivot_table.reset_index().to_dict('records')
+        return dash.no_update
 
     @app.callback(
         Output('save-button', 'n_clicks'),
