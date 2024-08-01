@@ -77,7 +77,25 @@ def create_dash_app(server):
             style_data_conditional=[
                 {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
             ],
-            #row_selectable='single',
+            style_cell={
+            'textAlign': 'left',
+            'padding': '2px',
+            'fontSize': '10px',
+            'height': 'auto',
+            'whiteSpace': 'normal'
+             },
+             style_header={
+            'backgroundColor': 'lightgrey',
+            'fontWeight': 'bold',
+            'fontSize': '10px',
+            'padding': '2px'
+             },
+            style_data={
+            'padding': '2px',
+            'fontSize': '10px',
+            'height': 'auto',
+            'whiteSpace': 'normal'
+             },
             cell_selectable=True
         ),
         html.Div(id='output'),
