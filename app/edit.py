@@ -76,7 +76,7 @@ def create_dash_app(server):
             data=pivot_table.reset_index().to_dict('records'),
             style_table={'overflowX': 'auto',
             'height': '300px',  # Fixed height
-            'overflowY': 'auto' } # Enable vertical scrolling},
+            'overflowY': 'auto' } ,# Enable vertical scrolling},
             style_data_conditional=[
                 {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
             ],
