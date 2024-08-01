@@ -112,7 +112,7 @@ def create_dash_app(server):
             filtered_df=filtered_df.drop(columns=['Month'])
             filtered_df['Buchungsdatum']=filtered_df['Buchungsdatum'].astype(str)
             return filtered_df.to_dict('records')
-        return 'nothing'
+        return dash.no_update
 
     @app.callback(
         Output('pivot-table', 'data'),
