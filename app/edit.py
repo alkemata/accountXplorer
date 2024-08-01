@@ -60,6 +60,8 @@ def create_dash_app(server):
         return pivot_table
 
     pivot_table = create_pivot_table(df)
+    for col in pivot_table.select_dtypes(include=['float', 'int']).columns:
+        pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
 
     # Function to save DataFrame
     def save_df(dataframe):
