@@ -7,6 +7,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
+logger.info('logger activated')
 
 def load_categories(file_path):
     with open(file_path, 'r') as file:
@@ -99,7 +100,7 @@ def create_dash_app(server):
         [Input('pivot-table', 'active_cell')]
     )
     def display_details(active_cell):
-        logger.info('callback function triggered')
+        c'callback function triggered')
         if active_cell:
             logger.info("Active cell :", active_cell)
             row = active_cell['row']
