@@ -98,8 +98,7 @@ def create_dash_app(server):
     ])
 
     @app.callback(
-        [Output('detail-table', 'data'),
-        Output('output','children')],
+        Output('output','children'),
         [Input('pivot-table', 'active_cell')]
     )
     def display_details(active_cell):
@@ -112,8 +111,8 @@ def create_dash_app(server):
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df=filtered_df.drop(columns=['Month'])
             filtered_df['Buchungsdatum']=filtered_df['Buchungsdatum'].astype(str)
-            return [json.dumps(filtered_df.to_dict('records')),filtered_df.to_dict('records')]
-        return ['nothing','nothing']
+            return json.dumps(filtered_df.to_dict('records'))
+        return 'nothing'
 
     @app.callback(
         [Output('pivot-table', 'data'),
