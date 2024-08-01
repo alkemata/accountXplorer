@@ -110,7 +110,7 @@ def create_dash_app(server):
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df=filtered_df.drop(columns=['Month'])
-            filtered_df['Buchungsdatum']=filtered_df['Buchungsdatum'].strftime('%d-%m-%Y')
+            filtered_df['Buchungsdatum']=filtered_df['Buchungsdatum'].date()
             return json.dumps(filtered_df.to_dict('records'))
         return 'nothing'
 
