@@ -115,8 +115,7 @@ def create_dash_app(server):
         return 'nothing'
 
     @app.callback(
-        [Output('pivot-table', 'data'),
-        Output('detail-table', 'data')],
+        Output('pivot-table', 'data'),
         [Input('update-button', 'n_clicks')],
         [State('detail-table', 'selected_rows'),
         State('detail-table', 'data'),
