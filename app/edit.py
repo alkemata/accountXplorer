@@ -3,6 +3,10 @@ from dash import Dash, dcc, html, dash_table
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import dash
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger()
 
 def load_categories(file_path):
     with open(file_path, 'r') as file:
@@ -96,6 +100,7 @@ def create_dash_app(server):
     )
     def display_details(active_cell):
         if active_cell:
+            logger.info("Active cell :", active_cell)
             row = active_cell['row']
             col = active_cell['column_id']
             category = pivot_table.index[row]
