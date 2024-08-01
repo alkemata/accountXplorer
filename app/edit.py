@@ -73,7 +73,6 @@ def create_dash_app(server):
             columns=[{"name": str(i), "id": str(i)} for i in pivot_table.reset_index().columns],
             data=pivot_table.reset_index().to_dict('records'),
             style_table={'overflowX': 'auto'},
-            style_cell={'textAlign': 'left'},
             style_data_conditional=[
                 {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
             ],
