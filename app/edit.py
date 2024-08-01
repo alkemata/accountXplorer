@@ -4,6 +4,7 @@ from dash.dependencies import Input, Output, State
 import plotly.express as px
 import dash
 import logging
+import json
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
@@ -109,7 +110,7 @@ def create_dash_app(server):
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df=filtered_df.drop(columns=['Month'])
-            return filtered_df.drop(columns=['Buchungsdatum']).to_dict('records')
+            return json.dumps(filtered_df.drop(columns=['Buchungsdatum']).to_dict('records'))
         return 'nothing'
 
     @app.callback(
