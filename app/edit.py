@@ -100,7 +100,7 @@ def create_dash_app(server):
         [Input('pivot-table', 'active_cell')]
     )
     def display_details(active_cell):
-        c'callback function triggered')
+        logger.info('callback function triggered')
         if active_cell:
             logger.info("Active cell :", active_cell)
             row = active_cell['row']
