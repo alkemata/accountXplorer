@@ -7,7 +7,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
-logger.info('logger activated')
+
 
 def load_categories(file_path):
     with open(file_path, 'r') as file:
@@ -32,7 +32,7 @@ def load_categories(file_path):
 
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/edit/')
-
+    logger.info('logger activated')
     df = pd.read_csv('./ressources/dataliste.csv',sep=';')
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
