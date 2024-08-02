@@ -86,7 +86,7 @@ def create_dash_app(server):
                 {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
             ],
             style_cell={
-            'textAlign': 'left',
+            'textAlign': 'center',
             'padding': '2px',
             'fontSize': '14px',
             'height': 'auto',
