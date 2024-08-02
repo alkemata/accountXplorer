@@ -42,18 +42,18 @@ def calculate_differences(initial_value, df, column_name='Betrag'):
 def detect_transfers(row):
     if row['Konto']=='DE39360100430206819439':
         if row['Kategorie']=='Paypal':
-            return row['Kategorie']='Umbuchung'
+            row['Kategorie']='Umbuchung'
         if row['Umbuchung']=='0-Euro-Konto':
-            return row['Kategorie']='Umbuchung'
+            row['Kategorie']='Umbuchung'
         if row['BuchungsText']=='LASTSCHRIFT':      
-            return row['Kategorie']='Umbuchung' 
+            row['Kategorie']='Umbuchung' 
     if row['Konto']=='DE47700400480857576300':
         if row['umbuchung']='Postbank Giro extra plus':
-            return row['Kategorie']='Umbuchung'
+            row['Kategorie']='Umbuchung'
     if row['Konto']=='PayPal (albanatita@gmail.com)':
         if row['Kategorie']=='Sonstige Einnahmen':
-            return row['Kategorie']='Umbuchung'
-
+            row['Kategorie']='Umbuchung'
+    return row['Kategorie']
 
 
 def create_dash_app(server):
