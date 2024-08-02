@@ -84,7 +84,7 @@ def create_dash_app(server):
             'overflowY': 'auto' } ,# Enable vertical scrolling},
             style_data_conditional=[
                 {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'},
-                {'if': {'column_id': 'Kategorie'}, 'width': f'150px'}
+                {'if': {'column_id': 'Kategorie'}, 'width': f'50px'}
             ],
             style_cell={
             'textAlign': 'left',
@@ -92,7 +92,8 @@ def create_dash_app(server):
             'fontSize': '14px',
             'height': 'auto',
             'whiteSpace': 'normal',
-            'width':'30px'
+            'textOverflow': 'ellipsis',
+            'maxWidth': 0s
              },
              style_header={
             'backgroundColor': 'lightgrey',
