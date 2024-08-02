@@ -5,6 +5,7 @@ import plotly.express as px
 import dash
 import logging
 import json
+import os
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
