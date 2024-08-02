@@ -92,7 +92,6 @@ def create_dash_app(server):
             'height': 'auto',
             'whiteSpace': 'normal',
             'textOverflow': 'ellipsis',
-            'maxWidth': 0
              },
             style_cell_conditional=[
                 {'if': {'column_id': 'Kategorie'}, 'width': f'200px'}
