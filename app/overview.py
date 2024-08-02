@@ -64,7 +64,7 @@ def load_data(): #todo add a visual indication at the top to show which file is 
         df = pd.read_csv('./ressources/dataliste.csv',sep=';')
         df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
         df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
-        df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
+    df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df['Kategorie'] = df.apply(detect_transfers, axis=1)  
     return df
 
