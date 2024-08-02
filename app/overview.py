@@ -59,7 +59,7 @@ def detect_transfers(row):
 
 def load_data():
     if os.path.exists('saved_dataframe.csv'):
-        df = pd.read_csv('saved_dataframe.csv',sep=';') #TO>DO put file in ressources directory. See in edit as well
+        df = pd.read_csv('saved_dataframe.csv',sep=',') #TO>DO put file in ressources directory. See in edit as well
     else:   
         df = pd.read_csv('./ressources/dataliste.csv',sep=';')
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
