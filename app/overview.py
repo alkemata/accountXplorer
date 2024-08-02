@@ -108,12 +108,12 @@ def create_dash_app(server):
 
     # Add traces
     fig.add_trace(
-        go.Scatter(x=dfs.sort_values(by='date')['DE39360100430206819439']['BuchungsDatum'], y=dfs.sort_values(by='date')['DE39360100430206819439']['Saldo'], mode='lines', name='DataFrame 1', fill='tozeroy'),
+        go.Scatter(x=dfs['DE39360100430206819439'].sort_values(by='date')['BuchungsDatum'], y=dfs['DE39360100430206819439'].sort_values(by='date')['Saldo'], mode='lines', name='DataFrame 1', fill='tozeroy'),
         row=1, col=1
     )
 
     fig.add_trace(
-        go.Scatter(x=dfs.sort_values(by='date')['DE47700400480857576300']['Buchungsdatum'], y=dfs.sort_values(by='date')['DE47700400480857576300']['Saldo'], mode='lines', name='DataFrame 2', fill='tozeroy'),
+        go.Scatter(x=dfs['DE47700400480857576300'].sort_values(by='date')['Buchungsdatum'], y=dfs['DE47700400480857576300'].sort_values(by='date')['Saldo'], mode='lines', name='DataFrame 2', fill='tozeroy'),
         row=2, col=1
     )
 
