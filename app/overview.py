@@ -48,7 +48,7 @@ def detect_transfers(row):
         if row['Buchungstext']=='LASTSCHRIFT':      
             row['Kategorie']='Umbuchung' 
     if row['Konto']=='DE47700400480857576300':
-        if row['umbuchung']=='Postbank Giro extra plus':
+        if row['Umbuchung']=='Postbank Giro extra plus':
             row['Kategorie']='Umbuchung'
     if row['Konto']=='PayPal (albanatita@gmail.com)':
         if row['Kategorie']=='Sonstige Einnahmen':
