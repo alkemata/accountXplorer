@@ -62,8 +62,8 @@ def load_data():
         df = pd.read_csv('saved_dataframe.csv',sep=',') #TO>DO put file in ressources directory. See in edit as well
     else:   
         df = pd.read_csv('./ressources/dataliste.csv',sep=';')
-    df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
-    df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
+        df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
+        df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
     df['Kategorie'] = df.apply(detect_transfers, axis=1)  
     return df
 
