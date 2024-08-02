@@ -84,14 +84,15 @@ def create_dash_app(server):
             'overflowY': 'auto' } ,# Enable vertical scrolling},
             style_data_conditional=[
                 {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'},
-                {'if': {'column_id': 0}, 'width': f'150px'}
+                {'if': {'column_id': 'Kategorie'}, 'width': f'150px'}
             ],
             style_cell={
             'textAlign': 'left',
             'padding': '2px',
             'fontSize': '14px',
             'height': 'auto',
-            'whiteSpace': 'normal'
+            'whiteSpace': 'normal',
+            'width':'30px'
              },
              style_header={
             'backgroundColor': 'lightgrey',
