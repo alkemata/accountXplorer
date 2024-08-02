@@ -45,7 +45,7 @@ def detect_transfers(row):
             row['Kategorie']='Umbuchung'
         if row['Umbuchung']=='0-Euro-Konto':
             row['Kategorie']='Umbuchung'
-        if row['BuchungsText']=='LASTSCHRIFT':      
+        if row['Buchungstext']=='LASTSCHRIFT':      
             row['Kategorie']='Umbuchung' 
     if row['Konto']=='DE47700400480857576300':
         if row['umbuchung']=='Postbank Giro extra plus':
