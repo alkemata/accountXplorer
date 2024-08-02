@@ -41,7 +41,7 @@ def calculate_differences(initial_value, df, column_name='Betrag'):
 
 def detect_transfers(row):
     if row['Konto']=='DE39360100430206819439':
-        if row['Kategorie']=='Paypal':
+        if row['Kategorie']=='PayPal':
             row['Kategorie']='Umbuchung'
         if row['Umbuchung']=='0-Euro-Konto':
             row['Kategorie']='Umbuchung'
@@ -56,14 +56,26 @@ def detect_transfers(row):
     return row['Kategorie']
 
 
-def create_dash_app(server):
-    app = dash.Dash(__name__, server=server, url_base_pathname='/overview/')
-    df = pd.read_csv('./ressources/dataliste.csv',sep=';')
+def load_data():
+    if os.path.exists('saved_dataframe.csv'):
+        df = pd.read_csv('saved_dataframe.csv',sep=';') #TO>DO put file in ressources directory. See in edit as well
+    else:   
+        df = pd.read_csv('./ressources/dataliste.csv',sep=';')
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
-
-    
     df['Kategorie'] = df.apply(detect_transfers, axis=1)  
+    return df
+
+
+def save_df(dataframe): 
+        dataframe.to_csv('saved_dataframe.csv', index=False)
+
+def create_dash_app(server):
+    app = dash.Dash(__name__, server=server, url_base_pathname='/overview/')
+
+
+    df=load_data()
+    save_df(df)
 
     accounts=df['Konto'].unique()
     dfs = {k: v for k, v in df.groupby('Konto')}

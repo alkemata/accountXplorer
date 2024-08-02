@@ -30,6 +30,9 @@ def load_categories(file_path):
 
     return categories
 
+def save_df(dataframe): #TODO remove duplicate functions with overview
+        dataframe.to_csv('saved_dataframe.csv', index=False)
+
 
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/edit/')
@@ -62,10 +65,6 @@ def create_dash_app(server):
     pivot_table = create_pivot_table(df)
     for col in pivot_table.select_dtypes(include=['float', 'int']).columns:
         pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
-
-    # Function to save DataFrame
-    def save_df(dataframe):
-        dataframe.to_csv('saved_dataframe.csv', index=False)
 
 
     app.layout = html.Div([
