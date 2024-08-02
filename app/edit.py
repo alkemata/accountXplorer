@@ -93,7 +93,7 @@ def create_dash_app(server):
             'height': 'auto',
             'whiteSpace': 'normal',
             'textOverflow': 'ellipsis',
-            'maxWidth': 0s
+            'maxWidth': 0
              },
              style_header={
             'backgroundColor': 'lightgrey',
