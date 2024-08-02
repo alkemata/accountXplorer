@@ -83,7 +83,8 @@ def create_dash_app(server):
             'height': '300px',  # Fixed height
             'overflowY': 'auto' } ,# Enable vertical scrolling},
             style_data_conditional=[
-                {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
+                {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'},
+                {'if': {'column_id': 0}, 'width': f'150px'}
             ],
             style_cell={
             'textAlign': 'left',
