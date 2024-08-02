@@ -64,7 +64,7 @@ def load_data():
         df = pd.read_csv('./ressources/dataliste.csv',sep=';')
         df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
         df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
-        df['BuchungsDatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
+        df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df['Kategorie'] = df.apply(detect_transfers, axis=1)  
     return df
 
@@ -108,12 +108,12 @@ def create_dash_app(server):
 
     # Add traces
     fig.add_trace(
-        go.Scatter(x=dfs['DE39360100430206819439'].sort_values(by='BuchungsDatum')['BuchungsDatum'], y=dfs['DE39360100430206819439'].sort_values(by='BuchungsDatum')['Saldo'], mode='lines', name='DataFrame 1', fill='tozeroy'),
+        go.Scatter(x=dfs['DE39360100430206819439'].sort_values(by='Buchungsdatum')['Buchungsdatum'], y=dfs['DE39360100430206819439'].sort_values(by='Buchungsdatum')['Saldo'], mode='lines', name='DataFrame 1', fill='tozeroy'),
         row=1, col=1
     )
 
     fig.add_trace(
-        go.Scatter(x=dfs['DE47700400480857576300'].sort_values(by='BuchungsDatum')['BuchungsDatum'], y=dfs['DE47700400480857576300'].sort_values(by='BuchungsDatum')['Saldo'], mode='lines', name='DataFrame 2', fill='tozeroy'),
+        go.Scatter(x=dfs['DE47700400480857576300'].sort_values(by='Buchungsdatum')['Buchungsdatum'], y=dfs['DE47700400480857576300'].sort_values(by='Buchungsdatum')['Saldo'], mode='lines', name='DataFrame 2', fill='tozeroy'),
         row=2, col=1
     )
 
