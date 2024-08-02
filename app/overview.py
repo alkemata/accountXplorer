@@ -57,7 +57,7 @@ def detect_transfers(row):
     return row['Kategorie']
 
 
-def load_data():
+def load_data(): #todo add a visual indication at the top to show which file is loaded
     if os.path.exists('saved_dataframe.csv'):
         df = pd.read_csv('saved_dataframe.csv',sep=',') #TO>DO put file in ressources directory. See in edit as well
     else:   

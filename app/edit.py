@@ -34,16 +34,20 @@ def save_df(dataframe): #TODO remove duplicate functions with overview
         dataframe.to_csv('saved_dataframe.csv', index=False)
 
 
+def load_data():
+    if os.path.exists('saved_dataframe.csv'):
+        df = pd.read_csv('saved_dataframe.csv',sep=',') #TO>DO put file in ressources directory. See in edit as well
+    else:   
+        df = pd.read_csv('./ressources/dataliste.csv',sep=';')
+        df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
+        df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
+        df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
+    return df
+
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/edit/')
     logger.info('logger 2 activated')
-    df = pd.read_csv('./ressources/dataliste.csv',sep=';')
-    df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
-    df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
-
-    # Convert Date to datetime
-    df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
-    # Create a month-year column
+    df=load_data()
     df['Month'] = df['Buchungsdatum'].dt.to_period('M')
 
     # Predefined list of categories
