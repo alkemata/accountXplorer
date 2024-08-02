@@ -64,6 +64,7 @@ def load_data():
         df = pd.read_csv('./ressources/dataliste.csv',sep=';')
         df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
         df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
+        df['BuchungsDatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df['Kategorie'] = df.apply(detect_transfers, axis=1)  
     return df
 
@@ -88,11 +89,7 @@ def create_dash_app(server):
             initial_value = account_data[k[0:3]]['value']
             dfs[k] = calculate_differences(initial_value, v)
 
-    for k,v in dfs.items():
-        v['BuchungsDatum'] = pd.to_datetime(v['Buchungsdatum'], format='%d.%m.%Y')
-
-
-    
+     
     style_data_conditional = [
         {
             'if': {'filter_query': '{Betrag} > 0'},
