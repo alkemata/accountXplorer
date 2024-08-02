@@ -63,7 +63,7 @@ def create_dash_app(server):
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
 
     
-    df['Kategorie'] = df.apply(detecttransfers, axis=1)  
+    df['Kategorie'] = df.apply(detect_transfers, axis=1)  
 
     accounts=df['Konto'].unique()
     dfs = {k: v for k, v in df.groupby('Konto')}
