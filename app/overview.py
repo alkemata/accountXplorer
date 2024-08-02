@@ -39,11 +39,32 @@ def calculate_differences(initial_value, df, column_name='Betrag'):
 
     return df
 
+def detect_transfers(row):
+    if row['Konto']=='DE39360100430206819439':
+        if row['Kategorie']=='Paypal':
+            return row['Kategorie']='Umbuchung'
+        if row['Umbuchung']=='0-Euro-Konto':
+            return row['Kategorie']='Umbuchung'
+        if row['BuchungsText']=='LASTSCHRIFT':      
+            return row['Kategorie']='Umbuchung' 
+    if row['Konto']=='DE47700400480857576300':
+        if row['umbuchung']='Postbank Giro extra plus':
+            return row['Kategorie']='Umbuchung'
+    if row['Konto']=='PayPal (albanatita@gmail.com)':
+        if row['Kategorie']=='Sonstige Einnahmen':
+            return row['Kategorie']='Umbuchung'
+
+
+
 def create_dash_app(server):
     app = dash.Dash(__name__, server=server, url_base_pathname='/overview/')
     df = pd.read_csv('./ressources/dataliste.csv',sep=';')
     df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
     df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
+
+    
+    df['Kategorie'] = df.apply(detecttransfers, axis=1)  
+
     accounts=df['Konto'].unique()
     dfs = {k: v for k, v in df.groupby('Konto')}
 
@@ -57,10 +78,17 @@ def create_dash_app(server):
     for k,v in dfs.items():
         v['BuchungsDatum'] = pd.to_datetime(v['Buchungsdatum'], format='%d.%m.%Y')
 
+
+    
     style_data_conditional = [
         {
             'if': {'filter_query': '{Betrag} > 0'},
             'backgroundColor': 'green',
+            'color': 'white'
+        },
+        {
+            'if': {'filter_query': '{Kategorie} = Umbuchung'},
+            'backgroundColor': 'blue',
             'color': 'white'
         }
     ]
