@@ -60,11 +60,12 @@ def detect_transfers(row):
 def load_data(): #todo add a visual indication at the top to show which file is loaded
     if os.path.exists('saved_dataframe.csv'):
         df = pd.read_csv('saved_dataframe.csv',sep=',') #TO>DO put file in ressources directory. See in edit as well
+        df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%Y.%m.%d')
     else:   
         df = pd.read_csv('./ressources/dataliste.csv',sep=';')
         df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
         df = df.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
-    df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
+        df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df['Kategorie'] = df.apply(detect_transfers, axis=1)  
     return df
 
