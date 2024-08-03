@@ -1,5 +1,5 @@
 import pandas as pd
-from dash import Dash, dcc, html, dash_table
+from dash import Dash, dcc, html, dash_table, no_update
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import logging
@@ -206,7 +206,7 @@ def create_dash_app(server):
             
             # Update data tables
             return new_pivot_table.reset_index().to_dict('records')
-        return dash.no_update
+        return no_update
 
     @app.callback(
         Output('save-button', 'n_clicks'),
