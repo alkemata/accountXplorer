@@ -123,7 +123,6 @@ def create_dash_app(server):
              },
             cell_selectable=True
         ),
-        html.Div(id='output'),
         html.H2('Detailed Data'),
         dash_table.DataTable(
             id='detail-table',
@@ -138,7 +137,7 @@ def create_dash_app(server):
         ),
         html.Button('Update Category', id='update-button', n_clicks=0),
         html.Button('Save DataFrame', id='save-button', n_clicks=0),
-        recurrent_expenses_toast
+       html.Div( recurrent_expenses_toast)
     ])
 
     @app.callback(
