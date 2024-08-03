@@ -81,8 +81,8 @@ def create_dash_app(server):
         header="Recurrent Expenses",
         is_open=True,
         dismissable=True,
-        icon="primary",
-        style={"position": "fixed", "top": 10, "right": 10, "width": 350}
+        icon="primary"
+#        style={"position": "fixed", "top": 10, "right": 10, "width": 350}
         )
 
 
@@ -137,7 +137,7 @@ def create_dash_app(server):
         ),
         html.Button('Update Category', id='update-button', n_clicks=0),
         html.Button('Save DataFrame', id='save-button', n_clicks=0),
-       html.Div( recurrent_expenses_toast)
+        recurrent_expenses_toast
     ])
 
     @app.callback(
