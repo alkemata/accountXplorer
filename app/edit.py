@@ -76,14 +76,6 @@ def create_dash_app(server):
 #find the recurrent expenses and the associated UI
     recurrent_expenses = df.groupby('Verwendungszweck').filter(lambda x: len(x) > 1).drop(columns=['Month','IBAN','Umbuchung'])
     recurrent_expenses_table = dbc.Table.from_dataframe(recurrent_expenses, striped=True, bordered=True, hover=True)
-    recurrent_expenses_toast = dbc.Toast(
-        [recurrent_expenses_table],
-        header="Recurrent Expenses",
-        is_open=True,
-        dismissable=True,
-        icon="primary"
-#        style={"position": "fixed", "top": 10, "right": 10, "width": 350}
-        )
 
 
     app.layout = html.Div([
@@ -137,7 +129,7 @@ def create_dash_app(server):
         ),
         html.Button('Update Category', id='update-button', n_clicks=0),
         html.Button('Save DataFrame', id='save-button', n_clicks=0),
-        recurrent_expenses_toast
+        recurrent_expenses_table
     ])
 
     @app.callback(
