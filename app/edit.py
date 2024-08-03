@@ -75,7 +75,7 @@ def create_dash_app(server):
 
 #find the recurrent expenses and the associated UI
     recurrent_expenses = df.groupby('Verwendungszweck').filter(lambda x: len(x) > 1).drop(columns=['Month','IBAN','Umbuchung','Buchungstext'])
-    recurrent_expenses= recurrent_expenses.sort_values(by='Description')
+    recurrent_expenses= recurrent_expenses.sort_values(by='Verwendungszweck')
     recurrent_expenses_table = dbc.Table.from_dataframe(recurrent_expenses, striped=True, bordered=True, hover=True)
 
 
