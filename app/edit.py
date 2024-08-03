@@ -6,6 +6,7 @@ import dash
 import logging
 import json
 import os
+import dash_bootstrap_components as dbc
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
@@ -47,7 +48,7 @@ def load_data():
     return df
 
 def create_dash_app(server):
-    app = dash.Dash(__name__, server=server, url_base_pathname='/edit/')
+    app = dash.Dash(__name__, server=server, url_base_pathname='/edit/',external_stylesheets=[dbc.themes.BOOTSTRAP])
     logger.info('logger 2 activated')
     df=load_data()
     df['Month'] = df['Buchungsdatum'].dt.to_period('M')
@@ -72,6 +73,18 @@ def create_dash_app(server):
     for col in pivot_table.select_dtypes(include=['float', 'int']).columns:
         pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
 
+#find the recurrent expenses and the associated UI
+    recurrent_expenses = df.groupby('Verwendungszweck').filter(lambda x: len(x) > 1)
+    recurrent_expenses_table = dbc.Table.from_dataframe(recurrent_expenses, striped=True, bordered=True, hover=True)
+    recurrent_expenses_toast = dbc.Toast(
+        [recurrent_expenses_table],
+        header="Recurrent Expenses",
+        is_open=True,
+        dismissable=True,
+        icon="primary",
+        style={"position": "fixed", "top": 10, "right": 10, "width": 350}
+        )
+
 
     app.layout = html.Div([
         html.H1('Pivot Table'),
@@ -88,7 +101,7 @@ def create_dash_app(server):
             style_cell={
             'textAlign': 'center',
             'padding': '2px',
-            'fontSize': '14px',
+            'fontSize': '18px',
             'height': 'auto',
             'whiteSpace': 'normal',
             'textOverflow': 'ellipsis',
@@ -124,7 +137,8 @@ def create_dash_app(server):
             multi=False
         ),
         html.Button('Update Category', id='update-button', n_clicks=0),
-        html.Button('Save DataFrame', id='save-button', n_clicks=0)
+        html.Button('Save DataFrame', id='save-button', n_clicks=0),
+        recurrent_expenses_toast
     ])
 
     @app.callback(
