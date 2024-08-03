@@ -144,9 +144,6 @@ def create_dash_app(server):
             )
         ], className="mb-4"),
 
-        dbc.Row([
-            dbc.Col(recurrent_expenses_table, width=12)
-        ], className="mb-4"),
 
         dbc.Row([
             dbc.Col(html.H2('Change category'), width=12)
@@ -164,7 +161,11 @@ def create_dash_app(server):
                     multi=False
                 ), width=10
             )
-        ], className="mb-4")
+        ], className="mb-4"),
+                dbc.Row([
+            dbc.Col(recurrent_expenses_table, width=12)
+        ], className="mb-4"),
+
     ], fluid=True)
 
     @app.callback(
