@@ -74,7 +74,7 @@ def create_dash_app(server):
         pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
 
 #find the recurrent expenses and the associated UI
-    recurrent_expenses = df.groupby('Verwendungszweck').filter(lambda x: len(x) > 1)
+    recurrent_expenses = df.groupby('Verwendungszweck').filter(lambda x: len(x) > 1).drop(columns=['Month','IBAN','Umbuchung'])
     recurrent_expenses_table = dbc.Table.from_dataframe(recurrent_expenses, striped=True, bordered=True, hover=True)
     recurrent_expenses_toast = dbc.Toast(
         [recurrent_expenses_table],
