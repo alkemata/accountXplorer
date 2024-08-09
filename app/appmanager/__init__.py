@@ -19,6 +19,8 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
+    print('everything set up')
+
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
