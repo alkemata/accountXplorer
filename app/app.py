@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from config import Config
+import routes
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -14,7 +15,6 @@ bcrypt = Bcrypt(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-from your_project import routes
 
 if __name__ == '__main__':
     app.run(debug=True)
