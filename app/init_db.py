@@ -34,6 +34,18 @@ def modify_user(username, app_name):
     print(f"Added {app.name} to {user.username}")
 
 
+def list_apps():
+    apps = App.query.all()
+
+    if not apps:
+        print("No apps found in the database.")
+    else:
+        print("Listing all apps in the database:")
+        for app in apps:
+            print("App Name: {}".format(app.name))
+            print("App Path: {}".format(app.path))
+            print("-" * 30)
+
 APPS_DIRECTORY = './apps'
 
 def sync_apps_directory():
