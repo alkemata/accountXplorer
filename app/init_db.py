@@ -3,7 +3,7 @@ from models import User, App
 import os
 
 
-def create_user(user1, email, password)
+def create_user(user1, email, password):
     user1 = User(username=user1, email=email)
     user1.set_password(password)
 
