@@ -6,6 +6,8 @@ services:
     build: .
     volumes:
       - ./app:/app/
+    ports: 
+      - 5000:5000
     environment:
       - PYTHONUNBUFFERED=1
     labels:
