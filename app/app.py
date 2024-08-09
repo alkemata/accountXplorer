@@ -15,10 +15,10 @@ import config
 app = Flask(__name__)
 app.config.from_object(config.Config)
 
-from overview import create_dash_app
+""" from overview import create_dash_app
 overview = create_dash_app(app)
 from edit import create_dash_app
-edit = create_dash_app(app)
+edit = create_dash_app(app) """
 
 db.init_app(app)
 
