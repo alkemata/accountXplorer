@@ -51,6 +51,7 @@ APPS_DIRECTORY = './apps'
 def sync_apps_directory():
     # Get the list of apps in the directory
     current_apps = {filename for filename in os.listdir(APPS_DIRECTORY) if filename.endswith('.py')}
+    print(current_apps)
 
     # Fetch all apps from the database
     db_apps = {app.name: app for app in App.query.all()}
