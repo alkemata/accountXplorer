@@ -11,14 +11,16 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 db = SQLAlchemy(app)
-from models import User, App
-from init_db import sync_apps_directory
+
 login_manager = LoginManager(app)
 bcrypt = Bcrypt(app)
 
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
+
+from models import User, App
+from init_db import sync_apps_directory
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
