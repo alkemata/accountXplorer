@@ -2,9 +2,12 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, declarative_base
+
+Base = declarative_base()
 
 db = SQLAlchemy()
+
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
