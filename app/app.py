@@ -11,10 +11,9 @@ import dash
 #import dash_html_components as html
 #import dash_core_components as dcc
 
-server = Flask(__name__)
-app=dash.Dash(__name__, server=server, suppress_callback_exceptions=True)
+app = Flask(__name__)
 #app = Flask(__name__)
-#app.config.from_object(config.Config)
+app.config.from_object(config.Config)
 
 """ from overview import create_dash_app
 overview = create_dash_app(app)
@@ -77,7 +76,7 @@ def logout():
     return redirect(url_for('login'))
 
 # Dynamic routing for apps
-@app.server.route('/<app_name>')
+@app.route('/<app_name>')
 @login_required
 def render_app(app_name):
     if app_name in current_user.permissions:
