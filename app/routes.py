@@ -8,6 +8,7 @@ print('routes loaded')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    print('login')
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     if request.method == 'POST':
