@@ -46,7 +46,8 @@ class RegisterForm(FlaskForm):
 def home():
     return f'Hello, {current_user.username}!'
 
-@app.route('/overview')
+
+""" @app.route('/overview')
 @login_required
 def render_app1():
     return overview.index()
@@ -54,7 +55,7 @@ def render_app1():
 @app.route('/edit')
 @login_required
 def render_app2():
-    return edit.index()
+    return edit.index() """
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -73,6 +74,15 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+# Dynamic routing for apps
+@app.server.route('/<app_name>')
+@login_required
+def render_app(app_name):
+    if app_name in current_user.permissions:
+        app_module = __import__(f'apps.{app_name}.app', fromlist=['app'])
+        return app_module.app.index()
+    return 'Unauthorized', 403
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=True)
