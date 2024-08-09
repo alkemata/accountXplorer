@@ -13,6 +13,6 @@
         <li><a href="{{ url_for('static', filename=app.path) }}">{{ app.name }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
 </body>
 </html>
