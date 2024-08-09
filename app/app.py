@@ -14,7 +14,7 @@ import dash
 server = Flask(__name__)
 app=dash.Dash(__name__, server=server, suppress_callback_exceptions=True)
 #app = Flask(__name__)
-app.config.from_object(config.Config)
+#app.config.from_object(config.Config)
 
 """ from overview import create_dash_app
 overview = create_dash_app(app)
