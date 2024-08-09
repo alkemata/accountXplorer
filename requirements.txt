@@ -4,6 +4,7 @@ Flask
 flask-login
 flask-wtf
 Flask-SQLAlchemy
+Flask-Bcrypt
 python-dotenv
 dash
 dash-bootstrap-components

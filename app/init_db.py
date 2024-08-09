@@ -1,94 +1,63 @@
-from werkzeug.security import generate_password_hash
-from app import app, db
-from sqlalchemy.orm import Session
-from models import User, Permission
-from database import SessionLocal
+import db
+from models import User, App
+import os
 
-#add_user("john_doe", "password123", permissions=["app1", "app2"])
-#list_users()
-#modify_user("john_doe", new_password="newpassword123", new_permissions=["app1", "app3"])
-#delete_user("john_doe")
 
-def init_db():
-    with app.app_context():
-        try: 
-            db.create_all()  # Create tables
-            # Check if the initial user exists
-            if not User.query.filter_by(username=app.config['INITIAL_USERNAME']).first():
-                # Add initial user
-                hashed_password = generate_password_hash(app.config['INITIAL_PASSWORD'], method='sha256')
-                new_user = User(username=app.config['INITIAL_USERNAME'], password=hashed_password)
-                db.session.add(new_user)
-                db.session.commit()
-                print("Initialized the database and added the initial user.")
-        except Exception as e:
-            logger.error("Error initializing the database: %s", e)
-            raise
+def create_user(user1, email, password)
+    user1 = User(username=user1, email=email)
+    user1.set_password(password)
 
-def add_user(username, password, permissions=None):
-    """Add a new user with the specified permissions."""
-    session = SessionLocal()
-    if session.query(User).filter(User.username == username).first():
-        raise ValueError("User already exists.")
-    hashed_password = generate_password_hash(password)
-    user = User(username=username, password=hashed_password)
-    session.add(user)
-    session.commit()
-    
-    if permissions:
-        for app_name in permissions:
-            permission = Permission(user_id=user.id, app_name=app_name)
-            session.add(permission)
-    
-    session.commit()
-    session.close()
-    print(f"User '{username}' added successfully.")
+    # Commit to the database
+    db.session.add(user1)
+    db.session.commit()
 
+# List all users and their authorized apps
 def list_users():
-    """List all users with their associated permissions."""
-    session = SessionLocal()
-    users = session.query(User).all()
+    users = User.query.all()
     for user in users:
-        permissions = [perm.app_name for perm in user.permissions]
-        print(f"User: {user.username}, Permissions: {permissions}")
-    session.close()
+        print(f"Username: {user.username}")
+        print(f"Email: {user.email}")
+        print("Authorized Apps:")
+        for app in user.authorized_apps:
+            print(f"- {app.name} ({app.path})")
+        print("\n")
 
-def modify_user(username, new_password=None, new_permissions=None):
-    """Modify the user's password and/or permissions."""
-    session = SessionLocal()
-    user = session.query(User).filter(User.username == username).first()
-    if not user:
-        raise ValueError("User not found.")
-    
-    if new_password:
-        user.password = generate_password_hash(new_password)
-    
-    if new_permissions is not None:
-        # Clear current permissions
-        session.query(Permission).filter(Permission.user_id == user.id).delete()
-        # Add new permissions
-        for app_name in new_permissions:
-            permission = Permission(user_id=user.id, app_name=app_name)
-            session.add(permission)
-    
-    session.commit()
-    session.close()
-    print(f"User '{username}' modified successfully.")
+def modify_user(username, app_name)
+    # Fetch user and app
+    user = User.query.filter_by(username=username).first()
+    app = App.query.filter_by(name=app_name).first()
 
-def delete_user(username):
-    """Delete a user and their associated permissions."""
-    session = SessionLocal()
-    user = session.query(User).filter(User.username == username).first()
-    if not user:
-        raise ValueError("User not found.")
-    
-    # Delete the user's permissions
-    session.query(Permission).filter(Permission.user_id == user.id).delete()
-    # Delete the user
-    session.delete(user)
-    session.commit()
-    session.close()
-    print(f"User '{username}' deleted successfully.")
+    # Add app to user
+    user.authorized_apps.append(app)
+    db.session.commit()
+
+    print(f"Added {app.name} to {user.username}")
+
+
+APPS_DIRECTORY = './apps'
+
+def sync_apps_directory():
+    # Get the list of apps in the directory
+    current_apps = {filename for filename in os.listdir(APPS_DIRECTORY) if filename.endswith('.py')}
+
+    # Fetch all apps from the database
+    db_apps = {app.name: app for app in App.query.all()}
+
+    # Add new apps to the database
+    for app_filename in current_apps:
+        if app_filename not in db_apps:
+            new_app = App(name=app_filename, path=os.path.join(APPS_DIRECTORY, app_filename))
+            db.session.add(new_app)
+            print(f"Added new app to database: {app_filename}")
+
+    # Remove apps from the database that are no longer in the directory
+    for app_name, app in db_apps.items():
+        if app_name not in current_apps:
+            db.session.delete(app)
+            print(f"Removed app from database: {app_name}")
+
+    # Commit the changes to the database
+    db.session.commit()
 
 if __name__ == '__main__':
-    init_db()
+    sync_apps_directory()
