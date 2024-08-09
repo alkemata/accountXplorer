@@ -1,4 +1,4 @@
-import db
+from app import db
 from models import User, App
 import os
 
