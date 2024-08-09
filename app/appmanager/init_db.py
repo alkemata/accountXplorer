@@ -1,5 +1,6 @@
 from models import db, User, App
 import os
+from appmanager import create_app
 
 
 def create_user(user1, email, password):
