@@ -4,6 +4,8 @@ from app import app, db
 from models import User, App
 from init_db import sync_apps_directory
 
+print('routes loaded')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
