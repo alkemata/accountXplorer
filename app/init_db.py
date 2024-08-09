@@ -49,23 +49,29 @@ def list_apps():
 APPS_DIRECTORY = './apps'
 
 def sync_apps_directory():
-    # Get the list of apps in the directory
-    current_apps = {filename for filename in os.listdir(APPS_DIRECTORY) if filename.endswith('.py')}
-    print(current_apps)
+    current_apps = {}
+
+    # Walk through all subdirectories of APPS_DIRECTORY
+    for root, dirs, files in os.walk(APPS_DIRECTORY):
+        for file in files:
+            if file.endswith('.py'):
+                # Get the relative path from the APPS_DIRECTORY root
+                relative_path = os.path.relpath(os.path.join(root, file), APPS_DIRECTORY)
+                current_apps[relative_path] = file
 
     # Fetch all apps from the database
     db_apps = {app.name: app for app in App.query.all()}
 
     # Add new apps to the database
-    for app_filename in current_apps:
+    for relative_path, app_filename in current_apps.items():
         if app_filename not in db_apps:
-            new_app = App(name=app_filename, path=os.path.join(APPS_DIRECTORY, app_filename))
+            new_app = App(name=app_filename, path=relative_path)
             db.session.add(new_app)
             print(f"Added new app to database: {app_filename}")
 
     # Remove apps from the database that are no longer in the directory
     for app_name, app in db_apps.items():
-        if app_name not in current_apps:
+        if app.name not in current_apps:
             db.session.delete(app)
             print(f"Removed app from database: {app_name}")
 
