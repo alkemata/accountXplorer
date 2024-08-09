@@ -1,5 +1,4 @@
-from app import db
-from models import User, App
+from models import db, User, App
 import os
 
 
