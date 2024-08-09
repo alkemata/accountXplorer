@@ -22,7 +22,7 @@ def list_users():
             print(f"- {app.name} ({app.path})")
         print("\n")
 
-def modify_user(username, app_name)
+def modify_user(username, app_name):
     # Fetch user and app
     user = User.query.filter_by(username=username).first()
     app = App.query.filter_by(name=app_name).first()
