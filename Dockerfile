@@ -5,4 +5,4 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-CMD python -u run.py
+CMD flask --app accountxplorer run --debug
