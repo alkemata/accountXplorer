@@ -100,5 +100,5 @@ if __name__ == '__main__':
 
 def create_db():
     with app.app_context():
-        create_all()
+       db.create_all()
 
