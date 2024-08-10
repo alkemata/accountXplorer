@@ -22,7 +22,6 @@ class User(db.Model, UserMixin):
 class App(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
-    path = db.Column(db.String(100), nullable=False)
 
 user_app = db.Table('user_app',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),

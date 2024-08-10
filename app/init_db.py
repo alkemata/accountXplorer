@@ -21,6 +21,7 @@ def list_users():
         for user in users:
             print(f"Username: {user.username}")
             print(f"Email: {user.email}")
+            print(f"Admin: {user.is_admin}")
             print("Authorized Apps:")
             for app1 in user.authorized_apps:
                 print(f"- {app1.name} ({app1.path})")
@@ -57,9 +58,9 @@ def list_apps():
             print("No apps found in the database.")
         else:
             print("Listing all apps in the database:")
-            for app in apps:
-                print("App Name: {}".format(app.name))
-                print("App Path: {}".format(app.path))
+            for app1 in apps:
+                print("App Name: {}".format(app1.name))
+                print("App Path: {}".format(app1.path))
                 print("-" * 30)
 
 APPS_DIRECTORY = './apps'
@@ -69,20 +70,15 @@ def sync_apps_directory():
         current_apps = {}
 
         # Walk through all subdirectories of APPS_DIRECTORY
-        for root, dirs, files in os.walk(APPS_DIRECTORY):
-            for file in files:
-                if file.endswith('.py'):
-                    # Get the relative path from the APPS_DIRECTORY root
-                    relative_path = os.path.relpath(os.path.join(root, file), APPS_DIRECTORY)
-                    current_apps[relative_path] = file
+        current_apps = [f.name for f in Path('apps').iterdir() if f.is_dir()]
 
         # Fetch all apps from the database
         db_apps = {app.name: app1 for app1 in App.query.all()}
 
         # Add new apps to the database
-        for relative_path, app_filename in current_apps.items():
-            if app_filename not in db_apps:
-                new_app = App(name=app_filename, path=relative_path)
+        for app_name in current_apps.items():
+            if app_name not in db_apps:
+                new_app = App(name=app_name)
                 db.session.add(new_app)
                 print(f"Added new app to database: {app_filename}")
 
