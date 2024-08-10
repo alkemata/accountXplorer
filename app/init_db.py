@@ -80,12 +80,12 @@ def sync_apps_directory():
             if app_name not in db_apps:
                 new_app = App(name=app_name)
                 db.session.add(new_app)
-                print(f"Added new app to database: {app_filename}")
+                print(f"Added new app to database: {app_name}")
 
         # Remove apps from the database that are no longer in the directory
-        for app_name, app in db_apps.items():
-            if app.name not in current_apps:
-                db.session.delete(app)
+        for app_name, app1 in db_apps.items():
+            if app1.name not in current_apps:
+                db.session.delete(app1)
                 print(f"Removed app from database: {app_name}")
 
         # Commit the changes to the database
