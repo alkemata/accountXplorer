@@ -3,6 +3,9 @@ from appmanager import create_app
 from appmanager.models import db, User, App
 import os
 from appmanager import create_app
+from pathlib import Path
+
+
 app=create_app()
 
 def create_user(user1, email, password,is_admin=False):
