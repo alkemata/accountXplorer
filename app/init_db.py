@@ -27,7 +27,7 @@ def list_users():
             print(f"Admin: {user.is_admin}")
             print("Authorized Apps:")
             for app1 in user.authorized_apps:
-                print(f"- {app1.name} ({app1.path})")
+                print(f"- {app1.name}")
             print("\n")
 
 def make_admin(username):
@@ -63,7 +63,6 @@ def list_apps():
             print("Listing all apps in the database:")
             for app1 in apps:
                 print("App Name: {}".format(app1.name))
-                print("App Path: {}".format(app1.path))
                 print("-" * 30)
 
 APPS_DIRECTORY = './apps'
