@@ -73,7 +73,7 @@ def sync_apps_directory():
         current_apps = {}
 
         # Walk through all subdirectories of APPS_DIRECTORY
-        current_apps = f.name for f in Path('./appmanager/apps').iterdir() if f.is_dir()]
+        current_apps = [f.name for f in Path('./appmanager/apps').iterdir() if f.is_dir()]
 
         # Fetch all apps from the database
         db_apps = {app.name: app1 for app1 in App.query.all()}
@@ -86,7 +86,7 @@ def sync_apps_directory():
                 print(f"Added new app to database: {app_name}")
 
         # Remove apps from the database that are no longer in the directory
-        for app_name, app1 in db_apps.items():
+        for app_name, app1 in db_apps:
             if app1.name not in current_apps:
                 db.session.delete(app1)
                 print(f"Removed app from database: {app_name}")
