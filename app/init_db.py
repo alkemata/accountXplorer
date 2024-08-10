@@ -2,9 +2,11 @@
 from appmanager import create_app
 from appmanager.models import db, User, App
 import os
+from appmanager import create_app
+app=create_app()
 
-def create_user(user1, email, password):
-    user1 = User(username=user1, email=email)
+def create_user(user1, email, password,is_admin=False):
+    user1 = User(username=user1, email=email,is_admin=is_admin)
     user1.set_password(password)
 
     # Commit to the database
@@ -21,6 +23,15 @@ def list_users():
         for app in user.authorized_apps:
             print(f"- {app.name} ({app.path})")
         print("\n")
+
+def make_admin(username):
+    user = User.query.filter_by(username=username).first()
+    if user:
+        user.is_admin = True
+        db.session.commit()
+        print(f"{username} is now an admin.")
+    else:
+        print(f"User {username} not found.")
 
 def modify_user(username, app_name):
     # Fetch user and app
@@ -80,3 +91,8 @@ def sync_apps_directory():
 
 if __name__ == '__main__':
     sync_apps_directory()
+
+def create_db():
+    with app.app_context():
+        init_db.create_all()
+
