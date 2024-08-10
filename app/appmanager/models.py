@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)  # Add this line
     password_hash = db.Column(db.String(60), nullable=False)
     authorized_apps = db.relationship('App', secondary='user_app', backref=db.backref('users', lazy=True))
 
