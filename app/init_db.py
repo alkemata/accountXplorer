@@ -73,7 +73,7 @@ def sync_apps_directory():
         current_apps = {}
 
         # Walk through all subdirectories of APPS_DIRECTORY
-        current_apps = [f.name for f in Path('apps').iterdir() if f.is_dir()]
+        current_apps = [f.name for f in Path('./appmanager/apps').iterdir() if f.is_dir()]
 
         # Fetch all apps from the database
         db_apps = {app.name: app1 for app1 in App.query.all()}
