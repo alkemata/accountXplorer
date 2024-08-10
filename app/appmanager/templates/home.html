@@ -10,7 +10,7 @@
     <h2>Your Authorized Apps</h2>
     <ul>
         {% for app in apps %}
-        <li><a href="{{ url_for('static', filename=app.path) }}">{{ app.name }}</a></li>
+        <li><a href="{{ url_for('static', filename=app.name) }}">{{ app.name }}</a></li>
         {% endfor %}
     </ul>
     <a href="{{ url_for('auth.logout') }}">Logout</a>
