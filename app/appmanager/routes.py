@@ -39,7 +39,7 @@ def create_user():
         new_user = User(name=name, email=email, password=password, authorized_apps=apps)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('list_users'))
+        return redirect(url_for('main.list_users'))
 
     apps = App.query.all()
     return render_template('create_user.html', apps=apps)
@@ -56,7 +56,7 @@ def edit_user(user_id):
         user.authorized_apps = App.query.filter(App.id.in_(app_ids)).all()
 
         db.session.commit()
-        return redirect(url_for('list_users'))
+        return redirect(url_for('main.list_users'))
 
     apps = App.query.all()
     return render_template('edit_user.html', user=user, apps=apps)
@@ -67,7 +67,7 @@ def delete_user(user_id):
     user = User.query.get_or_404(user_id)
     db.session.delete(user)
     db.session.commit()
-    return redirect(url_for('list_users'))
+    return redirect(url_for('main.list_users'))
 
 @main_blueprint.route('/management')
 @admin_required
