@@ -22,8 +22,8 @@ def list_users():
             print(f"Username: {user.username}")
             print(f"Email: {user.email}")
             print("Authorized Apps:")
-            for app in user.authorized_apps:
-                print(f"- {app.name} ({app.path})")
+            for app1 in user.authorized_apps:
+                print(f"- {app1.name} ({app1.path})")
             print("\n")
 
 def make_admin(username):
@@ -40,10 +40,10 @@ def modify_user(username, app_name):
     with app.app_context():
         # Fetch user and app
         user = User.query.filter_by(username=username).first()
-        app = App.query.filter_by(name=app_name).first()
+        app1 = App.query.filter_by(name=app_name).first()
 
         # Add app to user
-        user.authorized_apps.append(app)
+        user.authorized_apps.append(app1)
         db.session.commit()
 
         print(f"Added {app.name} to {user.username}")
@@ -77,7 +77,7 @@ def sync_apps_directory():
                     current_apps[relative_path] = file
 
         # Fetch all apps from the database
-        db_apps = {app.name: app for app in App.query.all()}
+        db_apps = {app.name: app1 for app1 in App.query.all()}
 
         # Add new apps to the database
         for relative_path, app_filename in current_apps.items():
