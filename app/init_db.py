@@ -16,7 +16,7 @@ def create_user(user1, email, password,is_admin=False):
 
 # List all users and their authorized apps
 def list_users():
-    with app.app_context():
+ #   with app.app_context():
         users = User.query.all()
         for user in users:
             print(f"Username: {user.username}")
