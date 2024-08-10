@@ -73,13 +73,13 @@ def sync_apps_directory():
         current_apps = {}
 
         # Walk through all subdirectories of APPS_DIRECTORY
-        current_apps = [f.name for f in Path('./appmanager/apps').iterdir() if f.is_dir()]
+        current_apps = f.name for f in Path('./appmanager/apps').iterdir() if f.is_dir()]
 
         # Fetch all apps from the database
         db_apps = {app.name: app1 for app1 in App.query.all()}
 
         # Add new apps to the database
-        for app_name in current_apps.items():
+        for app_name in current_apps:
             if app_name not in db_apps:
                 new_app = App(name=app_name)
                 db.session.add(new_app)
