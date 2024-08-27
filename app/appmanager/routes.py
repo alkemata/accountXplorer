@@ -1,6 +1,6 @@
 # app/routes.py
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from flask_login import login_required
+from flask_login import login_required,current_user
 from functools import wraps
 from .models import User,App
 
@@ -17,8 +17,8 @@ main_blueprint = Blueprint('main', __name__)
 
 @main_blueprint.route('/')
 @login_required
-def index(user_id):
-    user = User.query.get_or_404(user_id)
+def index():
+    user = current_user()
     apps = user.authorized_apps
     return render_template('home.html',apps=apps)
 
