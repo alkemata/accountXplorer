@@ -7,7 +7,7 @@ financeX = Blueprint('financeX', __name__, template_folder='templates')
 # Route for the first page
 @financeX.route('/overview')
 @login_required
-def page1():
+def overview():
     return render_template('financeX/page1.html')
 
 # Route for the second page
