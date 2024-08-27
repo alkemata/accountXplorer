@@ -4,7 +4,7 @@ from flask_login import LoginManager
 from .models import db, User
 from .routes import main_blueprint
 from .auth import auth_blueprint  # Import the auth blueprint
-from FinanceX import FinanceX
+from ./apps/FinanceX/financeX import FinanceX
 
 def create_app():
     app = Flask(__name__)
