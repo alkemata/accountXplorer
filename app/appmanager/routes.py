@@ -18,7 +18,7 @@ main_blueprint = Blueprint('main', __name__)
 @main_blueprint.route('/')
 @login_required
 def index():
-    user = current_user()
+    user = current_user
     apps = user.authorized_apps
     return render_template('home.html',apps=apps)
 
