@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required
 
 # Define the blueprint
-FinanceX = Blueprint('financeX', __name__, template_folder='templates')
+FinanceX = Blueprint('FinanceX', __name__, template_folder='templates')
 
 # Route for the first page
 @FinanceX.route('/overview')
