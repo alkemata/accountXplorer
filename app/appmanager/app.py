@@ -18,7 +18,7 @@ bcrypt = Bcrypt(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-app.register_blueprint(financeX)
+app.register_blueprint(FinanceX)
 
 
 from models import User, App
