@@ -10,7 +10,7 @@
     <ul>
     {% for user in users %}
         <li>
-            {{ user.name }} - {{ user.email }}
+            {{ user.username }} - {{ user.email }}
             <a href="{{ url_for('main.edit_user', user_id=user.id) }}">Edit</a>
             <form action="{{ url_for('main.delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
                 <button type="submit">Delete</button>

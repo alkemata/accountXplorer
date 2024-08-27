@@ -17,8 +17,10 @@ main_blueprint = Blueprint('main', __name__)
 
 @main_blueprint.route('/')
 @login_required
-def index():
-    return render_template('home.html')
+def index(user_id):
+    user = User.query.get_or_404(user_id)
+    apps = user.authorized_apps
+    return render_template('home.html',apps=apps)
 
 @main_blueprint.route('/users')
 @admin_required
@@ -33,10 +35,9 @@ def create_user():
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
-        app_ids = request.form.getlist('apps')
-        apps = App.query.filter(App.id.in_(app_ids)).all()
+ 
 
-        new_user = User(name=name, email=email, password=password, authorized_apps=apps)
+        new_user = User(username=name, email=email, password=password, authorized_apps=apps)
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('main.list_users'))
