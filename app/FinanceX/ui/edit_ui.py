@@ -100,7 +100,7 @@ def layout_categories(pivot_table, df, category_order):
                 dbc.Col(
                     dash_table.DataTable(
                         id='detail-table',
-                        columns=[{"name": col, "id": col} for col in df.drop(columns=['Month']).columns],
+                  #      columns=[{"name": col, "id": col} for col in df.drop(columns=['Month']).columns],
                         style_table={'overflowX': 'auto', 'height': '300px', 'overflowY': 'auto'},
                         style_cell={
                             'textAlign': 'left',
