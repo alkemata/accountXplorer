@@ -72,6 +72,7 @@ def save_dataframe(n_clicks,df):
     State('file4', 'value')
     )
 def update_file_account(n_clicks, file1, file2, file3, file4):
+        print('Callback activated')
         if n_clicks is None:
             return ""  # No clicks yet
         log_message=''
