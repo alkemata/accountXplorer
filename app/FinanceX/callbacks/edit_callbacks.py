@@ -10,9 +10,12 @@ app=appedit
 
 @app.callback(
         Output('detail-table', 'data'),
-        [Input('pivot-table', 'active_cell')]
+        [Input('pivot-table', 'active_cell'),
+        Input('shared-categories','data'),
+        Input('shared-dataframe','data')
+        ]
     )
-def display_details(active_cell):
+def display_details(active_cell,pivot_Table,df):
         if active_cell:
             row = active_cell['row']
             col = active_cell['column_id']
@@ -28,7 +31,7 @@ def display_details(active_cell):
 
 @app.callback(
         [Output('pivot-table', 'data'),
-        Output('shared-dataframe','df_cat')],
+        Output('shared-categories','data')],
         [Input('update-button', 'n_clicks')],
         [State('detail-table', 'selected_rows'),
          State('detail-table', 'data'),
@@ -50,7 +53,7 @@ def update_category(n_clicks, selected_rows, detail_data, selected_category,df):
             
             # Update data tables
             return new_pivot_table.reset_index().to_dict('records')
-        return no_update, new_pivot_table
+        return no_update, new_pivot_table.to_dict('records')
 
 @app.callback(
         Output('save-button', 'n_clicks'),
