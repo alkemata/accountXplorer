@@ -1,7 +1,7 @@
 import pandas as pd
 import logging
 import os
-import callbacks
+import callbacks.edit_callbacks
 import ui
 import dash_bootstrap_components as dbc
 from dash import html
