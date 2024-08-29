@@ -15,7 +15,8 @@ appedit= None
 
 def create_dash_app(flask_server):
     global appedit
-    appedit = dash.Dash(__name__,  server=flask_server,url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
+    if appedit is None:
+        appedit = dash.Dash(__name__,  server=flask_server,url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     logger.info('logger 2 activated')
     apeditp.layout=html.Div([dcc.Store(id='shared-dataframe'), edit_ui.layout_files()])
     appedit.run_server(debug=True)
