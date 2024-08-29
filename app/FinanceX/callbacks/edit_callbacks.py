@@ -63,11 +63,10 @@ def update_category(n_clicks, df_data,selected_rows, detail_data, selected_categ
 @app.callback(
         Output('save-button', 'n_clicks'),
         Input('save-button', 'n_clicks'),
-        State('shared-dataframe','data')
     )
-def save_dataframe(n_clicks,df):
+def save_dataframe(n_clicks):
         if n_clicks > 0:
-            functions.save_df(df)
+          #  functions.save_df()
         return 0
 
 @app.callback(
