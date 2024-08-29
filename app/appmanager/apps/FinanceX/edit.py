@@ -1,8 +1,8 @@
 import pandas as pd
 import logging
 import os
-import FinanceX.callbacks.edit_callbacks
-import ui
+from FinanceX.callbacks import edit_callbacks
+from FinanceX.ui import edit_ui
 import dash_bootstrap_components as dbc
 from dash import html
 from dash import dcc, html, dash_table
@@ -14,7 +14,7 @@ logger = logging.getLogger()
 
 app = Dash(__name__, server=server, url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
 logger.info('logger 2 activated')
-app.layout=html.Div([dcc.Store(id='shared-dataframe'), ui.layout_files()])
+app.layout=html.Div([dcc.Store(id='shared-dataframe'), edit_ui.layout_files()])
  
 
     #recurrent_expenses = df.groupby('Verwendungszweck').filter(lambda x: len(x) > 1).drop(columns=['Month', 'IBAN', 'Umbuchung', 'Buchungstext'])
