@@ -32,4 +32,4 @@ def create_app():
     app.register_blueprint(auth_blueprint)
     appedit=create_dash_app(app)
 
-    return app, appedit
+    return app
