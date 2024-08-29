@@ -62,7 +62,7 @@ def detect_transfers(row):
 
 def merge_new_data(file1, file2):
     try:
-        df_existing = pd.read_csv("./resources/"+file2)
+        df_existing = pd.read_csv("./ressources/"+file2)
     except Exception as e:
         print('File note found')
         return {'code': 0, 'msg': 'Erreur Fichier de données des transactions introuvable'}
