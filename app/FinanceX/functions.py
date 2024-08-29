@@ -5,7 +5,7 @@ import csv
 ressources_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),'resources')
 
 def load_categories(file_path):
-    with open(file_path, 'r') as file:
+    with open(os.path.join(ressources_dir,file_path), 'r') as file:
         lines = file.readlines()
 
     categories = {}
