@@ -7,6 +7,7 @@ from .auth import auth_blueprint  # Import the auth blueprint
 from .edit import create_dash_app
 
 def create_app():
+    global appedit
     app = Flask(__name__)
     
     # Load configuration
@@ -31,4 +32,4 @@ def create_app():
     app.register_blueprint(auth_blueprint)
     appedit=create_dash_app(app)
 
-    return app
+    return app, appedit
