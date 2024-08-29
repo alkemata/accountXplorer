@@ -12,13 +12,14 @@ import dash
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
-
+appedit= None
 
 def create_dash_app(flask_server):
-    app = dash.Dash(__name__,  server=flask_server,url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
+    global appedit
+    appedit = dash.Dash(__name__,  server=flask_server,url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     logger.info('logger 2 activated')
-    app.layout=html.Div([dcc.Store(id='shared-dataframe'), edit_ui.layout_files()])
-    app.run_server(debug=True)
+    apeditp.layout=html.Div([dcc.Store(id='shared-dataframe'), edit_ui.layout_files()])
+    appedit.run_server(debug=True)
 
     #recurrent_expenses = df.groupby('Verwendungszweck').filter(lambda x: len(x) > 1).drop(columns=['Month', 'IBAN', 'Umbuchung', 'Buchungstext'])
     #recurrent_expenses = recurrent_expenses.sort_values(by='Verwendungszweck')
