@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 
+ressources_dir = os.path.join(app.root_path, 'financeX', 'ressources')
+
 def load_categories(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
@@ -24,15 +26,15 @@ def save_df(dataframe): #TODO remove duplicate functions with overview
     dataframe.to_csv('saved_dataframe.csv', index=False)
 
 def load_data(file1):
-    if os.path.exists('./resources/'+file1):
-        df = pd.read_csv('./resources/'+file1, sep=',') #TO>DO put file in ressources directory. See in edit as well
+    if os.path.exists(ressources_dir+file1):
+        df = pd.read_csv(ressources_dir+file1, sep=',') #TO>DO put file in ressources directory. See in edit as well
         df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%Y-%m-%d')
     return df
 
 def load_account_data(file3):
     account_data = {}
     with open(filename, mode='r') as file:
-        reader = csv.reader('./resources/'+file3,delimiter=';')
+        reader = csv.reader(ressources_dir+file3,delimiter=';')
         #next(reader)  # Skip the header row if there is one
         for row in reader:
             account_code = row[0]
@@ -62,13 +64,13 @@ def detect_transfers(row):
 
 def merge_new_data(file1, file2):
     try:
-        df_existing = pd.read_csv("./ressources/"+file2)
+        df_existing = pd.read_csv(ressources_dir+file2)
     except Exception as e:
         print('File note found')
-        return {'code': 0, 'msg': 'Erreur Fichier de données des transactions introuvable'}
+        return {'code': 0, 'msg': 'Erreur -  Fichier de données des transactions introuvable'}
    # Load the CSV with additional rows
     try:
-        df_new = pd.read_csv("./resources/"+file1)
+        df_new = pd.read_csv(ressources_dir+file1)
     except FileNotFoundError as e:
         return {'code': 1, 'msg': 'No update of transactions found, just loading existing file', 'data':df_existing}
     df_new['Betrag'] = pd.to_numeric(df_new['Betrag'].replace(',','.',regex=True), errors='coerce')
@@ -80,14 +82,14 @@ def merge_new_data(file1, file2):
     # Drop duplicates based on only three columns (replace 'column1', 'column2', 'column3' with actual column names)
     df_combined = df_combined.drop_duplicates(subset=['Buchungsdatum', 'Verwendungszweck', 'Empfaenger','IBAN','Konto'])
     # Save the updated DataFrame (if needed)
-    df_combined.to_csv("./resources/"+file2)
+    df_combined.to_csv(ressources_dir+file2)
     return {'code':1,'msg':'Account data file update', 'data': df_combined}
 
 
  
 def pivot_table(file4):
     # Predefined list of categories
-    categories = load_categories('./ressources/'+file4)
+    categories = load_categories(ressources_dir+file4)
     category_order = []
     for sublist in categories.values():
         category_order.extend(sublist)
