@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required
 from .edit import create_dash_app
+from flask import current_app
 
 # Define the blueprint
 FinanceX = Blueprint('FinanceX', __name__, template_folder='templates')
-appedit=create_dash_app(FinanceX)
+appedit=create_dash_app(current_app)
 
 # Route for the first page
 @FinanceX.route('/financeX/overview')
