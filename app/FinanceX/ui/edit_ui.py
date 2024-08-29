@@ -49,10 +49,7 @@ def layout_files(dataframe):
                     style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
                 style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
                 fixed_rows={'headers': True},
-                )]),
-        html.Div(id='categories'),
-        html.Div(id='list_complete'),
-        html.Div(id='planning')
+                )])
     ])
     return layout_files
 
