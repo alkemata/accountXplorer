@@ -1,8 +1,6 @@
 import pandas as pd
 import os
-from . import app
-
-ressources_dir = os.path.join(app.root_path, 'financeX', 'ressources')
+from . import ressources_dir
 
 def load_categories(file_path):
     with open(file_path, 'r') as file:
