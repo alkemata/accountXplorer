@@ -14,7 +14,7 @@ logger = logging.getLogger()
 
 def create_dash_app(flask_server):
     appedit = dash.Dash(__name__,  server=flask_server,url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
-    appedit.layout=html.Div([edit_ui.layout_files(None)])
+    appedit.layout=html.Div([edit_ui.layout_files(pd.DazaFrame())])
     return appedit
 
     #recurrent_expenses = df.groupby('Verwendungszweck').filter(lambda x: len(x) > 1).drop(columns=['Month', 'IBAN', 'Umbuchung', 'Buchungstext'])
