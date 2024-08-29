@@ -78,6 +78,7 @@ def merge_new_data(file1, file2):
     df_new = df_new.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
     df_new['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df_new['Kategorie'] = df.apply(detect_transfers, axis=1)  
+    df['Month']=df['Buchungsdatum'].dt.month
     # Concatenate the existing DataFrame and new data
     df_combined = pd.concat([df_existing, df_new])
     # Drop duplicates based on only three columns (replace 'column1', 'column2', 'column3' with actual column names)
