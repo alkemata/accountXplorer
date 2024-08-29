@@ -80,7 +80,8 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         if res.code==1:
             df=res.data
         else:
-            return
+            log_message=res.msg
+            return log_message
         log_message += res.msg+'\n'
         account_data=functions.load_account_data(file3)
         log_message += 'Accounts configuration file loaded.'
