@@ -143,5 +143,4 @@ def layout_categories(pivot_table, df, category_order):
                         multi=False
                     ), width=10
                 )
-            ], 
-         fluid=True)])
+            ])])
