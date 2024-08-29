@@ -64,7 +64,7 @@ def detect_transfers(row):
 
 def merge_new_data(file1, file2):
     try:
-        df_existing = pd.read_csv(os.path.join(ressources_dir,file2),separator=';')
+        df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=';')
     except Exception as e:
         print('File note found')
         return {'code': 0, 'msg':  str(e) + ' - '+os.path.join(ressources_dir,file2)}
