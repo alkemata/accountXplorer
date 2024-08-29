@@ -1,5 +1,6 @@
 from dash.dependencies import Input, Output, State
 from FinanceX import functions as functions
+from FinanceX import appedit
 from FinanceX.ui.edit_ui import layout_categories
 
 import pandas as pd
