@@ -95,7 +95,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
             log_message=res['msg']
             return log_message, no_update, no_update
         log_message += res['msg']+'\n'
-        account_data=functions.load_account_data(file3)
+        account_data=functions.load_account_data(file2)
         log_message += 'Accounts configuration file loaded.'
         categories=functions.pivot_table(file4,df)
         category_order=functions.load_categories(file4)
