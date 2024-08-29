@@ -67,7 +67,7 @@ def merge_new_data(file1, file2):
         df_existing = pd.read_csv(os.path.join(ressources_dir,file2))
     except Exception as e:
         print('File note found')
-        return {'code': 0, 'msg':  e + ' - '+os.path.join(ressources_dir,file2)}
+        return {'code': 0, 'msg':  str(e) + ' - '+os.path.join(ressources_dir,file2)}
    # Load the CSV with additional rows-
     try:
         df_new = pd.read_csv(os.path.join(ressources_dir,file1))
