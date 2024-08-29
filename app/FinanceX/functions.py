@@ -35,7 +35,7 @@ def load_data(file1):
 def load_account_data(file3): #config.txt
     account_data = {}
     with open(os.path.join(ressources_dir,file3), mode='r') as file:
-        reader = csv.reader(os.path.join(ressources_dir,file3),delimiter=';')
+        reader = csv.reader(file,delimiter=';')
         #next(reader)  # Skip the header row if there is one
         for row in reader:
             account_code = row[0]
