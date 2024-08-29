@@ -13,7 +13,7 @@ import dash
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
 
-app = Dash(__name__, server=server, url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, server=server, url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
 logger.info('logger 2 activated')
 app.layout=html.Div([dcc.Store(id='shared-dataframe'), edit_ui.layout_files()])
  
