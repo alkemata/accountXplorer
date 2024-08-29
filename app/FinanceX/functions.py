@@ -1,6 +1,7 @@
 import pandas as pd
 import os
-from FinanceX import ressources_dir
+from FinanceX import appedit
+essources_dir = os.path.join(appedit.root_path, 'financeX', 'ressources')
 
 def load_categories(file_path):
     with open(file_path, 'r') as file:

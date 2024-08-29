@@ -32,7 +32,6 @@ def create_app():
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
     appedit=create_dash_app(app)
-    ressources_dir = os.path.join(app.root_path, 'financeX', 'ressources')
     import FinanceX.callbacks.edit_callbacks
 
     return app
