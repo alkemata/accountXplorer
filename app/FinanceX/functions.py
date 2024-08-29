@@ -28,7 +28,7 @@ def save_df(dataframe): #TODO remove duplicate functions with overview
 
 def load_data(file1):
     if os.path.exists(os.path.join(ressources_dir,file1)):
-        df = pd.read_csv(os.path.join(ressources_dir,file1), sep=',') #TO>DO put file in ressources directory. See in edit as well
+        df = pd.read_csv(os.path.join(ressources_dir,file1), sep=';') #TO>DO put file in ressources directory. See in edit as well
         df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%Y-%m-%d')
     return df
 
