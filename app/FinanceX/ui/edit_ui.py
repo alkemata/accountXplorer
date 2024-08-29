@@ -5,7 +5,19 @@ from dash import html
 from dash import dcc, html, dash_table
 
 
-def layout_files():
+def layout_files(dataframe):
+    style_data_conditional = [
+        {
+            'if': {'filter_query': '{Betrag} > 0'},
+            'backgroundColor': 'green',
+            'color': 'white'
+        },
+        {
+            'if': {'filter_query': '{Kategorie} = Umbuchung'},
+            'backgroundColor': 'blue',
+            'color': 'white'
+        }
+    ]
     layout_files= html.Div([
         html.H1("Account data editor"),
         # Input fields for file names
@@ -25,16 +37,29 @@ def layout_files():
         html.Div([
             dcc.Textarea(id='log', style={'width': '100%', 'height': 200}),
         ], style={'margin-top': '20px'}),
+        html.Div(
+        children=[
+            html.H1("DataFrame global"),
+                       
+                dash_table.DataTable(
+                    id=f'table-global',
+                    columns=[{"name": i, "id": i} for i in dataframe.columns],
+                    data=dataframe.to_dict('records'),
+                    style_data_conditional=style_data_conditional,
+                    style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
+                style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
+                fixed_rows={'headers': True},
+                )]),
         html.Div(id='categories'),
         html.Div(id='list_complete'),
         html.Div(id='planning')
-
     ])
     return layout_files
 
 
 def layout_categories(pivot_table, df, category_order):
     layout_categories = dbc.Container([
+            dbc.Row([])
             dbc.Row([
                 dbc.Col(html.H2('Spending by category'), width=12),
                 dbc.Col(

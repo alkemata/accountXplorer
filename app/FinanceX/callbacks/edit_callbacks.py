@@ -11,14 +11,16 @@ app=appedit
 @app.callback(
         Output('detail-table', 'data'),
         [Input('pivot-table', 'active_cell'),
-        Input('shared-categories','data'),
-        Input('shared-dataframe','data')
+        Input('pivot-table','data'),
+        Input('table-global','data'),
         ]
     )
-def display_details(active_cell,pivot_Table,df):
+def display_details(active_cell,pivot, datafrme):
         if active_cell:
             row = active_cell['row']
             col = active_cell['column_id']
+            pivot_table=pd.DataFrame(pivot)
+            df=pd.DataFrame(dataFrame)
             category = pivot_table.index[row]
             month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
@@ -31,16 +33,19 @@ def display_details(active_cell,pivot_Table,df):
 
 @app.callback(
         [Output('pivot-table', 'data'),
-        Output('shared-categories','data',allow_duplicate=True)],
+        Output('data_table','data'),
+        Output('data_table','columns'),
+        ],
         [Input('update-button', 'n_clicks')],
-        [State('detail-table', 'selected_rows'),
+        [State('table-global', 'data'),
+        State('detail-table', 'selected_rows'),
          State('detail-table', 'data'),
          State('category-dropdown', 'value'),
-         State('shared-dataframe','data')
          ]
     )
-def update_category(n_clicks, selected_rows, detail_data, selected_category,df):
+def update_category(n_clicks, df_data,selected_rows, detail_data, selected_category):
         if n_clicks > 0 and selected_rows and selected_category:
+            df=pd.DataFrame(df_data)
             detail_df = pd.DataFrame(detail_data)
             selected_indices = detail_df.iloc[selected_rows].index
             
@@ -67,16 +72,15 @@ def save_dataframe(n_clicks,df):
 
 @app.callback(
     [Output('log', 'value'),
-    Output('shared-dataframe','data',allow_duplicate=True),
     Output('categories','children'),
-    Output('shared-categories','data',allow_duplicate=True)
-    ],
+    Output('table-global','data')] ,
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
     State('file2', 'value'),
     State('file3', 'value'),
     State('file4', 'value')
     )
+    
 def update_file_account(n_clicks, file1, file2, file3, file4):
         with open('log', 'a') as file:
             file.write("Callback activated\n")
@@ -96,4 +100,4 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         categories=functions.pivot_table(file4)
         category_order=functions.load_categories(file4)
         layout2=layout_categories(categories,account_data,category_order)
-        return log_message, account_data.to_dict('records'), layout2,categories.to_dict('records')
+        return log_message, layout2,categories.to_dict('records'), account_data.to_dict('records')
