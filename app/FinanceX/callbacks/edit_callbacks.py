@@ -73,7 +73,7 @@ def save_dataframe(n_clicks,df):
 @app.callback(
     [Output('log', 'value'),
     Output('categories','children'),
-    Output('pivot-table','data')
+    Output('pivot-table','data'),
     Output('table-global','data')] ,
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
