@@ -65,12 +65,12 @@ def merge_new_data(file1, file2):
         df_existing = pd.read_csv("./resources/"+file2)
     except Exception as e:
         print('File note found')
-        return {code: 0, msg: 'Erreur Fichier de données des transactions introuvable'}
+        return {'code': 0, 'msg': 'Erreur Fichier de données des transactions introuvable'}
    # Load the CSV with additional rows
     try:
         df_new = pd.read_csv("./resources/"+file1)
     except FileNotFoundError as e:
-        return {code: 1, msg: 'No update of transactions found, just loading existing file', data:df_existing}
+        return {'code': 1, 'msg': 'No update of transactions found, just loading existing file', 'data':df_existing}
     df_new['Betrag'] = pd.to_numeric(df_new['Betrag'].replace(',','.',regex=True), errors='coerce')
     df_new = df_new.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
     df_new['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
@@ -81,7 +81,7 @@ def merge_new_data(file1, file2):
     df_combined = df_combined.drop_duplicates(subset=['Buchungsdatum', 'Verwendungszweck', 'Empfaenger','IBAN','Konto'])
     # Save the updated DataFrame (if needed)
     df_combined.to_csv("./resources/"+file2)
-    return {code:1,msg:'Account data file update', data: df_combined}
+    return {'code':1,'msg':'Account data file update', 'data': df_combined}
 
 
  
