@@ -66,6 +66,7 @@ def update_category(n_clicks, df_data,selected_rows, detail_data, selected_categ
     )
 def save_dataframe(n_clicks):
         if n_clicks > 0:
+            print('toto')
           #  functions.save_df()
         return 0
 
