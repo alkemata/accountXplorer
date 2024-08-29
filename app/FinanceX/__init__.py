@@ -29,6 +29,6 @@ def create_app():
     # Register blueprints
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
-    appedit=create_dash_app(current_app)
+    appedit=create_dash_app(app)
 
     return app
