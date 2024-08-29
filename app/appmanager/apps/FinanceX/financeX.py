@@ -18,8 +18,8 @@ def overview():
 @login_required
 def page2():
     if 'dash_app' not in current_app.extensions:
-        dash_app = create_dash_app(current_app)
-        current_app.extensions['dash_app'] = dash_app  # Store it in extensions to avoid re-initialization
+        appedit = create_dash_app(current_app)
+        current_app.extensions['dash_app'] = appedit # Store it in extensions to avoid re-initialization
     return current_app.extensions['dash_app'].index()
 
 # Route for the second page
