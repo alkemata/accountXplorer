@@ -32,7 +32,7 @@ def load_data(file1):
         df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%Y-%m-%d')
     return df
 
-def load_account_data(file3):
+def load_account_data(file3): #config.txt
     account_data = {}
     with open(os.path.join(ressources_dir,file3), mode='r') as file:
         reader = csv.reader(os.path.join(ressources_dir,file3),delimiter=';')

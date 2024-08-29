@@ -25,7 +25,7 @@ def layout_files(dataframe):
             html.Div([
                 html.Div([html.Label('Transfer file:'),dcc.Input(id='file1', type='text', value='transfer.csv', style={'margin-right': '10px'})]),
                 html.Div([html.Label('Account file:'),dcc.Input(id='file2', type='text', value='processed.csv', style={'margin-right': '10px'})]),
-                html.Div([html.Label('Accounts config:'),dcc.Input(id='file3', type='text', value='accounts.txt', style={'margin-right': '10px'})]),
+                html.Div([html.Label('Accounts config:'),dcc.Input(id='file3', type='text', value='config.txt', style={'margin-right': '10px'})]),
                 html.Div([html.Label('Categories config:'),dcc.Input(id='file4', type='text', value='categories.txt', style={'margin-right': '10px'})]),
             ], style={'display': 'flex', 'margin-bottom': '20px'})
         ]),
