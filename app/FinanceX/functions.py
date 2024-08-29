@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from . import app
 
 ressources_dir = os.path.join(app.root_path, 'financeX', 'ressources')
 
