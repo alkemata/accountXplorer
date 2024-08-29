@@ -5,7 +5,7 @@ from flask import current_app
 
 # Define the blueprint
 FinanceX = Blueprint('FinanceX', __name__, template_folder='templates')
-appedit=create_dash_app(current_app)
+
 
 # Route for the first page
 @FinanceX.route('/financeX/overview')
@@ -17,8 +17,10 @@ def overview():
 @FinanceX.route('/financeX//edit')
 @login_required
 def page2():
-    
-    return appedit.index()
+    if 'dash_app' not in current_app.extensions:
+        dash_app = create_dash_app(current_app)
+        current_app.extensions['dash_app'] = dash_app  # Store it in extensions to avoid re-initialization
+    return current_app.extensions['dash_app'].index()
 
 # Route for the second page
 @FinanceX.route('/financeX/')
