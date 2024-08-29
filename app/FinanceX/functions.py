@@ -88,7 +88,7 @@ def merge_new_data(file1, file2):
 
 
  
-def pivot_table(file4):
+def pivot_table(file4,df):
     # Predefined list of categories
     categories = load_categories(os.path.join(ressources_dir,file4))
     category_order = []
