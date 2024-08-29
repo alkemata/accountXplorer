@@ -1,23 +1,25 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required
+from .edit import app as appedit
 
 # Define the blueprint
 FinanceX = Blueprint('FinanceX', __name__, template_folder='templates')
 
 # Route for the first page
-@FinanceX.route('/overview')
+@FinanceX.route('/financeX/overview')
 @login_required
 def overview():
     return render_template('financeX/page1.html')
 
 # Route for the second page
-@FinanceX.route('/edit')
+@FinanceX.route('/financeX//edit')
 @login_required
 def page2():
     return render_template('financeX/page2.html')
 
 # Route for the second page
-@FinanceX.route('/')
+@FinanceX.route('/financeX/')
 @login_required
 def home():
-    return render_template('financeX/home.html')
+    return appedit.index()
+

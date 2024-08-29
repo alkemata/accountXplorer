@@ -8,17 +8,7 @@ import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 import os
 
-def load_account_data(filename):
-    account_data = {}
-    with open(filename, mode='r') as file:
-        reader = csv.reader(file,delimiter=';')
-        #next(reader)  # Skip the header row if there is one
-        for row in reader:
-            account_code = row[0]
-            account_name = row[1]
-            account_value = float(row[2])  # Assuming the value column contains numeric data
-            account_data[account_code] = {'name': account_name, 'value': account_value}
-    return account_data
+
 
 def calculate_differences(initial_value, df, column_name='Betrag'):
     # Initialize the new column with the first value being the difference between the initial value and the first element in column a
