@@ -13,7 +13,7 @@ def admin_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-appedit=create_dash_app(current_app)
+
 main_blueprint = Blueprint('main', __name__)
 
 @main_blueprint.route('/')

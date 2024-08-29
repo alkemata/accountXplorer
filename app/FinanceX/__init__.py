@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from .models import db, User
 from .routes import main_blueprint
 from .auth import auth_blueprint  # Import the auth blueprint
+from .edit import create_dash_app
 
 def create_app():
     app = Flask(__name__)
@@ -28,5 +29,6 @@ def create_app():
     # Register blueprints
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
+    appedit=create_dash_app(current_app)
 
     return app
