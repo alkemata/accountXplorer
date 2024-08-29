@@ -1,6 +1,6 @@
 import pandas as pd
 import logging
-import os
+import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from FinanceX.callbacks import edit_callbacks
 from FinanceX.ui import edit_ui
