@@ -1,6 +1,7 @@
 import pandas as pd
 import os
-ressources_dir = os.path.join('.','FinanceX','resources')
+from flask import current_app
+ressources_dir = os.path.join(current_app.root_path,'resources')
 
 def load_categories(file_path):
     with open(file_path, 'r') as file:
