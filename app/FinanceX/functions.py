@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from . import ressources_dir
+from FinanceX import ressources_dir
 
 def load_categories(file_path):
     with open(file_path, 'r') as file:

@@ -8,6 +8,7 @@ from .edit import create_dash_app
 
 def create_app():
     global appedit
+    global ressources_dir
     app = Flask(__name__)
     
     # Load configuration
@@ -31,6 +32,7 @@ def create_app():
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
     appedit=create_dash_app(app)
+    ressources_dir = os.path.join(app.root_path, 'financeX', 'ressources')
     import FinanceX.callbacks.edit_callbacks
 
     return app

@@ -1,9 +1,9 @@
 # run.py
 from app import create_app
-import os
+
 
 app= create_app()
-ressources_dir = os.path.join(app.root_path, 'financeX', 'ressources')
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=5000,debug=True)
