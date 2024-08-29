@@ -90,11 +90,11 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
     #merge new data
         res=functions.merge_new_data(file1, file2)
         if res['code']==1:
-            df=res.data
+            df=res['data']
         else:
-            log_message=res.msg
+            log_message=res['msg']
             return log_message, None, None,None
-        log_message += res.msg+'\n'
+        log_message += res['msg']+'\n'
         account_data=functions.load_account_data(file3)
         log_message += 'Accounts configuration file loaded.'
         categories=functions.pivot_table(file4)
