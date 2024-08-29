@@ -5,7 +5,7 @@ from flask import current_app
 
 # Define the blueprint
 FinanceX = Blueprint('FinanceX', __name__, template_folder='templates')
-
+appedit = create_dash_app(current_app)
 
 # Route for the first page
 @FinanceX.route('/financeX/overview')
