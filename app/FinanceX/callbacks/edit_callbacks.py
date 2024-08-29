@@ -31,7 +31,7 @@ def display_details(active_cell,pivot_Table,df):
 
 @app.callback(
         [Output('pivot-table', 'data'),
-        Output('shared-categories','data')],
+        Output('shared-categories','data',allow_duplicate=True)],
         [Input('update-button', 'n_clicks')],
         [State('detail-table', 'selected_rows'),
          State('detail-table', 'data'),
@@ -67,9 +67,9 @@ def save_dataframe(n_clicks,df):
 
 @app.callback(
     [Output('log', 'value'),
-    Output('shared-dataframe','data'),
+    Output('shared-dataframe','data',allow_duplicate=True),
     Output('categories','children'),
-    Output('shared-categories','data')
+    Output('shared-categories','data',allow_duplicate=True)
     ],
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
