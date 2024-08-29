@@ -20,6 +20,7 @@ def page2():
     if 'dash_app' not in current_app.extensions:
         appedit = create_dash_app(current_app)
         current_app.extensions['dash_app'] = appedit # Store it in extensions to avoid re-initialization
+        from FinanceX.callbacks import edit_callbacks
     return current_app.extensions['dash_app'].index()
 
 # Route for the second page

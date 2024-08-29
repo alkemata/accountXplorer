@@ -2,7 +2,6 @@ import pandas as pd
 import logging
 import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from FinanceX.callbacks import edit_callbacks
 from FinanceX.ui import edit_ui
 import dash_bootstrap_components as dbc
 from dash import html
