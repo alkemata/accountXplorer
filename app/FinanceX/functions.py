@@ -67,7 +67,7 @@ def merge_new_data(file1, file2):
         df_existing = pd.read_csv(os.path.join(ressources_dir,file2))
     except Exception as e:
         print('File note found')
-        return {'code': 0, 'msg': 'Erreur -  Fichier de données des transactions introuvable'}
+        return {'code': 0, 'msg': 'Erreur -  Fichier de données des transactions introuvable - '+os.path.join(ressources_dir,file2)}
    # Load the CSV with additional rows
     try:
         df_new = pd.read_csv(os.path.join(ressources_dir,file1))
