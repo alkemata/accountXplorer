@@ -36,7 +36,7 @@ def display_details(active_cell,pivot, datafrme):
         Output('data_table','data'),
         Output('data_table','columns'),
         ],
-        [Input('update-button', 'n_clicks')],
+        [Input('update-button-2', 'n_clicks')],
         [State('table-global', 'data'),
         State('detail-table', 'selected_rows'),
          State('detail-table', 'data'),

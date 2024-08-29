@@ -130,7 +130,7 @@ def layout_categories(pivot_table, df, category_order):
 
             dbc.Row([
                 dbc.Col([
-                    html.Button('Change', id='update-button', n_clicks=0, className="btn btn-primary mb-2"),
+                    html.Button('Change', id='update-button-2', n_clicks=0, className="btn btn-primary mb-2"),
                     html.Button('Save', id='save-button', n_clicks=0, className="btn btn-secondary")
                 ], width=2),
                 dbc.Col(
