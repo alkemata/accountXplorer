@@ -32,7 +32,7 @@ def display_details(active_cell,pivot, datafrme):
 
 
 @app.callback(
-        [Output('pivot-table', 'data'),
+        [
         Output('data_table','data'),
         Output('data_table','columns'),
         ],
@@ -57,8 +57,8 @@ def update_category(n_clicks, df_data,selected_rows, detail_data, selected_categ
             new_pivot_table = functions.create_pivot_table(df)
             
             # Update data tables
-            return new_pivot_table.reset_index().to_dict('records')
-        return no_update, new_pivot_table.to_dict('records')
+            return df.reset_index().to_dict('records'),df.reset_index().column.to_dict('records')
+        return no_update, no_update
 
 @app.callback(
         Output('save-button', 'n_clicks'),
