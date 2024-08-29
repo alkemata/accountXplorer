@@ -15,11 +15,11 @@ def overview():
 @FinanceX.route('/financeX//edit')
 @login_required
 def page2():
-    return render_template('financeX/page2.html')
+    return appedit.index()
 
 # Route for the second page
 @FinanceX.route('/financeX/')
 @login_required
 def home():
-    return appedit.index()
+    return render_template('financeX/page1.html')
 
