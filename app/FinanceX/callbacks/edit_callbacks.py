@@ -80,7 +80,7 @@ def save_dataframe(n_clicks,df):
     State('file3', 'value'),
     State('file4', 'value')
     )
-    
+
 def update_file_account(n_clicks, file1, file2, file3, file4):
         with open('log', 'a') as file:
             file.write("Callback activated\n")
@@ -89,7 +89,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         log_message=''
     #merge new data
         res=functions.merge_new_data(file1, file2)
-        if res.code==1:
+        if res['code']==1:
             df=res.data
         else:
             log_message=res.msg
