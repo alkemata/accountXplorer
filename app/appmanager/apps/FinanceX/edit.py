@@ -7,7 +7,6 @@ from FinanceX.ui import edit_ui
 import dash_bootstrap_components as dbc
 from dash import html
 from dash import dcc, html, dash_table
-tate
 from FinanceX import functions as functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
