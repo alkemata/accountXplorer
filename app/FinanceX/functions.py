@@ -33,7 +33,7 @@ def load_data(file1):
 
 def load_account_data(file3):
     account_data = {}
-    with open(file3, mode='r') as file:
+    with open(os.path.join(ressources_dir,file3), mode='r') as file:
         reader = csv.reader(os.path.join(ressources_dir,file3),delimiter=';')
         #next(reader)  # Skip the header row if there is one
         for row in reader:
