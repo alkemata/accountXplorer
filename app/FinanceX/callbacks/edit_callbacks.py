@@ -63,7 +63,7 @@ def save_dataframe(n_clicks,df):
     [Output('log', 'value'),
     Output('shared-dataframe','data'),
     Output('categories','children'),
-    Output('shared-dataframe','df_cat')
+    Output('shared-categories','data')
     ],
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
@@ -89,4 +89,4 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         categories=functions.pivot_table(file4)
         category_order=functions.load_categories(file4)
         layout2=layout_categories(categories,account_data,category_order)
-        return log_message, account_data, layout2,categories
+        return log_message, account_data.to_dict('records'), layout2,categories.to_dict('records')
