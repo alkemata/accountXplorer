@@ -1,8 +1,9 @@
 # app/routes.py
-from flask import Blueprint, render_template, session, redirect, url_for, request
+from flask import Blueprint, render_template, session, redirect, url_for, request, current_app
 from flask_login import login_required,current_user
 from functools import wraps
 from .models import User,App
+from .edit import create_dash_app
 
 def admin_required(f):
     @wraps(f)
@@ -14,6 +15,8 @@ def admin_required(f):
 
 
 main_blueprint = Blueprint('main', __name__)
+appedit=create_dash_app(current_app)
+
 
 @main_blueprint.route('/')
 @login_required
@@ -74,3 +77,13 @@ def delete_user(user_id):
 @admin_required
 def management_dashboard():
     return render_template('management_dashboard.html')  
+
+main_blueprint.route('/edit')
+@admin_required
+def management_dashboard():
+    return  
+
+main_blueprint.route('/')
+def management_dashboard():
+    return render_template('management_dashboard.html')  
+
