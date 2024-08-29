@@ -55,7 +55,7 @@ def layout_files(dataframe):
 
 
 def layout_categories(pivot_table, df, category_order):
-    layout_categories = html.Div([
+    layout = html.Div([
             dbc.Row([
                 dbc.Col(html.H2('Spending by category'), width=12),
                 dbc.Col(
@@ -141,3 +141,4 @@ def layout_categories(pivot_table, df, category_order):
                     ), width=10
                 )
             ])])
+    return layout
