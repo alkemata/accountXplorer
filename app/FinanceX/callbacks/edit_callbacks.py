@@ -1,9 +1,11 @@
 from dash.dependencies import Input, Output, State
 from FinanceX import functions as functions
 from FinanceX.ui.edit_ui import layout_categories
-from . import appedit as app
+
 import pandas as pd
 from dash import no_update
+
+app=appedit
 
 @app.callback(
         Output('detail-table', 'data'),
