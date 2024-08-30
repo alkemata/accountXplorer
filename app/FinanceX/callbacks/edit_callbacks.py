@@ -73,7 +73,10 @@ def save_dataframe(n_clicks):
 @app.callback(
     [Output('log', 'value'),
     Output('pivot-table','data'),
-    Output('table-global','data')] ,
+    Output('pivot-table','columns'),
+    Output('table-global','data'),
+    Output('table-global','columns')
+    ] ,
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
     State('file2', 'value'),
@@ -100,4 +103,4 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         categories=functions.pivot_table(file4,df)
         category_order=functions.load_categories(file4)
         layout2=layout_categories(categories,account_data,category_order)
-        return log_message, categories.to_dict('records'), account_data.to_dict('records')
+        return log_message, categories.to_dict('records'), categories.columns.to_dict('records'),account_data.to_dict('records'),account_data.columns.to_dict('records')
