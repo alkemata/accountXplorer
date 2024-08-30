@@ -26,11 +26,10 @@ def load_categories(file_path):
 def save_df(dataframe): #TODO remove duplicate functions with overview
     dataframe.to_csv('saved_dataframe.csv', index=False)
 
-def load_data(file1):
-    if os.path.exists(os.path.join(ressources_dir,file1)):
-        df = pd.read_csv(os.path.join(ressources_dir,file1), sep=';') #TO>DO put file in ressources directory. See in edit as well
-        df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
-    return df
+#def load_data(file1):
+#    if os.path.exists(os.path.join(ressources_dir,file1)):
+#        df = pd.read_csv(os.path.join(ressources_dir,file1), sep=';') #TO>DO put file in ressources directory. See in edit as well
+#    return df
 
 def load_account_data(file3): #config.txt
     account_data = {}
@@ -66,6 +65,7 @@ def detect_transfers(row):
 def merge_new_data(file1, file2):
     try:
         df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=';')
+        df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d.%m.%Y')
     except Exception as e:
         print('File note found')
         return {'code': 0, 'msg':  str(e) + ' - '+os.path.join(ressources_dir,file2)}
@@ -94,7 +94,7 @@ def pivot_table(file4,df):
     category_order = []
     for sublist in categories.values():
         category_order.extend(sublist)
-    df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
+    #df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df['Month']=df['Buchungsdatum'].dt.month
     # Set the category order
     df['Kategorie'] = pd.Categorical(df['Kategorie'], categories=category_order, ordered=True)
