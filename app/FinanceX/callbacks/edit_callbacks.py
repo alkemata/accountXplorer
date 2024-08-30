@@ -15,7 +15,7 @@ app=appedit
         Input('table-global','data'),
         ]
     )
-def display_details(active_cell,pivot, datafrme):
+def display_details(active_cell,pivot, dataframe):
         if active_cell:
             row = active_cell['row']
             col = active_cell['column_id']
