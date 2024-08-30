@@ -96,6 +96,9 @@ def layout_categories(pivot_table, df, category_order):
                     ), width=12
                 )
             ], className="mb-4"),
+            html.Div([
+            dcc.Textarea(id='log2', style={'width': '100%', 'height': 50}),
+        ]),
 
             dbc.Row([
                 html.Hr(style={'border': '1px solid black'}),

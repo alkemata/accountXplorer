@@ -9,7 +9,8 @@ from dash import no_update
 app=appedit
 
 @app.callback(
-        [Output('detail-table', 'data')],
+        [Output('detail-table', 'data'),
+        Output('log2','value')],
         [Input('pivot-table', 'active_cell'),
         Input('pivot-table','data'),
         Input('table-global','data'),
@@ -28,8 +29,8 @@ def display_details(active_cell,pivot, dataframe):
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df = filtered_df.drop(columns=['Month'])
             #filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
-            return filtered_df.to_dict('records')
-        return no_update
+            return filtered_df.to_dict('records'),month
+        return no_update,''
 
 
 @app.callback(
