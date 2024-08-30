@@ -22,7 +22,7 @@ def display_details(active_cell,pivot, dataframe):
             col = active_cell['column_id']
             pivot_table=pd.DataFrame(pivot).reset_index()
             df=pd.DataFrame(dataframe)
-            category = df.iloc[row]['Kategorie']
+            category = pivot_table.iloc[row]['Kategorie']
             month=col
             print(pivot_table)
             print(df.iloc[row])
