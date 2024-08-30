@@ -96,7 +96,7 @@ def pivot_table(file4,df):
         category_order.extend(sublist)
     #df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df['Month']=df['Buchungsdatum'].dt.month
-    df['Betrag'] = df['Betrag'].astype(float)
+    df['Betrag'] = pd.to_numeric(df['Betrag'])
     # Set the category order
     df['Kategorie'] = pd.Categorical(df['Kategorie'], categories=category_order, ordered=True)
     pivot_table = df.pivot_table(values='Betrag', index='Kategorie', columns='Month', aggfunc='sum', fill_value=0)
