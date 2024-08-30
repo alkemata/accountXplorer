@@ -24,6 +24,7 @@ def display_details(active_cell,pivot, dataframe):
             df=pd.DataFrame(dataframe)
             category = df.iloc[row]['Kategorie']
             month=col
+            print(df)
             #month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
