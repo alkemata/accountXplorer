@@ -9,8 +9,7 @@ from dash import no_update
 app=appedit
 
 @app.callback(
-        [Output('detail-table', 'data'),
-        Output('log','value')],
+        [Output('detail-table', 'data')],
         [Input('pivot-table', 'active_cell'),
         Input('pivot-table','data'),
         Input('table-global','data'),
@@ -29,13 +28,12 @@ def display_details(active_cell,pivot, dataframe):
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df = filtered_df.drop(columns=['Month'])
             filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
-            return str(month),filtered_df.to_dict('records')
+            return filtered_df.to_dict('records')
         return '',no_update
 
 
 @app.callback(
-        [Output('log','value'),
-        Output('data_table','data'),
+        [Output('data_table','data'),
         Output('data_table','columns'),
         ],
         [Input('update-button-2', 'n_clicks')],
@@ -50,7 +48,6 @@ def update_category(n_clicks, df_data,selected_rows, detail_data, selected_categ
             df=pd.DataFrame(df_data)
             detail_df = pd.DataFrame(detail_data)
             selected_indices = detail_df.iloc[selected_rows].index
-            msg=''
             # Update the original dataframe
             for index in selected_indices:
                 df.loc[index, 'Kategorie'] = selected_category
@@ -59,8 +56,8 @@ def update_category(n_clicks, df_data,selected_rows, detail_data, selected_categ
             new_pivot_table = functions.create_pivot_table(df)
             
             # Update data tables
-            return msg,df.reset_index().to_dict('records'),df.reset_index().column.to_dict('records')
-        return '',no_update, no_update
+            return df.reset_index().to_dict('records'),df.reset_index().column.to_dict('records')
+        return no_update, no_update
 
 @app.callback(
         Output('save-button', 'n_clicks'),
