@@ -4,7 +4,6 @@ from dash.dependencies import Input, Output, State
 from dash import html
 from dash import dcc, html, dash_table
 
-
 def layout_files(dataframe):
     style_data_conditional = [
         {
@@ -52,7 +51,6 @@ def layout_files(dataframe):
                 )])
     ])
     return layout_files
-
 
 def layout_categories(pivot_table, df, category_order):
     layout = html.Div([
