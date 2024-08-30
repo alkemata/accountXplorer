@@ -27,7 +27,7 @@ def display_details(active_cell,pivot, dataframe):
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df = filtered_df.drop(columns=['Month'])
-            filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
+            #filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
             return filtered_df.to_dict('records')
         return no_update
 
