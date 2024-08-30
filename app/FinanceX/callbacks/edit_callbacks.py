@@ -29,7 +29,7 @@ def display_details(active_cell,pivot, dataframe):
             filtered_df = filtered_df.drop(columns=['Month'])
             filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
             return filtered_df.to_dict('records')
-        return '',no_update
+        return no_update
 
 
 @app.callback(
