@@ -26,11 +26,9 @@ def display_details(active_cell,pivot, dataframe):
             month=col
             #month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
-            filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
+            filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == str(month))]
             filtered_df = filtered_df.drop(columns=['Month'])
-            print((df['Kategorie'] == category))
-            print((df['Month'] == month))
-            #filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
+             #filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
             return filtered_df.to_dict('records'),str(row)+' - '+category
         return no_update,''
 
