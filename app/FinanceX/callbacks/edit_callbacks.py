@@ -24,12 +24,11 @@ def display_details(active_cell,pivot, dataframe):
             df=pd.DataFrame(dataframe)
             category = pivot_table.iloc[row]['Kategorie']
             month=col
-            print(pivot_table)
-            print(df.iloc[row])
             #month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == month)]
             filtered_df = filtered_df.drop(columns=['Month'])
+            print(filtered_df)
             #filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
             return filtered_df.to_dict('records'),str(row)+' - '+category
         return no_update,''
