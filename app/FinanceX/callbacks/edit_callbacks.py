@@ -88,7 +88,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         with open('log', 'a') as file:
             file.write("Callback activated\n")
         if n_clicks is None:
-            return "",no_update,no_update  # No clicks yet
+            return "",no_update,no_update, no_update,no_update  # No clicks yet
         log_message=''
     #merge new data
         res=functions.merge_new_data(file1, file2)
