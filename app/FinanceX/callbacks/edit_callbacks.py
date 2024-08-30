@@ -72,11 +72,9 @@ def save_dataframe(n_clicks):
         return 0
 
 @app.callback(
-    [Output('log', 'value'),
-    Output('pivot-table','data'),
-    Output('pivot-table','columns'),
-    Output('table-global','data'),
-    Output('table-global','columns')
+    [Output('log','data'),
+    Output('part-list-global','children'),
+    Output('part-pivottable','children')
     ] ,
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
@@ -99,9 +97,9 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
             log_message=res['msg']
             return log_message, no_update, no_update
         log_message += res['msg']+'\n'
-        account_data=df
         categories=functions.pivot_table(file4,df)
         log_message += 'Accounts configuration file loaded - '+str(categories.columns)
         category_order=functions.load_categories(file4)
-        #layout2=layout_categories(categories,account_data,category_order)
-        return log_message,categories.reset_index().to_dict('records'), [{"name": i, "id": i} for i in categories.reset_index().columns],account_data.reset_index().to_dict('records'), [{"name": i, "id": i} for i in account_data.reset_index().columns]
+        layout1=layout_list_global(df)
+        layout2=layout_categories(categories,df,category_order)
+        return log_message,layout1, layout2

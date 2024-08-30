@@ -4,20 +4,9 @@ from dash.dependencies import Input, Output, State
 from dash import html
 from dash import dcc, html, dash_table
 
-def layout_files(dataframe):
-    style_data_conditional = [
-        {
-            'if': {'filter_query': '{Betrag} > 0'},
-            'backgroundColor': 'green',
-            'color': 'white'
-        },
-        {
-            'if': {'filter_query': '{Kategorie} = Umbuchung'},
-            'backgroundColor': 'blue',
-            'color': 'white'
-        }
-    ]
-    layout_files= html.Div([
+def layout_files():
+
+    layout= html.Div([
         html.H1("Account data editor"),
         # Input fields for file names
         html.Div([
@@ -36,7 +25,27 @@ def layout_files(dataframe):
         html.Div([
             dcc.Textarea(id='log', style={'width': '100%', 'height': 200}),
         ], style={'margin-top': '20px'}),
-        html.Div(
+        html.Div(id='part-list-global'),
+        html.Div(id='part-pivottable'),
+        html.Div(id='part-saldo'),
+        html.Div(id='part-planning')
+    ])
+    return layout
+
+def layout_list_global(dataframe):
+    style_data_conditional = [
+        {
+            'if': {'filter_query': '{Betrag} > 0'},
+            'backgroundColor': 'green',
+            'color': 'white'
+        },
+        {
+            'if': {'filter_query': '{Kategorie} = Umbuchung'},
+            'backgroundColor': 'blue',
+            'color': 'white'
+        }
+    ]
+    layout= html.Div(
         children=[
             html.H1("DataFrame global"),
                        
@@ -49,8 +58,7 @@ def layout_files(dataframe):
                 style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
                 fixed_rows={'headers': True},
                 )])
-    ])
-    return layout_files
+    return layout
 
 def layout_categories(pivot_table, df, category_order):
     layout = html.Div([
