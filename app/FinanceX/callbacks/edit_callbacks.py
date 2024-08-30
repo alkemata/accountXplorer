@@ -22,7 +22,7 @@ def display_details(active_cell,pivot, dataframe):
             col = active_cell['column_id']
             pivot_table=pd.DataFrame(pivot)
             df=pd.DataFrame(dataframe)
-            category = df.iloc[int(row), pivot_table.columns.get_loc('Kategorie')]
+            category = df.loc[int(row), 'Kategorie']
             month=col
             #month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
