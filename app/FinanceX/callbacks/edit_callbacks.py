@@ -146,7 +146,7 @@ def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
 
     # Convert transaction data to DataFrame
     transactions_df = pd.DataFrame(transaction_data)
-    transactions_df['Date'] = pd.to_datetime(transactions_df['Date'])
+    transactions_df['Buchungsdatum'] = pd.to_datetime(transactions_df['Buchungsdatum'])
     
     # Initialize list to hold calculated saldo for each account
     calculated_saldos = []
