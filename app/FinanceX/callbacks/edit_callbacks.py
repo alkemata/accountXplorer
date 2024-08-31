@@ -126,6 +126,8 @@ def update_global_table(n_clicks,filter_value,n_clicks2,data,saldo_input_data):
         data2=calculate_saldo(n_clicks2, saldo_input_data, data)
 
 def update_table(n_clicks,filter_value,data):
+    if n_clicks == 0:
+        return no_update
     df=pd.DataFrame(data)
     if not filter_value:
         # Return the original data if no filter is provided
