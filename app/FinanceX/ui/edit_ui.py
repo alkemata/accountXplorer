@@ -200,7 +200,7 @@ def layout_planning(data):
             id='output-table',
             columns=[
                 {'name': 'Date', 'id': 'date', 'type': 'text'},
-                {'name': 'Amount', 'id': 'amount', 'type': 'numeric'},
+                {'name': 'Amount', 'id': 'amount', 'type': 'text'},
                 {'name': 'Description', 'id': 'description', 'type': 'text'},
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
             ],
