@@ -169,7 +169,7 @@ def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
         ].copy()  # Make a copy to avoid modifying the original DataFrame
 
         # Calculate the saldo for the transactions after the start date
-        after_start_date['Calculated_Saldo'] = initial_saldo + after_start_date['Amount'].cumsum()
+        after_start_date['Saldo'] = initial_saldo + after_start_date['Betrag'].cumsum()
 
         # Combine before and after DataFrames
         account_merged = pd.concat([before_start_date, after_start_date])
