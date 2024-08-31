@@ -172,7 +172,7 @@ def layout_saldo(unique_accounts):
     ])
     return layout
 
-    def layer_planning(data):
+def layer_planning(data):
         layout = html.Div([
         html.H1('Budget Management'),
 
