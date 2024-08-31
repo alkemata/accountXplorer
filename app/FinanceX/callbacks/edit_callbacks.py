@@ -109,7 +109,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
 @app.callback(
     Output('table-global', 'data'),
     [Input('filter-button', 'n_clicks'),
-    INput('filter-input','value'),
+    Input('filter-input','value'),
     Input('calculate-button', 'n_clicks')],
     [State('table-global','data'),
     State('saldo-input-table', 'data')]
