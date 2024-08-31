@@ -161,7 +161,7 @@ def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
     for row in saldo_input_data:
         account = row['Account']
         start_date = pd.to_datetime(row['Date']) 
-        initial_saldo = row['Saldo']
+        initial_saldo = float(row['Saldo'])
 
         before_start_date = transactions_df[
             (transactions_df['Konto'] == account) & 
