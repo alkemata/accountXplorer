@@ -5,6 +5,7 @@ from .models import db, User
 from .routes import main_blueprint
 from .auth import auth_blueprint  # Import the auth blueprint
 from .edit import create_dash_app
+from .dashboard import create_dash_app as create_dash_app_2
 
 def create_app():
     global appedit
@@ -32,6 +33,7 @@ def create_app():
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
     appedit=create_dash_app(app)
+    appedit2=create_dash_app_2(app)
     import FinanceX.callbacks.edit_callbacks
 
     return app

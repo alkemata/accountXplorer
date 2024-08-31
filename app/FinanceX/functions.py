@@ -62,6 +62,11 @@ def detect_transfers(row):
     df['Month'] = df['Buchungsdatum'].dt.to_period('M')
     return df
 
+def load_data(file):
+        df = pd.read_csv(os.path.join(ressources_dir,file),sep=';')
+        df['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d.%m.%Y')
+        return df
+
 def merge_new_data(file1, file2):
     try:
         df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=';')

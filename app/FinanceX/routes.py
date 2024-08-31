@@ -4,6 +4,7 @@ from flask_login import login_required,current_user
 from functools import wraps
 from .models import User,App
 from .edit import create_dash_app
+from .dashboard import create_dash_app as create_dash_app_2
 
 def admin_required(f):
     @wraps(f)
