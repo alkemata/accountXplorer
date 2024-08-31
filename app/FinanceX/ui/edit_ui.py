@@ -187,7 +187,7 @@ def layout_planning(data):
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
             ],
             data=data,
-            style_table={'width': '50%'}
+            style_table={'width': '50%'},
             editable=True,
             row_deletable=True
         ),
