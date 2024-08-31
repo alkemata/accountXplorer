@@ -99,7 +99,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         log_message += res['msg']+'\n'
         categories=functions.pivot_table(file4,df)
         log_message += 'Accounts configuration file loaded - '+str(categories.columns)
-        unique_accounts = df['Konto'].unique()
+        unique_accounts = df['Konto'].unique().to_dict('records')
         category_order=functions.load_categories(file4)
         layout1=layout_list_global(df)
         layout2=layout_categories(categories,df,category_order)

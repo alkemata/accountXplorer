@@ -171,3 +171,4 @@ def layout_saldo(unique_accounts):
     html.Button('Calculate Saldos', id='calculate-button', n_clicks=0),
     
     ])
+    return layout
