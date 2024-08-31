@@ -106,12 +106,24 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         layout3=layout_saldo(unique_accounts)
         return log_message,layout1, layout2
 
-
 @app.callback(
     Output('table-global', 'data'),
-    Input('filter-input', 'value'),
-    State('table-global','data')
+    [Input('filter-button', 'value'),
+    Input('calculate-button', 'n_clicks')],
+    [State('table-global','data'),
+    State('saldo-input-table', 'data')]
 )
+def update_global_table(filter_value,n_clicks,data,saldo_input_data):
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        return no_update
+    else:
+        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    if button_id == 'filter-input':
+        data2=update_table(filter_value,data)
+    if button_id=='calculate-button':
+        data2=calculate_saldo(n_clicks, saldo_input_data, data)
+
 def update_table(filter_value,data):
     df=pd.DataFrame(data)
     if not filter_value:
@@ -128,12 +140,6 @@ def update_table(filter_value,data):
         # Return an empty table or handle errors if the input format is wrong
         return df.to_dict('records')
 
-@app.callback(
-    Output('table-global', 'data'),
-    Input('calculate-button', 'n_clicks'),
-    State('saldo-input-table', 'data'),
-    State('table-global', 'data')
-)
 def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
     if n_clicks == 0:
         return no_update

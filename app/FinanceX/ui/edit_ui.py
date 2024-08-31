@@ -49,6 +49,7 @@ def layout_list_global(dataframe):
         children=[
             html.H1("DataFrame global"),
             dcc.Input(id='filter-input', type='text', placeholder='Enter filter like column1:value'),
+            html.Button('Filter', id='filter-button', n_clicks=0),
 
                        
                 dash_table.DataTable(
@@ -168,4 +169,5 @@ def layout_saldo(unique_accounts):
     
     # Button to trigger saldo calculation
     html.Button('Calculate Saldos', id='calculate-button', n_clicks=0),
+    
     ])
