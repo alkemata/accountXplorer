@@ -153,3 +153,19 @@ def layout_categories(pivot_table, df, category_order):
                 )
             ])])
     return layout
+
+def layout_saldo(unique_accounts):
+    layout=html.Div([
+    dash_table.DataTable(
+        id='saldo-input-table',
+        columns=[
+            {'name': 'Account', 'id': 'Account', 'editable': False},
+            {'name': 'Date', 'id': 'Date', 'editable': True},
+            {'name': 'Saldo', 'id': 'Saldo', 'editable': True}
+        ],
+        data=[{'Account': account, 'Date': '', 'Saldo': 0} for account in unique_accounts]
+    ),
+    
+    # Button to trigger saldo calculation
+    html.Button('Calculate Saldos', id='calculate-button', n_clicks=0),
+    ])

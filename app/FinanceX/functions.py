@@ -115,3 +115,4 @@ def calculate_saldo():
             dfs[k] = calculate_differences(initial_value, v)
     merged_df = pd.concat(dfs.values(), axis=0, ignore_index=True)
     merged_df = merged_df.sort_values(by='Buchungsdatum').reset_index(drop=True)
+

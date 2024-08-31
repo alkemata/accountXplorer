@@ -7,6 +7,7 @@ import pandas as pd
 from dash import no_update
 
 app=appedit
+general_labels=df['Postbank Girokonto','Commerzbank GiroKonto']
 
 @app.callback(
         [Output('detail-table', 'data'),
@@ -73,7 +74,8 @@ def save_dataframe(n_clicks):
 @app.callback(
     [Output('log','value'),
     Output('part-list-global','children'),
-    Output('part-pivottable','children')
+    Output('part-pivottable','children'),
+    Output('part-saldo','childrem')
     ] ,
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
@@ -98,10 +100,13 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         log_message += res['msg']+'\n'
         categories=functions.pivot_table(file4,df)
         log_message += 'Accounts configuration file loaded - '+str(categories.columns)
+        unique_accounts = res['Konto'].unique()
         category_order=functions.load_categories(file4)
         layout1=layout_list_global(df)
         layout2=layout_categories(categories,df,category_order)
+        layout3=layout_saldo(unique_accounts)
         return log_message,layout1, layout2
+
 
 @app.callback(
     Output('table-global', 'data'),
@@ -109,7 +114,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
     State('table-global','data')
 )
 def update_table(filter_value,data):
-df=pd.DataFrame(data)
+    df=pd.DataFrame(data)
     if not filter_value:
         # Return the original data if no filter is provided
         return df.to_dict('records')
@@ -123,3 +128,49 @@ df=pd.DataFrame(data)
     except Exception as e:
         # Return an empty table or handle errors if the input format is wrong
         return df.to_dict('records')
+
+@app.callback(
+    Output('table-global', 'data'),
+    Input('calculate-button', 'n_clicks'),
+    State('saldo-input-table', 'data'),
+    State('table-global', 'data')
+)
+def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
+    if n_clicks == 0:
+        return no_update
+
+    # Convert transaction data to DataFrame
+    transactions_df = pd.DataFrame(transaction_data)
+    transactions_df['Date'] = pd.to_datetime(transactions_df['Date'])
+    
+    # Initialize list to hold calculated saldo for each account
+    calculated_saldos = []
+    merged_data = []
+
+    # Calculate saldo for each account
+    for row in saldo_input_data:
+        account = row['Account']
+        start_date = pd.to_datetime(row['Date']) 
+        initial_saldo = row['Saldo']
+
+        before_start_date = transactions_df[
+            (transactions_df['Account'] == account) & 
+            (transactions_df['Date'] < start_date)
+        ]
+        
+        after_start_date = transactions_df[
+            (transactions_df['Account'] == account) & 
+            (transactions_df['Date'] >= start_date)
+        ].copy()  # Make a copy to avoid modifying the original DataFrame
+
+        # Calculate the saldo for the transactions after the start date
+        after_start_date['Calculated_Saldo'] = initial_saldo + after_start_date['Amount'].cumsum()
+
+        # Combine before and after DataFrames
+        account_merged = pd.concat([before_start_date, after_start_date])
+
+        merged_data.append(account_merged)
+    merged_df = pd.concat(merged_data)
+    merged_df = merged_df.sort_values(by='Date', ascending=False)
+
+    return merged_df.to_dict('records')
