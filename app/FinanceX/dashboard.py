@@ -7,6 +7,10 @@ from dash import html
 from dash import dcc, html, dash_table
 from FinanceX import functions as functions
 import dash
+from datetime import datetime, timedelta
+import calendar
+import plotly.graph_objs as go
+import numpy as np 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
