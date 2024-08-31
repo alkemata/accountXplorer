@@ -106,6 +106,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         layout2=layout_categories(categories,df,category_order)
         layout3=layout_saldo(unique_accounts)
         data=functions.load_budget('budget.txt') #todo put in ui
+        print('test?')
         if data is not None:
             layout4=layout_planning(data.to_dict('records'))        
         else:
