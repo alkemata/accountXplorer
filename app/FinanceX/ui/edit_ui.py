@@ -204,7 +204,7 @@ def layout_planning(data):
                 {'name': 'Description', 'id': 'description', 'type': 'text'},
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
             ],
-            data=data,
+            data=[],
             style_table={'width': '50%'}
         ),
         
