@@ -123,3 +123,4 @@ def load_budget(file):
         df = pd.read_csv(file_path,sep=':')
     else:
         df = pd.DataFrame(columns=['type', 'datetype', 'description', 'amount', 'account'])
+    return df
