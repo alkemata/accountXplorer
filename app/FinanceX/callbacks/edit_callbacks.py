@@ -7,7 +7,6 @@ import pandas as pd
 from dash import no_update
 
 app=appedit
-general_labels=df['Postbank Girokonto','Commerzbank GiroKonto']
 
 @app.callback(
         [Output('detail-table', 'data'),
