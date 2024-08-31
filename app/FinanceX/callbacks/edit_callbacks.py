@@ -211,7 +211,7 @@ def update_occurrences(n_clicks, rows):
             if type_ == 0:
                 occurrences.append({
                     'date': datetype.strftime('%d-%m-%Y'),
-                    'amount': amount,
+                    'amount': str(amount),
                     'description': description,
                     'account': account
                 })
@@ -220,7 +220,7 @@ def update_occurrences(n_clicks, rows):
                     new_date = (datetype + pd.DateOffset(months=i)).strftime('%d-%m-%Y')
                     occurrences.append({
                         'date': new_date,
-                        'amount': amount,
+                        'amount': str(amount),
                         'description': description,
                         'account': account
                     })
@@ -230,7 +230,7 @@ def update_occurrences(n_clicks, rows):
                     new_date = (datetype + pd.DateOffset(months=i)).strftime('%d-%m-%Y')
                     occurrences.append({
                         'date': new_date,
-                        'amount': amount,
+                        'amount': str(amount),
                         'description': description,
                         'account': account
                     })
@@ -238,13 +238,12 @@ def update_occurrences(n_clicks, rows):
                 new_date = datetype
                 occurrences.append({
                     'date': new_date.strftime('%d-%m-%Y'),
-                    'amount': amount,
+                    'amount': str(amount),
                     'description': description,
                     'account': account
                 })
         occ= pd.DataFrame(occurrences)
         #occ.columns=['Date','Amount','Description', 'Account']
-        print(occ.to_dict('records'))
         return occ.to_dict('records')
     return no_update
 
