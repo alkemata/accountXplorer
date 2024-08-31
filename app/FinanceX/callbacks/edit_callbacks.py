@@ -182,5 +182,6 @@ def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
         merged_data.append(account_merged)
     merged_df = pd.concat(merged_data)
     merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
+    print(merged_df)
 
     return merged_df.to_dict('records')
