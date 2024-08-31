@@ -28,7 +28,7 @@ def create_dash_app(flask_server):
                     dbc.CardBody([
                         html.H4("Date Information", className="card-title"),
                         html.P(f"Present Date: {datetime.now().strftime('%Y-%m-%d')}", className="card-text"),
-                        html.P(f"Last Date in DataFrame: {get_last_date(df).strftime('%Y-%m-%d')}", className="card-text")
+                        html.P(f"Last Date in DataFrame: {last_update.strftime('%Y-%m-%d')}", className="card-text")
                     ]),
                 style={'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
                 )
