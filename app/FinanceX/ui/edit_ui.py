@@ -193,7 +193,7 @@ def layout_planning(data):
         ),
         html.Button('Add Row', id='add-row-button', n_clicks=0),
 
-        html.Button('Update Occurrences', id='update-button', n_clicks=0),
+        html.Button('Update Occurrences', id='update-button1', n_clicks=0),
 
         # Display calculated occurrences
         dash_table.DataTable(
