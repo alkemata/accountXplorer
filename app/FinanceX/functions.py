@@ -116,3 +116,10 @@ def calculate_saldo():
     merged_df = pd.concat(dfs.values(), axis=0, ignore_index=True)
     merged_df = merged_df.sort_values(by='Buchungsdatum').reset_index(drop=True)
 
+def load_budget(file):
+    file_path=os.path.join(ressources_dir,file)
+    # Load existing data if the file exists
+    if os.path.exists(file_path):
+        df = pd.read_csv(file_path)
+    else:
+        df = pd.DataFrame(columns=['type', 'datetype', 'description', 'amount', 'account'])

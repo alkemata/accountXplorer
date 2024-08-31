@@ -171,3 +171,42 @@ def layout_saldo(unique_accounts):
     html.Button('Calculate Saldos', id='calculate-button', n_clicks=0)    
     ])
     return layout
+
+    def layer_planning(data):
+        layout = html.Div([
+        html.H1('Budget Management'),
+
+        # Dash DataTable for input
+        dash_table.DataTable(
+            id='input-table',
+            columns=[
+                {'name': 'Type', 'id': 'type', 'type': 'numeric'},
+                {'name': 'DateType', 'id': 'datetype', 'type': 'datetime'},
+                {'name': 'Description', 'id': 'description', 'type': 'text'},
+                {'name': 'Amount', 'id': 'amount', 'type': 'numeric'},
+                {'name': 'Account', 'id': 'account', 'type': 'text'},
+            ],
+            data=df.to_dict('records'),
+            editable=True,
+            row_deletable=True
+        ),
+        html.Button('Add Row', id='add-row-button', n_clicks=0),
+
+        html.Button('Update Occurrences', id='update-button', n_clicks=0),
+
+        # Display calculated occurrences
+        dash_table.DataTable(
+            id='output-table',
+            columns=[
+                {'name': 'Date', 'id': 'date', 'type': 'datetime'},
+                {'name': 'Amount', 'id': 'amount', 'type': 'numeric'},
+                {'name': 'Description', 'id': 'description', 'type': 'text'},
+                {'name': 'Account', 'id': 'account', 'type': 'text'},
+            ],
+            data=data
+        ),
+        
+        html.Button('Save Data', id='save-button', n_clicks=0)
+        ])
+        return layout
+        

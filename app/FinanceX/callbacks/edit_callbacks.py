@@ -1,7 +1,7 @@
 from dash.dependencies import Input, Output, State
 from FinanceX import functions as functions
 from FinanceX import appedit
-from FinanceX.ui.edit_ui import layout_categories, layout_list_global, layout_saldo
+from FinanceX.ui.edit_ui import layout_categories, layout_list_global, layout_saldo, layout_planning
 
 import pandas as pd
 from dash import no_update, callback_context
@@ -74,7 +74,8 @@ def save_dataframe(n_clicks):
     [Output('log','value'),
     Output('part-list-global','children'),
     Output('part-pivottable','children'),
-    Output('part-saldo','children')
+    Output('part-saldo','children'),
+    Output('part-planning','children')
     ] ,
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
@@ -87,7 +88,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         with open('log', 'a') as file:
             file.write("Callback activated\n")
         if n_clicks is None:
-            return "",no_update,no_update, no_update, # No clicks yet
+            return "",no_update,no_update, no_update,no_update # No clicks yet
         log_message=''
     #merge new data
         res=functions.merge_new_data(file1, file2)
@@ -95,7 +96,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
             df=res['data']
         else:
             log_message=res['msg']
-            return log_message, no_update, no_update,no_update
+            return log_message, no_update, no_update,no_update,no_update
         log_message += res['msg']+'\n'
         categories=functions.pivot_table(file4,df)
         log_message += 'Accounts configuration file loaded - '+str(categories.columns)
@@ -104,7 +105,9 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         layout1=layout_list_global(df)
         layout2=layout_categories(categories,df,category_order)
         layout3=layout_saldo(unique_accounts)
-        return log_message,layout1, layout2,layout3
+        data=functions.load_budget('budgets.txt') #todo put in ui
+        layout4=layout_planning(data.to_dict('records'))
+        return log_message,layout1, layout2,layout3,layout4
 
 @app.callback(
     Output('table-global', 'data'),
@@ -185,3 +188,55 @@ def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
     print(merged_df)
 
     return merged_df.to_dict('records')
+
+@app.callback(
+    Output('output-table', 'data'),
+    Input('update-button', 'n_clicks'),
+    State('input-table', 'data')
+)
+def update_occurrences(n_clicks, rows):
+    if n_clicks > 0:
+        occurrences = []
+        for row in rows:
+            type_ = int(row['type'])
+            datetype = pd.to_datetime(row['datetype'])
+            description = row['description']
+            amount = row['amount']
+            account = row['account']
+
+            if type_ == 0:
+                occurrences.append({
+                    'date': datetype,
+                    'amount': amount,
+                    'description': description,
+                    'account': account
+                })
+            elif type_ == 1:
+                for i in range(12):
+                    new_date = datetype + pd.DateOffset(months=i)
+                    occurrences.append({
+                        'date': new_date,
+                        'amount': amount,
+                        'description': description,
+                        'account': account
+                    })
+            elif type_ == 2:
+                for i in range(0, 12, 3):
+                    new_date = datetype + pd.DateOffset(months=i)
+                    occurrences.append({
+                        'date': new_date,
+                        'amount': amount,
+                        'description': description,
+                        'account': account
+                    })
+            elif type_ == 3:
+                new_date = datetype + pd.DateOffset(years=1)
+                occurrences.append({
+                    'date': new_date,
+                    'amount': amount,
+                    'description': description,
+                    'account': account
+                })
+
+        return pd.DataFrame(occurrences).to_dict('records')
+    return []
