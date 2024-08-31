@@ -255,3 +255,17 @@ def add_row(n_clicks, rows, columns):
     if n_clicks > 0:
         rows.append({c['id']: '' for c in columns})
     return rows
+
+@app.callback(
+    Output('save-button', 'children'),
+    Input('save-button', 'n_clicks'),
+    State('input-table', 'data'),
+    State('output-table', 'data')
+)
+def save_data(n_clicks, input_data, output_data):
+    if n_clicks > 0:
+        input_df = pd.DataFrame(input_data)
+        output_df = pd.DataFrame(output_data)
+        functions.save_budget('budget.txt','occurences.csv',input_df,output_df)
+        return 'Data Saved!'
+    return 'Save Data'
