@@ -121,6 +121,7 @@ def load_budget(file):
     # Load existing data if the file exists
     if os.path.exists(file_path):
         df = pd.read_csv(file_path,sep=':',skiprows=1)
+        df.columns=['type', 'datetype', 'description', 'amount', 'account']
     else:
         df = pd.DataFrame(columns=['type', 'datetype', 'description', 'amount', 'account'])
     return df
