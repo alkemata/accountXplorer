@@ -55,7 +55,7 @@ def create_dash_app(flask_server):
         all_days = pd.DataFrame({'day': range(1, days_in_last_month + 1)})
         daily_sum = pd.merge(all_days, daily_sum, on='day', how='left').fillna(0)
         
-        return daily_sum
+        return daily_sum, last_day_last_month.strftime('%B %Y')
 
     def create_bar_chart(daily_sum, month_year):
         fig = go.Figure(data=[
@@ -76,7 +76,7 @@ def create_dash_app(flask_server):
         )     
         return fig
 
-    daily_sum, month_year = get_last_month_data(df)
+    daily_sum, month_year = get_last_month_data(df)[0]
     bar_chart_figure = create_bar_chart(daily_sum, month_year)
     last_month_data = get_last_month_data(df)
     monthly_total = last_month_data['Betrag'].sum()
