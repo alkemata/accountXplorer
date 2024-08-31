@@ -124,6 +124,7 @@ def update_global_table(n_clicks,filter_value,n_clicks2,data,saldo_input_data):
         data2=update_table(n_clicks,filter_value,data)
     if button_id=='calculate-button':
         data2=calculate_saldo(n_clicks2, saldo_input_data, data)
+    return data2
 
 def update_table(n_clicks,filter_value,data):
     if n_clicks == 0:
