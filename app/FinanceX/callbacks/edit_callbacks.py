@@ -102,3 +102,22 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         layout1=layout_list_global(df)
         layout2=layout_categories(categories,df,category_order)
         return log_message,layout1, layout2
+
+@app.callback(
+    Output('table-global', 'data'),
+    Input('filter-input', 'value')
+)
+def update_table(filter_value):
+    if not filter_value:
+        # Return the original data if no filter is provided
+        return df.to_dict('records')
+
+    try:
+        # Parse the filter input
+        col_name, filter_val = filter_value.split(':')
+        # Filter the dataframe
+        filtered_df = df[df[col_name].str.contains(filter_val, case=False, na=False)]
+        return filtered_df.to_dict('records')
+    except Exception as e:
+        # Return an empty table or handle errors if the input format is wrong
+        return df.to_dict('records')

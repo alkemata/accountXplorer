@@ -48,6 +48,8 @@ def layout_list_global(dataframe):
     layout= html.Div(
         children=[
             html.H1("DataFrame global"),
+            dcc.Input(id='filter-input', type='text', placeholder='Enter filter like column1:value'),
+
                        
                 dash_table.DataTable(
                     id=f'table-global',
