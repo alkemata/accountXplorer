@@ -187,6 +187,7 @@ def layout_planning(data):
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
             ],
             data=data,
+            style_table={'width': '50%'}
             editable=True,
             row_deletable=True
         ),
@@ -203,7 +204,8 @@ def layout_planning(data):
                 {'name': 'Description', 'id': 'description', 'type': 'text'},
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
             ],
-            data=data
+            data=data,
+            style_table={'width': '50%'}
         ),
         
         html.Button('Save Data', id='save-button', n_clicks=0)

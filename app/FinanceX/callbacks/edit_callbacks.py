@@ -224,6 +224,7 @@ def update_occurrences(n_clicks, rows):
                         'account': account
                     })
             elif type_ == 2:
+
                 for i in range(0, 12, 3):
                     new_date = datetype + pd.DateOffset(months=i)
                     occurrences.append({
@@ -233,7 +234,7 @@ def update_occurrences(n_clicks, rows):
                         'account': account
                     })
             elif type_ == 3:
-                new_date = datetype + pd.DateOffset(years=1)
+                new_date = datetype
                 occurrences.append({
                     'date': new_date,
                     'amount': amount,
