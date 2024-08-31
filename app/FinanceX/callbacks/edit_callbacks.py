@@ -74,7 +74,7 @@ def save_dataframe(n_clicks):
     [Output('log','value'),
     Output('part-list-global','children'),
     Output('part-pivottable','children'),
-    Output('part-saldo','childrem')
+    Output('part-saldo','children')
     ] ,
     Input('update-button', 'n_clicks'),
     State('file1', 'value'),
