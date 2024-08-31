@@ -243,8 +243,7 @@ def update_occurrences(n_clicks, rows):
                     'account': account
                 })
         occ= pd.DataFrame(occurrences)
-        occ.columns=['Date','Amount','Description', 'Account']
-        print(occ)
+        #occ.columns=['Date','Amount','Description', 'Account']
         return occ.to_dict('records')
     return no_update
 
