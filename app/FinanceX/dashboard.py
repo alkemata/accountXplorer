@@ -75,6 +75,9 @@ def create_dash_app(flask_server):
         )     
         return fig
 
+    daily_sum, month_year = get_last_month_data(df)
+    bar_chart_figure = create_bar_chart(daily_sum, month_year)
+
     current_spend_layout= html.Div(
             id='div2',
             children=[
