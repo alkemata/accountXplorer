@@ -96,4 +96,4 @@ def create_dash_app(flask_server):
         return layout
 
     appdash.layout=layout_main()
-    return appedit
+    return appdash
