@@ -71,7 +71,7 @@ def create_dash_app(flask_server):
             yaxis_title='Total Amount',
             bargap=0.2,
             bargroupgap=0.1,
-            responsive=True
+            autosize=True
         )     
         return fig
 
