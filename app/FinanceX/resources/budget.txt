@@ -1,4 +1,3 @@
-# recurrence: and modulo if not 1: day: name: amount : bank
 1:01:OVH:6.89:Postbank
 1:02:OpenAI:23.00 VISA
 1:20:Remboursement VISA:
