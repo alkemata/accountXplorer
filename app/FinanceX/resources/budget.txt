@@ -1,12 +1,12 @@
-1:01:OVH:6.89:Postbank
-1:02:OpenAI:23.00 VISA
-1:20:Remboursement VISA:
-1:02:Deutschland ticket 1541312: 29:Postbank
-1:02: Prêt voiture banque:400: Postbank
-1:02: Prêt de rattrapage: 263.47: Postbank
-3:01:HUK Rechtsschutz:45.91: Postbank
-01:02:OVH: 6.89:Postbank
-01:02:OVH: 3.69:Postbank
+#-----
+1:01-01-24:OVH:6.89:Postbank
+1:02-01-24:OpenAI:23.00:VISA
+1:02-01-24:Deutschland ticket 1541312: 29:Postbank
+1:02-01-24: Prêt voiture banque:400: Postbank
+1:02-01-24: Prêt de rattrapage: 263.47: Postbank
+3:01-01-24:HUK Rechtsschutz:45.91: Postbank
+01:02-01-24:OVH: 6.89:Postbank
+01:02-01-24:OVH: 3.69:Postbank
 00:20-08-24:Inscription ecole:900:Postbank
 
 
