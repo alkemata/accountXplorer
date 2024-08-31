@@ -180,10 +180,10 @@ def layout_planning(data):
         dash_table.DataTable(
             id='input-table',
             columns=[
-                {'name': 'Type', 'id': 'type', 'type': 'numeric'},
+                {'name': 'Type', 'id': 'type', 'type': 'text'},
                 {'name': 'DateType', 'id': 'datetype', 'type': 'text'},
                 {'name': 'Description', 'id': 'description', 'type': 'text'},
-                {'name': 'Amount', 'id': 'amount', 'type': 'numeric'},
+                {'name': 'Amount', 'id': 'amount', 'type': 'text'},
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
             ],
             data=data,
