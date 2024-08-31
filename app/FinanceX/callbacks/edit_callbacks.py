@@ -108,23 +108,24 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
 
 @app.callback(
     Output('table-global', 'data'),
-    [Input('filter-button', 'value'),
+    [Input('filter-button', 'n_clicks'),
+    INput('filter-input','value')
     Input('calculate-button', 'n_clicks')],
     [State('table-global','data'),
     State('saldo-input-table', 'data')]
 )
-def update_global_table(filter_value,n_clicks,data,saldo_input_data):
+def update_global_table(n_clicks,filter_value,n_clicks2,data,saldo_input_data):
     ctx = callback_context
     if not ctx.triggered:
         return no_update
     else:
         button_id = ctx.triggered[0]['prop_id'].split('.')[0]
     if button_id == 'filter-input':
-        data2=update_table(filter_value,data)
+        data2=update_table(n_clicks,filter_value,data)
     if button_id=='calculate-button':
-        data2=calculate_saldo(n_clicks, saldo_input_data, data)
+        data2=calculate_saldo(n_clicks2, saldo_input_data, data)
 
-def update_table(filter_value,data):
+def update_table(n_clicks,filter_value,data):
     df=pd.DataFrame(data)
     if not filter_value:
         # Return the original data if no filter is provided

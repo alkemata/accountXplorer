@@ -164,11 +164,10 @@ def layout_saldo(unique_accounts):
             {'name': 'Date', 'id': 'Date', 'editable': True},
             {'name': 'Saldo', 'id': 'Saldo', 'editable': True}
         ],
-        data=[{'Account': account, 'Date': '', 'Saldo': 0} for account in unique_accounts]
-    ),
-    
+        data=[{'Account': account, 'Date': '', 'Saldo': 0} for account in unique_accounts],
+        style_table={'width': '50%'}
+    ),    
     # Button to trigger saldo calculation
-    html.Button('Calculate Saldos', id='calculate-button', n_clicks=0),
-    
+    html.Button('Calculate Saldos', id='calculate-button', n_clicks=0)    
     ])
     return layout
