@@ -181,7 +181,7 @@ def layout_planning(data):
             id='input-table',
             columns=[
                 {'name': 'Type', 'id': 'type', 'type': 'numeric'},
-                {'name': 'DateType', 'id': 'datetype', 'type': 'datetime'},
+                {'name': 'DateType', 'id': 'datetype', 'type': 'text'},
                 {'name': 'Description', 'id': 'description', 'type': 'text'},
                 {'name': 'Amount', 'id': 'amount', 'type': 'numeric'},
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
@@ -198,7 +198,7 @@ def layout_planning(data):
         dash_table.DataTable(
             id='output-table',
             columns=[
-                {'name': 'Date', 'id': 'date', 'type': 'datetime'},
+                {'name': 'Date', 'id': 'date', 'type': 'text'},
                 {'name': 'Amount', 'id': 'amount', 'type': 'numeric'},
                 {'name': 'Description', 'id': 'description', 'type': 'text'},
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
