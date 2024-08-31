@@ -244,8 +244,8 @@ def update_occurrences(n_clicks, rows):
                 })
         occ= pd.DataFrame(occurrences)
         #occ.columns=['Date','Amount','Description', 'Account']
-        print(occ)
-        return occ.to_dict('records',index=False)
+        print(occ.to_dict('records'))
+        return occ.to_dict('records')
     return no_update
 
 # Callback to add a row to the input table
