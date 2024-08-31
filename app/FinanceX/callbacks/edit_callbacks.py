@@ -243,3 +243,15 @@ def update_occurrences(n_clicks, rows):
 
         return pd.DataFrame(occurrences).to_dict('records')
     return []
+
+# Callback to add a row to the input table
+@app.callback(
+    Output('input-table', 'data'),
+    Input('add-row-button', 'n_clicks'),
+    State('input-table', 'data'),
+    State('input-table', 'columns')
+)
+def add_row(n_clicks, rows, columns):
+    if n_clicks > 0:
+        rows.append({c['id']: '' for c in columns})
+    return rows
