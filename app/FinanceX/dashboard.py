@@ -14,7 +14,7 @@ logger = logging.getLogger()
 def create_dash_app(flask_server):
     appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/home/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
-    last_update=df['Buchunsdatum'].max()
+    last_update=df['Buchungsdatum'].max()
 
 
     param_layout=html.Div(
@@ -38,12 +38,12 @@ def create_dash_app(flask_server):
         first_day_last_month = last_day_last_month.replace(day=1)
         
         # Filter DataFrame for last month
-        mask = (df['date'] >= first_day_last_month) & (df['date'] <= last_day_last_month)
+        mask = (df['Buchungsdatum'] >= first_day_last_month) & (df['Buchungsdatum'] <= last_day_last_month)
         last_month_df = df.loc[mask]
         
         # Group by day and sum amounts
-        daily_sum = last_month_df.groupby(last_month_df['date'].dt.day)['amount'].sum().reset_index()
-        daily_sum.rename(columns={'date': 'day', 'amount': 'total_amount'}, inplace=True)
+        daily_sum = last_month_df.groupby(last_month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
+        daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)
         
         # To ensure all days are represented (even with zero amounts)
         days_in_last_month = calendar.monthrange(last_day_last_month.year, last_day_last_month.month)[1]
