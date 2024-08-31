@@ -241,7 +241,7 @@ def update_occurrences(n_clicks, rows):
                     'description': description,
                     'account': account
                 })
-        print(occurences)
+        print(occurrences)
         return pd.DataFrame(occurrences).to_dict('records')
     return no_update
 
