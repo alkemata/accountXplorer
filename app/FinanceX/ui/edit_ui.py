@@ -186,7 +186,7 @@ def layout_planning(data):
                 {'name': 'Amount', 'id': 'amount', 'type': 'numeric'},
                 {'name': 'Account', 'id': 'account', 'type': 'text'},
             ],
-            data=df.to_dict('records'),
+            data=data,
             editable=True,
             row_deletable=True
         ),
