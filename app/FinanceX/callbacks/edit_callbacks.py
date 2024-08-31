@@ -109,12 +109,12 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
     State('table-global','data')
 )
 def update_table(filter_value,data):
+df=pd.DataFrame(data)
     if not filter_value:
         # Return the original data if no filter is provided
         return df.to_dict('records')
 
     try:
-        df=pd.DataFrame(data)
         # Parse the filter input
         col_name, filter_val = filter_value.split(':')
         # Filter the dataframe
