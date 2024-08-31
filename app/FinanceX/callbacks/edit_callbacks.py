@@ -4,7 +4,7 @@ from FinanceX import appedit
 from FinanceX.ui.edit_ui import layout_categories, layout_list_global, layout_saldo
 
 import pandas as pd
-from dash import no_update
+from dash import no_update, callback_context
 
 app=appedit
 
@@ -114,7 +114,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
     State('saldo-input-table', 'data')]
 )
 def update_global_table(filter_value,n_clicks,data,saldo_input_data):
-    ctx = dash.callback_context
+    ctx = callback_context
     if not ctx.triggered:
         return no_update
     else:
