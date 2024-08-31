@@ -78,10 +78,18 @@ def create_dash_app(flask_server):
 
     daily_sum, month_year = get_last_month_data(df)
     bar_chart_figure = create_bar_chart(daily_sum, month_year)
+    last_month_data = get_last_month_data(df)
+    monthly_total = last_month_data['Betrag'].sum()
 
     current_spend_layout= html.Div(
             id='div2',
             children=[
+                    dbc.Card(
+                    dbc.CardBody([
+                        html.H2(f"Total Amount Today: ${monthly_total:.2f}", className="card-title", style={'font-size': '2em', 'text-align': 'center'}),
+                    ]),
+                    style={'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
+                ),
                 dcc.Graph(
                     id='bar-chart',
                     figure=bar_chart_figure
