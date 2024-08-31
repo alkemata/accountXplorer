@@ -87,7 +87,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         with open('log', 'a') as file:
             file.write("Callback activated\n")
         if n_clicks is None:
-            return "",no_update,no_update, no_update,no_update , no_update # No clicks yet
+            return "",no_update,no_update, no_update, # No clicks yet
         log_message=''
     #merge new data
         res=functions.merge_new_data(file1, file2)
@@ -95,7 +95,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
             df=res['data']
         else:
             log_message=res['msg']
-            return log_message, no_update, no_update,no_update, no_update
+            return log_message, no_update, no_update,no_update
         log_message += res['msg']+'\n'
         categories=functions.pivot_table(file4,df)
         log_message += 'Accounts configuration file loaded - '+str(categories.columns)
