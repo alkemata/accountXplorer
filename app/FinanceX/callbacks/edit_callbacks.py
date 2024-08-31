@@ -203,7 +203,7 @@ def update_occurrences(n_clicks, rows):
         occurrences = []
         for row in rows:
             type_ = int(row['type'])
-            datetype = pd.to_datetime(row['datetype'])
+            datetype = pd.to_datetime(row['datetype'],dayfirst=True)
             description = row['description']
             amount = row['amount']
             account = row['account']
@@ -245,7 +245,7 @@ def update_occurrences(n_clicks, rows):
         occ= pd.DataFrame(occurrences)
         #occ.columns=['Date','Amount','Description', 'Account']
         print(occ)
-        return occ.to_dict('records')
+        return occ.to_dict('records',index=False)
     return no_update
 
 # Callback to add a row to the input table
