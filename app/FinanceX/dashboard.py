@@ -7,7 +7,6 @@ from dash import html
 from dash import dcc, html, dash_table
 from FinanceX import functions as functions
 import dash
-import functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
