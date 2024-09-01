@@ -140,6 +140,6 @@ def save_budget(file1,file2, df1, df2):
 
 def load_occurences(file1):
         file1_path=os.path.join(ressources_dir,file1)
-        df = pd.read_csv(file1_path, parse_dates=['date'])
+        df = pd.read_csv(file1_path)
         df['date']=pd.to_datetime(df['date'], format='%d.%m.%Y')
         return df
