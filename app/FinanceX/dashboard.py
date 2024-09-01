@@ -41,10 +41,12 @@ def create_dash_app(flask_server):
         first_day_current_month = today.replace(day=1)
         last_day_last_month = first_day_current_month - timedelta(days=1)
         first_day_last_month = last_day_last_month.replace(day=1)
+
         
         # Filter DataFrame for last month
         mask = (df['Buchungsdatum'] >= first_day_last_month) & (df['Buchungsdatum'] <= last_day_last_month)
         last_month_df = df.loc[mask]
+        prinnt(last_month_df)
         
         # Group by day and sum amounts
         daily_sum = last_month_df.groupby(last_month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
@@ -80,7 +82,7 @@ def create_dash_app(flask_server):
     bar_chart_figure = create_bar_chart(daily_sum, month_year)
     last_month_data = get_last_month_data(df)[0]
     monthly_total = last_month_data['total_amount'].sum()
-    print(daily_sum)
+
 
     current_spend_layout= html.Div(
             id='div2',
