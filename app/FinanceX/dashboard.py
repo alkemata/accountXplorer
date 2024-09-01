@@ -143,7 +143,7 @@ def create_dash_app(flask_server):
         selected_data=selected_data[["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"]]
         
    
-        return selected_data
+        return selected_data.to_dict('records')
 
     def layout_main():
         layout=html.Div(
