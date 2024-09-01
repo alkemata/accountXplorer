@@ -102,7 +102,12 @@ def create_dash_app(flask_server):
             children=[
                     dash_table.DataTable(
                                 id='amounts-table',
-                                columns=[         "Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"                       ],
+                                columns=[                         
+                                     {"name": "Buchungsdatum", "id": "Buchungsdatum"},
+                                    {"name": "Empfaenger", "id": "Empfaenger"},                     
+                                    {"name": "Verwendungszweck", "id": "Verwendungszweck"},
+                                    {"name": "Betrag", "id": "Betrag"}, 
+                                    {"name": "Kategorie", "id": "Kategorie"}, ],
                                 data=[],
                                 style_table={'overflowX': 'auto'},
                                 style_header={
