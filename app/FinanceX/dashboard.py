@@ -37,7 +37,7 @@ def create_dash_app(flask_server):
         )
 
     def get_last_month_data(df):
-        today = datetime.today()
+        today = last_update
         first_day_current_month = today.replace(day=1)
         last_day_last_month = first_day_current_month - timedelta(days=1)
         first_day_last_month = last_day_last_month.replace(day=1)
