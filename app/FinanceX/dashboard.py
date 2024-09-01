@@ -40,7 +40,7 @@ def create_dash_app(flask_server):
         today = last_update
         first_day_current_month = today.replace(day=1)
         last_day_last_month = last_update
-        first_day_last_month = last_day_current_month
+        first_day_last_month = first_day_current_month
 
         
         # Filter DataFrame for last month
