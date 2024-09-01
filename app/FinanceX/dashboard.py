@@ -46,8 +46,6 @@ def create_dash_app(flask_server):
         # Filter DataFrame for last month
         mask = (df['Buchungsdatum'] >= first_day_last_month) & (df['Buchungsdatum'] <= last_day_last_month)
         last_month_df = df.loc[mask]
-        print(first_day_last_month)
-        print(last_day_last_month)
         
         # Group by day and sum amounts
         daily_sum = last_month_df.groupby(last_month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
@@ -134,10 +132,10 @@ def create_dash_app(flask_server):
 
         # Get the selected date from the bar chart
         selected_date = clickData['points'][0]['x']
-        selected_date=pd.to_datetime(selected_date).date()
+        selected_date=selected_date.astype(int)
         print(selected_date)
         # Filter the DataFrame for the selected date
-        selected_data = df[df['Buchungsdatum'].dt.strftime('%Y-%m-%d') == selected_date]
+        selected_data = last_month_data[last_month_data['Buchungsdatum'].dt.day.astype(int) == selected_date]
         selected_data=selected_data[["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"]]
         
    
