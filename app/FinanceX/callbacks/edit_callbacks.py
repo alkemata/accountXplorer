@@ -257,8 +257,8 @@ def add_row(n_clicks, rows, columns):
     return rows
 
 @app.callback(
-    Output('save-button', 'children'),
-    Input('save-button', 'n_clicks'),
+    Output('save-button2', 'children'),
+    Input('save-button2', 'n_clicks'),
     State('input-table', 'data'),
     State('output-table', 'data')
 )

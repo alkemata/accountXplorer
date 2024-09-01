@@ -208,7 +208,7 @@ def layout_planning(data):
             style_table={'width': '50%'}
         ),
         
-        html.Button('Save Data', id='save-button', n_clicks=0)
+        html.Button('Save Data', id='save-button2', n_clicks=0)
         ])
         return layout
         
