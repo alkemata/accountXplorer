@@ -126,9 +126,10 @@ def create_dash_app(flask_server):
             ]
         ) 
 
-    occurences=functions.load_occurences('occurrences.csv') 
-    end_of_month = last_update.replace(day=28) + pd.offsets.MonthEnd(1)
-    filtered_occ = occurences[(occurences['date'] >= last_update) & (occurences['date'] <= end_of_month)]
+#    occurences=functions.load_occurences('occurrences.csv') 
+ #   end_of_month = last_update.replace(day=28) + pd.offsets.MonthEnd(1)
+ #   filtered_occ = occurences[(occurences['date'] >= last_update) & (occurences['date'] <= end_of_month)]
+    filtered_occ=pd.DataFrame()
 
     plan_layout=html.Div([
         html.H2('Filtered DataTable'),
@@ -196,7 +197,7 @@ def create_dash_app(flask_server):
     def layout_main():
         layout=html.Div(
         style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
-        children=[param_layout,current_spend_layout,plan_layout])
+        children=[param_layout,current_spend_layout])
         return layout
 
     appdash.layout=layout_main()
