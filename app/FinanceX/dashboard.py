@@ -107,7 +107,7 @@ def create_dash_app(flask_server):
         )   
 
     # Define callback to update the table based on the selected bar
-    @app.callback(
+    @appdash.callback(
         Output('amounts-table', 'children'),
         Input('bar-chart', 'clickData')
     )
