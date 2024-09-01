@@ -131,7 +131,7 @@ def create_dash_app(flask_server):
             ])
         ]
     
-    return table_body
+        return table_body
 
     def layout_main():
         layout=html.Div(
