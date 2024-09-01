@@ -266,6 +266,7 @@ def save_data(n_clicks, input_data, output_data):
     if n_clicks > 0:
         input_df = pd.DataFrame(input_data)
         output_df = pd.DataFrame(output_data)
+        print(output_df)
         functions.save_budget('budget.txt','occurences.csv',input_df,output_df)
         return 'Data Saved!'
     return 'Save Data'

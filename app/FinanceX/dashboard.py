@@ -124,7 +124,51 @@ def create_dash_app(flask_server):
             style={'flex': '1', 'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
             )
             ]
-        )   
+        ) 
+
+    occurences=functions.load_occurences('occurrences.csv') 
+    end_of_month = last_update.replace(day=28) + pd.offsets.MonthEnd(1)
+    filtered_occ = occurences[(occurences['date'] >= last_update) & (occurences['date'] <= end_of_month)]
+
+    plan_layout=html.Div([
+        html.H2('Filtered DataTable'),
+
+        dash_table.DataTable(
+            id='datatable',
+            columns=[{'name': i, 'id': i} for i in filtered_occ.columns],
+            data=filtered_df.to_dict('records'),
+            style_table={'overflowX': 'auto'},
+            style_data_conditional=[
+                {
+                    'if': {'column_id': 'amount'},
+                    'width': '100px'
+                },
+                {
+                    'if': {'column_id': 'description'},
+                    'width': '300px'
+                },
+                {
+                    'if': {'column_id': 'date'},
+                    'width': '150px'
+                }
+            ],
+            style_cell={'textAlign': 'left'},
+            style_header={
+                'backgroundColor': 'rgb(230, 230, 230)',
+                'fontWeight': 'bold'
+            },
+            editable=True,
+            row_deletable=True,
+            filter_action='native',
+            sort_action='native',
+            page_action='native',
+            page_current=0,
+            page_size=10,
+            style_as_list_view=True,
+            resizable=True
+        )
+    ])
+
 
     # Define callback to update the table based on the selected bar
     @appdash.callback(
@@ -152,7 +196,7 @@ def create_dash_app(flask_server):
     def layout_main():
         layout=html.Div(
         style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
-        children=[param_layout,current_spend_layout])
+        children=[param_layout,current_spend_layout,plan_layout])
         return layout
 
     appdash.layout=layout_main()
