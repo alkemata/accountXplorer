@@ -86,7 +86,7 @@ def create_dash_app(flask_server):
             children=[
                     dbc.Card(
                     dbc.CardBody([
-                        html.H2(f"Total Amount Today: ${monthly_total:.2f}", className="card-title", style={'font-size': '2em', 'text-align': 'center'}),
+                        html.H2(f"Total Amount Today: {monthly_total:.2f}", className="card-title", style={'font-size': '2em', 'text-align': 'center'}),
                     ]),
                     style={'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
                 ),
@@ -94,9 +94,42 @@ def create_dash_app(flask_server):
                     id='bar-chart',
                     figure=bar_chart_figure
                 )
+            html.Div(
+            id='div3',
+            children=[
+                html.H3('List of Amounts for Selected Day'),
+                dbc.Table(id='amounts-table', children=[], bordered=True, dark=True, hover=True, responsive=True, striped=True)
+            ],
+            style={'flex': '1', 'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
+        )
             ],
             style={'flex': '1', 'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
         )   
+
+    # Define callback to update the table based on the selected bar
+    @app.callback(
+        Output('amounts-table', 'children'),
+        Input('bar-chart', 'clickData')
+    )
+    def update_table(clickData):
+        if clickData is None:
+            return []
+
+        # Get the selected date from the bar chart
+        selected_date = clickData['points'][0]['x']
+        
+        # Filter the DataFrame for the selected date
+        print(df['Buchungsdatum'].dt.strftime('%Y-%m-%d'))
+        selected_data = df[df['Buchungsdatum'].dt.strftime('%Y-%m-%d') == selected_date]
+        
+
+        table_body = [
+            html.Tbody([
+                html.Tr([html.Td(index), html.Td(amount)]) for index, amount in enumerate(selected_data['amount'], 1)
+            ])
+        ]
+    
+    return table_body
 
     def layout_main():
         layout=html.Div(
