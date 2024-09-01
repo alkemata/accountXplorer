@@ -11,6 +11,8 @@ from datetime import datetime, timedelta
 import calendar
 import plotly.graph_objs as go
 import numpy as np 
+from dash.dependencies import Input, Output
+from datetime import datetime, timedelta
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
