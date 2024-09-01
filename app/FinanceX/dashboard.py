@@ -39,8 +39,8 @@ def create_dash_app(flask_server):
     def get_last_month_data(df):
         today = last_update
         first_day_current_month = today.replace(day=1)
-        last_day_last_month = first_day_current_month - timedelta(days=1)
-        first_day_last_month = last_day_last_month.replace(day=1)
+        last_day_last_month = last_update
+        first_day_last_month = last_day_current_month
 
         
         # Filter DataFrame for last month
@@ -132,10 +132,14 @@ def create_dash_app(flask_server):
 
         # Get the selected date from the bar chart
         selected_date = clickData['points'][0]['x']
-        print(selected_date)
-        print(last_month_data['Buchungsdatum'].dt.day.astype(int))
+        today = last_update
+        first_day_current_month = today.replace(day=1)
+        last_day_last_month = last_update
+        first_day_last_month = last_day_current_month
         # Filter the DataFrame for the selected date
-        selected_data = last_month_data[last_month_data['Buchungsdatum'].dt.day.astype(int) == selected_date]
+        mask = (df['Buchungsdatum'] >= first_day_last_month) & (df['Buchungsdatum'] <= last_day_last_month)
+        last_month_df = df.loc[mask]
+        selected_data = last_month_df[last_month_df['Buchungsdatum'].dt.day.astype(int) == selected_date]
         selected_data=selected_data[["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"]]
         
    
