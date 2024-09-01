@@ -83,7 +83,8 @@ def create_dash_app(flask_server):
     bar_chart_figure = create_bar_chart(daily_sum, month_year)
     last_month_data = get_last_month_data(df)[0]
     monthly_total = last_month_data['total_amount'].sum()
-
+#todo add average spending per day
+#remove income
 
     current_spend_layout= html.Div(
             id='div2',
@@ -101,18 +102,29 @@ def create_dash_app(flask_server):
             html.Div(
             id='div3',
             children=[
-                html.H3('List of Amounts for Selected Day'),
-                dbc.Table(id='amounts-table', children=[], bordered=True, dark=True, hover=True, responsive=True, striped=True)
+                    dash_table.DataTable(
+                                id='amounts-table',
+                                columns=[                                ],
+                                data=[],
+                                style_table={'overflowX': 'auto'},
+                                style_header={
+                                    'backgroundColor': 'rgb(230, 230, 230)',
+                                    'fontWeight': 'bold'
+                                },
+                                style_cell={
+                                    'textAlign': 'left',
+                                    'padding': '10px',
+                                },
+                                page_size=10,
+                            )
             ],
             style={'flex': '1', 'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
-        )
-            ],
-            style={'flex': '1', 'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
+            )
         )   
 
     # Define callback to update the table based on the selected bar
     @appdash.callback(
-        Output('amounts-table', 'children'),
+        Output('amounts-table', 'data'),
         Input('bar-chart', 'clickData')
     )
     def update_table(clickData):
@@ -121,19 +133,14 @@ def create_dash_app(flask_server):
 
         # Get the selected date from the bar chart
         selected_date = clickData['points'][0]['x']
-        
+        print(selected_date)
         # Filter the DataFrame for the selected date
         print(df['Buchungsdatum'].dt.strftime('%Y-%m-%d'))
         selected_data = df[df['Buchungsdatum'].dt.strftime('%Y-%m-%d') == selected_date]
+        selected_data=selected_data["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"]
         
-
-        table_body = [
-            html.Tbody([
-                html.Tr([html.Td(index), html.Td(amount)]) for index, amount in enumerate(selected_data['amount'], 1)
-            ])
-        ]
-    
-        return table_body
+   
+        return selected_data
 
     def layout_main():
         layout=html.Div(
