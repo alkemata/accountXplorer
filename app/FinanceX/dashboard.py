@@ -126,7 +126,7 @@ def create_dash_app(flask_server):
             ]
         ) 
 
-    occurences=functions.load_occurences('occurrences.csv') 
+    occurences=functions.load_occurences('occurences.csv') 
     end_of_month = last_update.replace(day=28) + pd.offsets.MonthEnd(1)
     filtered_occ = occurences[(occurences['date'] >= last_update) & (occurences['date'] <= end_of_month)]
 
