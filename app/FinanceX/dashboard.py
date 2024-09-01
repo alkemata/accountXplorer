@@ -120,6 +120,7 @@ def create_dash_app(flask_server):
             ],
             style={'flex': '1', 'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
             )
+            ]
         )   
 
     # Define callback to update the table based on the selected bar
