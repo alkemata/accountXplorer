@@ -134,11 +134,11 @@ def create_dash_app(flask_server):
 
         # Get the selected date from the bar chart
         selected_date = clickData['points'][0]['x']
+        selected_date=pd.to_datetime(selected_date).date()
         print(selected_date)
         # Filter the DataFrame for the selected date
-        print(df['Buchungsdatum'].dt.strftime('%Y-%m-%d'))
         selected_data = df[df['Buchungsdatum'].dt.strftime('%Y-%m-%d') == selected_date]
-        selected_data=selected_data["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"]
+        selected_data=selected_data[["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"]]
         
    
         return selected_data
