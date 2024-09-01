@@ -93,7 +93,7 @@ def create_dash_app(flask_server):
                 dcc.Graph(
                     id='bar-chart',
                     figure=bar_chart_figure
-                )
+                ),
             html.Div(
             id='div3',
             children=[
