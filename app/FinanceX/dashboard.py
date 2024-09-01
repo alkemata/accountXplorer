@@ -165,8 +165,7 @@ def create_dash_app(flask_server):
             page_action='native',
             page_current=0,
             page_size=10,
-            style_as_list_view=True,
-            resizable=True
+            style_as_list_view=True
         )
     ])
 
