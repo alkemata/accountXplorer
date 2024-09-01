@@ -137,7 +137,7 @@ def create_dash_app(flask_server):
         dash_table.DataTable(
             id='datatable',
             columns=[{'name': i, 'id': i} for i in filtered_occ.columns],
-            data=filtered_df.to_dict('records'),
+            data=filtered_occ.to_dict('records'),
             style_table={'overflowX': 'auto'},
             style_data_conditional=[
                 {
