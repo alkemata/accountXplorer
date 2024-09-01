@@ -21,7 +21,6 @@ def create_dash_app(flask_server):
     appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/home/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
-    print(df)
 
     param_layout=html.Div(
             id='div1',
@@ -29,8 +28,8 @@ def create_dash_app(flask_server):
                 dbc.Card(
                     dbc.CardBody([
                         html.H4("Date Information", className="card-title"),
-                        html.P(f"Present Date: {datetime.now().strftime('%Y-%m-%d')}", className="card-text"),
-                        html.P(f"Last Date in DataFrame: {last_update.strftime('%Y-%m-%d')}", className="card-text")
+                        html.P(f"Present Date: {datetime.now().strftime('%d-%m-%Y')}", className="card-text"),
+                        html.P(f"Last Date in DataFrame: {last_update.strftime('%d-%m-%Y')}", className="card-text")
                     ]),
                 style={'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
                 )
@@ -81,6 +80,7 @@ def create_dash_app(flask_server):
     bar_chart_figure = create_bar_chart(daily_sum, month_year)
     last_month_data = get_last_month_data(df)[0]
     monthly_total = last_month_data['total_amount'].sum()
+    print(daily_sum)
 
     current_spend_layout= html.Div(
             id='div2',
