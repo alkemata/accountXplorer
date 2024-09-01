@@ -21,7 +21,7 @@ def create_dash_app(flask_server):
     appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/home/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
-
+    print(df)
 
     param_layout=html.Div(
             id='div1',
@@ -49,7 +49,6 @@ def create_dash_app(flask_server):
         
         # Group by day and sum amounts
         daily_sum = last_month_df.groupby(last_month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
-        print(daily_sum)
         daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)
         
         # To ensure all days are represented (even with zero amounts)
