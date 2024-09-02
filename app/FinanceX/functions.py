@@ -76,7 +76,7 @@ def merge_new_data(file1, file2):
         df=df[['Buchungsdatum','EMpfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
         if 'Month' not in df.columns:
             df['Month']=[]
-        if 'Saldo' not if df.columns:
+        if 'Saldo' not in df.columns:
             df['Saldo']=[]
     except Exception as e:
         print('File note found')
