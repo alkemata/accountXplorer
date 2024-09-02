@@ -13,6 +13,7 @@ import plotly.graph_objs as go
 import numpy as np 
 from dash.dependencies import Input, Output
 from datetime import datetime, timedelta
+import plotly.express as px
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
@@ -131,7 +132,7 @@ def create_dash_app(flask_server):
     filtered_occ = occurences[(occurences['date'] >= last_update) & (occurences['date'] <= end_of_month)]
 
     plan_layout=html.Div([
-        html.H2('Filtered DataTable'),
+        html.H2('Versements restant à faire ce mois-ci'),
 
         dash_table.DataTable(
             id='datatable',
@@ -191,6 +192,30 @@ def create_dash_app(flask_server):
         selected_data=selected_data[["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"]]
  
         return selected_data.to_dict('records')
+
+    df1=df[df['Konto']==]
+
+    fig1 = px.line(df1, x='Date', y='Saldo', title='Saldo Evolution - Postbank')
+
+    # Create the second graph
+    fig2 = px.line(df2, x='Date', y='Saldo', title='Saldo Evolution - Commerzbank')
+
+    # Define the layout of the app
+    app.layout = html.Div(children=[
+        html.Div(children=[
+            dcc.Graph(
+                id='graph1',
+                figure=fig1
+            )
+        ], style={'width': '48%', 'display': 'inline-block'}),
+
+        html.Div(children=[
+            dcc.Graph(
+                id='graph2',
+                figure=fig2
+            )
+        ], style={'width': '48%', 'display': 'inline-block'})
+    ])
 
     def layout_main():
         layout=html.Div(
