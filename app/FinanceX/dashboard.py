@@ -82,6 +82,8 @@ def create_dash_app(flask_server):
     bar_chart_figure = create_bar_chart(daily_sum, month_year)
     last_month_data = get_last_month_data(df)[0]
     monthly_total = last_month_data['total_amount'].sum()
+    today = last_update
+    first_day_current_month = today.replace(day=1)
 #todo add average spending per day
 #remove income
 
@@ -193,12 +195,13 @@ def create_dash_app(flask_server):
  
         return selected_data.to_dict('records')
 
-    df1=df[df['Konto']==]
+    df1=df[df['Konto']=='DE39360100430206819439' & df['Buchungsdatum']>first_day_current_month][['Buchungsdatum','Saldo']]
+    df2=df[df['Konto']=='DE47700400480857576300' & df['Buchungsdatum']>first_day_current_month][['Buchungsdatum','Saldo']]
 
-    fig1 = px.line(df1, x='Date', y='Saldo', title='Saldo Evolution - Postbank')
+    fig1 = px.line(df1, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Postbank')
 
     # Create the second graph
-    fig2 = px.line(df2, x='Date', y='Saldo', title='Saldo Evolution - Commerzbank')
+    fig2 = px.line(df2, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Commerzbank')
 
     # Define the layout of the app
     app.layout = html.Div(children=[
