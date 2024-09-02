@@ -60,6 +60,7 @@ def layout_list_global(dataframe):
                     style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
                 style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
                 fixed_rows={'headers': True},
+                filter_action='native',
                 )])
     return layout
 

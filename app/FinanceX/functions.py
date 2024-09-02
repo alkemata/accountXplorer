@@ -70,8 +70,14 @@ def load_data(file):
 
 def merge_new_data(file1, file2):
     try:
-        df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=';')
+        df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=';') #todo merge with load_data
         df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d.%m.%Y')
+        df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
+        df=df[['Buchungsdatum','EMpfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
+        if 'Month' not in df.columns:
+            df['Month']=[]
+        if 'Saldo' not if df.columns:
+            df['Saldo']=[]
     except Exception as e:
         print('File note found')
         return {'code': 0, 'msg':  str(e) + ' - '+os.path.join(ressources_dir,file2)}
@@ -81,7 +87,9 @@ def merge_new_data(file1, file2):
     except FileNotFoundError as e:
         return {'code': 1, 'msg': 'No update of transactions found, just loading existing file', 'data':df_existing}
     df_new['Betrag'] = pd.to_numeric(df_new['Betrag'].replace(',','.',regex=True), errors='coerce')
-    df_new = df_new.drop(columns=['Wertstellungsdatum', 'BIC', 'Notiz','Schlagworte','SteuerKategorie','ParentKategorie','Splitbuchung','AbweichenderEmpfaenger'])
+    df_new = df_new[['Buchungsdatum','EMpfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
+    df_new['Month']=[]
+    df_new['Saldo']=[]
     df_new['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df_new['Kategorie'] = df.apply(detect_transfers, axis=1)  
     # Concatenate the existing DataFrame and new data
