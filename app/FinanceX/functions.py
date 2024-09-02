@@ -75,9 +75,9 @@ def merge_new_data(file1, file2):
         df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
         df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
         if 'Month' not in df_existing.columns:
-            df_existing['Month']=[]
+            df_existing['Month']=0
         if 'Saldo' not in df_existing.columns:
-            df_existing['Saldo']=[]
+            df_existing['Saldo']=0
     except Exception as e:
         print('File note found')
         return {'code': 0, 'msg':  str(e) + ' - '+os.path.join(ressources_dir,file2)}
