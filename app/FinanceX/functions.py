@@ -72,12 +72,12 @@ def merge_new_data(file1, file2):
     try:
         df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=';') #todo merge with load_data
         df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d.%m.%Y')
-        df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
-        df=df[['Buchungsdatum','EMpfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
-        if 'Month' not in df.columns:
-            df['Month']=[]
-        if 'Saldo' not in df.columns:
-            df['Saldo']=[]
+        df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
+        df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
+        if 'Month' not in df_existing.columns:
+            df_existing['Month']=[]
+        if 'Saldo' not in df_existing.columns:
+            df_existing['Saldo']=[]
     except Exception as e:
         print('File note found')
         return {'code': 0, 'msg':  str(e) + ' - '+os.path.join(ressources_dir,file2)}
