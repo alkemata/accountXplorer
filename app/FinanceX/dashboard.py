@@ -195,8 +195,8 @@ def create_dash_app(flask_server):
  
         return selected_data.to_dict('records')
 
-    df1=df[df['Konto']=='DE39360100430206819439' & df['Buchungsdatum']>=first_day_current_month][['Buchungsdatum','Saldo']]
-    df2=df[df['Konto']=='DE47700400480857576300' & df['Buchungsdatum']>=first_day_current_month][['Buchungsdatum','Saldo']]
+    df1=df[(df['Konto']=='DE39360100430206819439') & (df['Buchungsdatum']>=first_day_current_month)][['Buchungsdatum','Saldo']]
+    df2=df[(df['Konto']=='DE47700400480857576300') & (df['Buchungsdatum']>=first_day_current_month)][['Buchungsdatum','Saldo']]
 
     fig1 = px.line(df1, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Postbank')
 
