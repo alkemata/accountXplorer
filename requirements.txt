@@ -9,3 +9,4 @@ python-dotenv
 dash
 dash-bootstrap-components
 pandas
+dash_ag_grid 

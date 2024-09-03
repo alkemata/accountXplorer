@@ -5,7 +5,7 @@ Paiements en espèces et par carte de crédit
     Paiements en ligne: paypaö
 Loisirs
     Livres: Thalia, ZENTRALBIBLIOTHEK
-    Loisirs:
+    Loisirs: decathlon
     Restauration & Hôtel: attika, asia mekong, HOSTELWORLD, booking, restaurant, hotel
     Divertissement & Jeux:
     Vacances: Preussische Schloesser

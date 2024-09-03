@@ -14,6 +14,7 @@ import numpy as np
 from dash.dependencies import Input, Output
 from datetime import datetime, timedelta
 import plotly.express as px
+import dash_ag_grid as dag
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
@@ -42,18 +43,13 @@ def create_dash_app(flask_server):
             html.Button('ADD', id='filter-button', n_clicks=0),
 
                        
-                dash_table.DataTable(
-                    id=f'table-global',
-                    columns=[{"name": i, "id": i} for i in df.columns],
-                    data=df.to_dict('records'),
-                    style_data_conditional=style_data_conditional,
-                    style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
-                style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px','overflow': 'hidden','textOverflow': 'ellipsis'},  # Set column widths
-                fixed_rows={'headers': True},
-                filter_action='native',
-                ),
-                html.Button('SAVE', id='save-global-button', n_clicks=0),
-                ])
+            dag.AgGrid(
+                id='table',
+                columnDefs=df.columns,
+                rowData=df,
+                defaultColDef={"resizable": True},  # Make all columns resizable
+            )
+        ])
 
     def layout_main():
         layout=html.Div(
