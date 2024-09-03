@@ -44,6 +44,7 @@ pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the orde
 print('3- Calculating saldo')
 rows = pd.read_csv(os.path.join(ressources_dir,file1)).to_dict(orient='records')
 
+for row in rows:
     print(row)
     account = row['Account']
     start_date = pd.to_datetime(row['Date']) 
