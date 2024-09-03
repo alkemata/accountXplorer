@@ -75,9 +75,8 @@ def merge_new_data(file1, file2):
         df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=',') #todo merge with load_data
         df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'])#, format='%d.%m.%Y')
         df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
-        df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
+        df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte','Month','Saldo']]
         df_existing['Kategorie'] = df_existing.apply(detect_transfers, axis=1) 
-        print(df_existing['Saldo'])
         if 'Month' not in df_existing.columns:
             df_existing['Month']=0
         if 'Saldo' not in df_existing.columns:
@@ -92,7 +91,7 @@ def merge_new_data(file1, file2):
     except FileNotFoundError as e:
         return {'code': 1, 'msg': 'No update of transactions found, just loading existing file', 'data':df_existing}
     df_new['Betrag'] = pd.to_numeric(df_new['Betrag'].replace(',','.',regex=True), errors='coerce')
-    df_new = df_new[['Buchungsdatum','EMpfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
+    df_new = df_new[['Buchungsdatum','EMpfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte','Month','Saldo']]
     df_new['Month']=[]
     df_new['Saldo']=[]
     df_new['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
