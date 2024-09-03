@@ -78,6 +78,7 @@ print('4 - Claculating occurences')
 data=functions.load_budget(file5).to_dict('records')
 occurrences = []
 for row in rows:
+    print(row)
     type_ = int(row['type'])
     datetype = pd.to_datetime(row['datetype'],dayfirst=True)
     description = row['description']
