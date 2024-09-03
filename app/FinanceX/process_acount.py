@@ -18,7 +18,7 @@ df_existing = pd.read_csv(os.path.join(ressources_dir,file0),sep=';') #todo merg
 df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d.%m.%Y')
 df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
 df_existing['Betrag']=df_existing['Betrag'].astype(float)
-df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte','Month','Saldo']]
+df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
 df_existing['Kategorie'] = df_existing.apply(functions.detect_transfers, axis=1) 
 df_existing['Month']=0
 df_existing['Saldo']=0
