@@ -143,8 +143,8 @@ def mark_table(n_clicks,filter_value,data,selected_row):
     selected_row = data[selected_row[0]]
     print(selected_row)
     mask = ((df['Empfaenger'] == selected_row['Empfaenger']) &
-        (df['Buchungsdatum'] == selected_row['Buchungsdatum'] &
-        df['Verwendungszweck'] == selected_row['Verwendungszweck']
+        (df['Buchungsdatum'] == selected_row['Buchungsdatum']) &
+        (df['Verwendungszweck'] == selected_row['Verwendungszweck']
         ))
     filtered_df[mask]['Notiz']=filter_value
     return filtered_df.to_dict('records')
