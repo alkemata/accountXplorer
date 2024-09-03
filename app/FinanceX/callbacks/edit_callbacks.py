@@ -126,6 +126,7 @@ def update_global_table(n_clicks,filter_value,n_clicks2,data,saldo_input_data,se
         return no_update
     else:
         button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+        print(button_id)
     if button_id == 'filter-button':
         data2=mark_table(n_clicks,filter_value,data,selected_row)
     if button_id=='calculate-button':
