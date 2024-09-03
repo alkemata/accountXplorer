@@ -80,6 +80,7 @@ def merge_new_data(file1, file2):
         if 'Month' not in df_existing.columns:
             df_existing['Month']=0
         if 'Saldo' not in df_existing.columns:
+            print('Pas de saldos')
             df_existing['Saldo']=0
         df_existing['Buchungsdatum']=df_existing['Buchungsdatum'].dt.strftime('%d-%m-%Y')
     except Exception as e:
