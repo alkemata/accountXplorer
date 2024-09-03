@@ -3,9 +3,9 @@ Paiements en espèces et par carte de crédit
     Retrait d'argent:GA, BAT HOHENSTEIN
     Carte de crédit: 
 Loisirs
-    Livres: Thalia, ZENTRALBIBLIOTHEK,
+    Livres: Thalia, ZENTRALBIBLIOTHEK
     Loisirs:
-    Restauration & Hôtel: attika, asia mekong, HOSTELWORLD, booking, restaurant, 
+    Restauration & Hôtel: attika, asia mekong, HOSTELWORLD, booking, restaurant
     Divertissement & Jeux:
     Vacances: Preussische Schloesser
     Événements: Theater und Philharmonie
