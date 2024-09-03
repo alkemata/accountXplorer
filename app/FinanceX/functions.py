@@ -113,7 +113,7 @@ def pivot_table(file4,df):
     category_order = []
     for sublist in categories.values():
         category_order.extend(sublist)
-    #df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
+    df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
     df['Month']=df['Buchungsdatum'].dt.month
     #df['Betrag'] = pd.to_numeric(df['Betrag'].str.replace(',', '.'))
     # Set the category order
