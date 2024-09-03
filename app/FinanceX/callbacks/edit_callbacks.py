@@ -189,7 +189,7 @@ def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
             (transactions_df['Buchungsdatum'] >= start_date)
         ].sort_values(by='Buchungsdatum')# Make a copy to avoid modifying the original DataFrame
 
-        print(after_start_date)
+        print(after_start_date['Betrag'].cumsum())
         # Calculate the saldo for the transactions after the start date
         after_start_date['Saldo'] = initial_saldo + after_start_date['Betrag'].cumsum()
 
