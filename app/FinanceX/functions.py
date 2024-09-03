@@ -24,6 +24,7 @@ def load_categories(file_path):
     return categories
 
 def save_global(dataframe,file): #TODO remove duplicate functions with overview
+    dataframe('Buchungsdatum')=dataframe('Buchungsdatum').dt.strftime('%d-%m-%Y')
     dataframe.to_csv(os.path.join(ressources_dir,file), index=False)
 
 #def load_data(file1):
@@ -71,7 +72,7 @@ def load_data(file):
 def merge_new_data(file1, file2):
     try:
         df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=',') #todo merge with load_data
-        df_existing['Buchungsdatum'] = (pd.to_datetime(df_existing['Buchungsdatum'])).dt.strftime('%d-%m-%Y')#, format='%d.%m.%Y')
+        df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum']))#, format='%d.%m.%Y')
         df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
         df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
         df_existing['Kategorie'] = df_existing.apply(detect_transfers, axis=1) 
@@ -79,6 +80,7 @@ def merge_new_data(file1, file2):
             df_existing['Month']=0
         if 'Saldo' not in df_existing.columns:
             df_existing['Saldo']=0
+        df_existing('Buchungsdatum')=df_existing('Buchungsdatum').dt.strftime('%d-%m-%Y')
     except Exception as e:
         print('File note found')
         return {'code': 0, 'msg':  str(e) + ' - '+os.path.join(ressources_dir,file2)}
@@ -97,8 +99,9 @@ def merge_new_data(file1, file2):
     df_combined = pd.concat([df_existing, df_new])
     # Drop duplicates based on only three columns (replace 'column1', 'column2', 'column3' with actual column names)
     df_combined = df_combined.drop_duplicates(subset=['Buchungsdatum', 'Verwendungszweck', 'Empfaenger','IBAN','Konto'])
+    df_combined('Buchungsdatum')=df_combined('Buchungsdatum').dt.strftime('%d-%m-%Y')
     # Save the updated DataFrame (if needed)
-    df_combined.to_csv(os.path.join(ressources_dir,file2))
+    #df_combined.to_csv(os.path.join(ressources_dir,file2))
     return {'code':1,'msg':'Account data file update', 'data': df_combined}
 
 
