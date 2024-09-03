@@ -139,15 +139,15 @@ def mark_table(n_clicks,filter_value,data,selected_row):
     if not filter_value:
         # Return the original data if no filter is provided
         return no_update
-
-        # Parse the filter input
-        selected_row = rows[selected_rows[0]]
-        mask = ((df['Empfaenger'] == selected_row['Empfaenger']) &
-            (df['Buchungsdatum'] == selected_row['Buchungsdatum'] &
-            df['Vervendugszweck'] == selected_row['Vervendugszweck']
-            ))
-        filtered_df[mask]['Notiz']=filter_value
-        return filtered_df.to_dict('records')
+    # Parse the filter input
+    selected_row = rows[selected_rows[0]]
+    print(selected_row)
+    mask = ((df['Empfaenger'] == selected_row['Empfaenger']) &
+        (df['Buchungsdatum'] == selected_row['Buchungsdatum'] &
+        df['Vervendugszweck'] == selected_row['Vervendugszweck']
+        ))
+    filtered_df[mask]['Notiz']=filter_value
+    return filtered_df.to_dict('records')
 
 def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
     if n_clicks == 0:
