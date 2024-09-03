@@ -37,15 +37,15 @@ def create_dash_app(flask_server):
 
     layout_list_global= html.Div(
         children=[
-            html.H1("DataFrame global"),
+            html.H1("Yearly view"),
             dcc.Input(id='filter-input', type='text', placeholder='Enter Notiz for the selection'),
             html.Button('ADD', id='filter-button', n_clicks=0),
 
                        
                 dash_table.DataTable(
                     id=f'table-global',
-                    columns=[{"name": i, "id": i} for i in dataframe.columns],
-                    data=dataframe.to_dict('records'),
+                    columns=[{"name": i, "id": i} for i in df.columns],
+                    data=df.to_dict('records'),
                     style_data_conditional=style_data_conditional,
                     style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
                 style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px','overflow': 'hidden','textOverflow': 'ellipsis'},  # Set column widths
