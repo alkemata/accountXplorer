@@ -58,7 +58,7 @@ def layout_list_global(dataframe):
                     data=dataframe.to_dict('records'),
                     style_data_conditional=style_data_conditional,
                     style_table={'height': '400px', 'overflowY': 'auto'},  # Make the table scrollable
-                style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
+                style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px','overflow': 'hidden','textOverflow': 'ellipsis'},  # Set column widths
                 fixed_rows={'headers': True},
                 filter_action='native',
                 row_selectable='single',
