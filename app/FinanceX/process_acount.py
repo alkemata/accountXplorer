@@ -132,7 +132,6 @@ file7_path=os.path.join(ressources_dir,file7)
 with open(file7_path, 'r') as file:
     keywords = {}
     for line in file:
-        print(line)
         stripped_line = line.strip()
         if not stripped_line:
             continue
@@ -147,6 +146,7 @@ with open(file7_path, 'r') as file:
             current_category = stripped_line
             categories[current_category] = []
 
+print(keywords)
 
 def categorize_spending(receiver, description, categories):
     # Combine receiver and description for keyword search
@@ -161,7 +161,7 @@ def categorize_spending(receiver, description, categories):
     # Default category if no keywords match
     return 'Uncategorized'
 
-df['category'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), categories), axis=1)
+df['category'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), keywords), axis=1)
 print('Total number of elements: '+str(df.shape[0]))
 print('Uncatgorized: '+str(df[df['category']=='Uncategorized'].shape[0]))
 
