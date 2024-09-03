@@ -5,7 +5,7 @@ import csv
 ressources_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),'resources')
 
 
-
+file0='non_processed.csv'
 file1='accounts.txt'
 file2='processed.csv'
 file3='config.txt'
@@ -14,8 +14,8 @@ file5='budget.txt'
 file6='occurences.csv'
 
 print('1 - Loading data')
-df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=',') #todo merge with load_data
-df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'])#, format='%d.%m.%Y')
+df_existing = pd.read_csv(os.path.join(ressources_dir,file0),sep=';') #todo merge with load_data
+df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d.%m.%Y')
 df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
 df_existing['Betrag']=df_existing['Betrag'].astype(float)
 df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte','Month','Saldo']]
@@ -70,6 +70,7 @@ merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
 df=merged_df
 
+df.to_csv(s.path.join(ressources_dir,file2))
 
 print('4 - Claculating occurences')
 data=functions.load_budget(file5).to_dict('records')
