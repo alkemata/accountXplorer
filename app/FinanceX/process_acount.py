@@ -140,7 +140,7 @@ with open(file7_path, 'r') as file:
                         # Split the line into category and keywords
                 category, kw = stripped_line.split(':')
                 # Strip whitespace and split keywords by comma
-                keywords[category.strip()] = [k.strip() for k in kw.split(',')]
+                keywords[category.strip()] = [k.strip().lower() for k in kw.split(',')]
                 categories[current_category].append(category.strip())
         else:
             current_category = stripped_line
