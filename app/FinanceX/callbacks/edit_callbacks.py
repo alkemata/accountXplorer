@@ -110,6 +110,18 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
             layout4=layout_planning([])
         return log_message,layout1, layout2,layout3,layout4
 
+
+@app.callback(
+    Input('save-global-button','n_clicks'),
+    [State('table-global','data'),
+    State('file2', 'value')]
+)
+def save_global(n_clicks, data,file):
+    df=pd.DataFrame(data)
+    functions.save_global(df,file)
+    return
+
+
 @app.callback(
     Output('table-global', 'data'),
     [Input('filter-button', 'n_clicks'),

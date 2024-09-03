@@ -62,7 +62,9 @@ def layout_list_global(dataframe):
                 fixed_rows={'headers': True},
                 filter_action='native',
                 row_selectable='single',
-                )])
+                ),
+                html.Button('SAVE', id='save-global-button', n_clicks=0),
+                ])
     return layout
 
 def layout_categories(pivot_table, df, category_order):
