@@ -161,7 +161,7 @@ def categorize_spending(receiver, description, categories):
     # Default category if no keywords match
     return 'Uncategorized'
 
-df['category'] = df.apply(lambda x: categorize_spending(x['Empfaenger'], x['Verwendungszweck'], categories), axis=1)
+df['category'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), categories), axis=1)
 print('Total number of elements: '+str(df.shape[0]))
 print('Uncatgorized: '+str(df[df['category']=='Uncategorized'].shape[0]))
 
