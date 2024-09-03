@@ -143,6 +143,7 @@ def save_budget(file1,file2, df1, df2):
         file2_path=os.path.join(ressources_dir,file2)
         df1.to_csv(file1_path, index=False)
         df2.to_csv(file2_path, index=False)
+        return
 
 def load_occurences(file1):
         file1_path=os.path.join(ressources_dir,file1)

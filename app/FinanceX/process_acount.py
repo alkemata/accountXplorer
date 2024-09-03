@@ -74,11 +74,10 @@ df=merged_df
 
 df.to_csv(os.path.join(ressources_dir,file2))
 
-print('4 - Claculating occurences')
+print('4 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
 occurrences = []
-for row in rows:
-    print(row)
+for row in data:
     type_ = int(row['type'])
     datetype = pd.to_datetime(row['datetype'],dayfirst=True)
     description = row['description']
