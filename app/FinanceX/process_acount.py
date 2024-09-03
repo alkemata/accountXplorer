@@ -25,7 +25,7 @@ df_existing['Saldo']=0
 df=df_existing
 
 print('2 - creating pivot table for categories')
-categories = load_categories(os.path.join(ressources_dir,file4))
+categories = functions.load_categories(os.path.join(ressources_dir,file4))
 category_order = []
 for sublist in categories.values():
     category_order.extend(sublist)
