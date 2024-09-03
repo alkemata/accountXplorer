@@ -146,7 +146,7 @@ def mark_table(n_clicks,filter_value,data,selected_row):
             (df['Buchungsdatum'] == selected_row['Buchungsdatum'] &
             df['Vervendugszweck'] == selected_row['Vervendugszweck']
             ))
-        filtered_df[mask]=filter_value
+        filtered_df[mask]['Notiz']=filter_value
         return filtered_df.to_dict('records')
 
 def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
