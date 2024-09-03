@@ -24,8 +24,9 @@ def load_categories(file_path):
     return categories
 
 def save_global(dataframe,file): #TODO remove duplicate functions with overview
-    dataframe('Buchungsdatum')=dataframe('Buchungsdatum').dt.strftime('%d-%m-%Y')
+    dataframe['Buchungsdatum']=dataframe['Buchungsdatum'].dt.strftime('%d-%m-%Y')
     dataframe.to_csv(os.path.join(ressources_dir,file), index=False)
+    return
 
 #def load_data(file1):
 #    if os.path.exists(os.path.join(ressources_dir,file1)):
@@ -80,7 +81,7 @@ def merge_new_data(file1, file2):
             df_existing['Month']=0
         if 'Saldo' not in df_existing.columns:
             df_existing['Saldo']=0
-        df_existing('Buchungsdatum')=df_existing('Buchungsdatum').dt.strftime('%d-%m-%Y')
+        df_existing['Buchungsdatum']=df_existing['Buchungsdatum'].dt.strftime('%d-%m-%Y')
     except Exception as e:
         print('File note found')
         return {'code': 0, 'msg':  str(e) + ' - '+os.path.join(ressources_dir,file2)}
@@ -99,7 +100,7 @@ def merge_new_data(file1, file2):
     df_combined = pd.concat([df_existing, df_new])
     # Drop duplicates based on only three columns (replace 'column1', 'column2', 'column3' with actual column names)
     df_combined = df_combined.drop_duplicates(subset=['Buchungsdatum', 'Verwendungszweck', 'Empfaenger','IBAN','Konto'])
-    df_combined('Buchungsdatum')=df_combined('Buchungsdatum').dt.strftime('%d-%m-%Y')
+    df_combined['Buchungsdatum']=df_combined['Buchungsdatum'].dt.strftime('%d-%m-%Y')
     # Save the updated DataFrame (if needed)
     #df_combined.to_csv(os.path.join(ressources_dir,file2))
     return {'code':1,'msg':'Account data file update', 'data': df_combined}
