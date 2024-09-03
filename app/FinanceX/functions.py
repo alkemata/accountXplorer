@@ -71,7 +71,7 @@ def load_data(file):
 def merge_new_data(file1, file2):
     try:
         df_existing = pd.read_csv(os.path.join(ressources_dir,file2),sep=',') #todo merge with load_data
-        df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum']).dt.strftime('%d-%m-%Y')#, format='%d.%m.%Y')
+        df_existing['Buchungsdatum'] = (pd.to_datetime(df_existing['Buchungsdatum'])).dt.strftime('%d-%m-%Y')#, format='%d.%m.%Y')
         df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
         df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
         df_existing['Kategorie'] = df_existing.apply(detect_transfers, axis=1) 
