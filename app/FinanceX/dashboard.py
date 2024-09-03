@@ -195,18 +195,8 @@ def create_dash_app(flask_server):
  
         return selected_data.to_dict('records')
 
-    def layout_main():
-        layout=html.Div(
-        style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
-        children=[param_layout,current_spend_layout,plan_layout])
-        return layout
 
-    appdash.layout=layout_main()
-    return appdash
-
-
-
-"""     df1=df[(df['Konto']=='DE39360100430206819439') & (df['Buchungsdatum']>=first_day_current_month)]#[['Buchungsdatum','Saldo']]
+    df1=df[(df['Konto']=='DE39360100430206819439') & (df['Buchungsdatum']>=first_day_current_month)]#[['Buchungsdatum','Saldo']]
     df2=df[(df['Konto']=='DE47700400480857576300') & (df['Buchungsdatum']>=first_day_current_month)]#[['Buchungsdatum','Saldo']]
 
     fig1 = px.line(df1, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Postbank')
@@ -215,7 +205,7 @@ def create_dash_app(flask_server):
     fig2 = px.line(df2, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Commerzbank')
 
     # Define the layout of the app
-    app.layout = html.Div(children=[
+    saldo_layout = html.Div(children=[
         html.Div(children=[
             dcc.Graph(
                 id='graph1',
@@ -229,4 +219,16 @@ def create_dash_app(flask_server):
                 figure=fig2
             )
         ], style={'width': '48%', 'display': 'inline-block'})
-    ]) """
+    ]) 
+
+
+    def layout_main():
+        layout=html.Div(
+        style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
+        children=[param_layout,current_spend_layout,plan_layout,saldo_layout])
+        return layout
+
+    appdash.layout=layout_main()
+    return appdash
+
+
