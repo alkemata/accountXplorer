@@ -15,7 +15,7 @@ file6='occurences.csv'
 
 print('1 - Loading data')
 df_existing = pd.read_csv(os.path.join(ressources_dir,file0),sep=';') #todo merge with load_data
-df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d-%m-%Y')
+df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d.%m.%Y')
 df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
 df_existing['Betrag']=df_existing['Betrag'].astype(float)
 df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte','Month','Saldo']]
