@@ -64,7 +64,7 @@ def detect_transfers(row):
 
 def load_data(file):
         df = pd.read_csv(os.path.join(ressources_dir,file),sep=',')
-        df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d.%m.%Y')
+        df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'])#, format='%d.%m.%Y')
         #df['Betrag'] = pd.to_numeric(df['Betrag'].replace(',','.',regex=True), errors='coerce')
         return df
 
