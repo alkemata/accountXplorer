@@ -47,6 +47,7 @@ calculated_saldos = []
 merged_data = []
 
 for row in rows:
+    print(row)
     account = row['Account']
     start_date = pd.to_datetime(row['Date']) 
     initial_saldo = float(row['Saldo'])
