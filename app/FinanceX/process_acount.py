@@ -12,6 +12,7 @@ file3='config.txt'
 file4='categories.txt'
 file5='budget.txt'
 file6='occurences.csv'
+file7='new_categories.txt'
 
 print('1 - Loading data')
 df_existing = pd.read_csv(os.path.join(ressources_dir,file0),sep=';') #todo merge with load_data
@@ -123,4 +124,44 @@ for row in data:
 occ= pd.DataFrame(occurrences)
 file2_path=os.path.join(ressources_dir,file6)
 occ.to_csv(file2_path, index=False)
+
+
+print('4 - New categorizing')
+file7_path=os.path.join(ressources_dir,file7)
+
+with open(file7_path, 'r') as file:
+    keywords = {}
+    for line in file:
+        stripped_line = line.strip()
+        if not stripped_line:
+            continue
+        if line.startswith(' '):  # Assuming sub-categories are indented
+            if current_category:
+                        # Split the line into category and keywords
+                category, kw = stripped_line.split(':')
+                # Strip whitespace and split keywords by comma
+                keywords[category.strip()] = [k.strip() for k in kw.split(',')]
+                categories[current_category].append(keywords)
+        else:
+            current_category = stripped_line
+            categories[current_category] = []
+
+
+def categorize_spending(receiver, description, categories):
+    # Combine receiver and description for keyword search
+    combined_text = f"{receiver.lower()} {description.lower()}"
+
+    # Iterate through categories and their keywords
+    for category, keywords in categories.items():
+        for keyword in keywords:
+            if keyword in combined_text:
+                return category
+    
+    # Default category if no keywords match
+    return 'Uncategorized'
+
+df['category'] = df.apply(lambda x: categorize_spending(x['Empfaenger'], x['Verwendungzweck'], categories), axis=1)
+print('Total number of elements: '+str(df.shape[0]))
+print('Uncatgorized: '+str(df[df['category']=='Uncategorized'].shape[0]))
+
 
