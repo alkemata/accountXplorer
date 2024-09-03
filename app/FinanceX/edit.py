@@ -35,6 +35,7 @@ def create_dash_app(flask_server):
             'color': 'white'
         }
     ]
+    column_defs = [{"headerName": col, "field": col, "resizable": True} for col in df.columns]
 
     layout_list_global= html.Div(
         children=[
@@ -44,7 +45,7 @@ def create_dash_app(flask_server):
                       
             dag.AgGrid(
                 id='table',
-                columnDefs=df.columns.to_dict('records'),
+                columnDefs=column_defs,
                 rowData=df.to_dict('records'),
                 defaultColDef={"resizable": True},  # Make all columns resizable
             )

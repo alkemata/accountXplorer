@@ -211,14 +211,14 @@ def create_dash_app(flask_server):
                 id='graph1',
                 figure=fig1
             )
-        ], style={'width': '48%', 'display': 'inline-block'}),
+        ]), 
 
         html.Div(children=[
             dcc.Graph(
                 id='graph2',
                 figure=fig2
             )
-        ], style={'width': '48%', 'display': 'inline-block'})
+        ])
     ]) 
 
 
