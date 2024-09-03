@@ -141,6 +141,7 @@ def mark_table(n_clicks,filter_value,data,selected_row):
         return no_update
     # Parse the filter input
     selected_row = data[selected_row[0]]
+    print(selected_row)
     selected_row_df=pd.DataFrame(selected_row)
     print(selected_row_df)
     mask = ((df['Empfaenger'] == selected_row_df['Empfaenger']) &
