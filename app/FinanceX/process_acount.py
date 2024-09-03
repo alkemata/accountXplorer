@@ -43,6 +43,7 @@ pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the orde
 
 print('3- Calculating saldo')
 rows = pd.read_csv(os.path.join(ressources_dir,file1),header=0).to_dict(orient='records')
+print(rows)
 
 for row in rows:
     print(row)
