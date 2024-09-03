@@ -145,6 +145,7 @@ with open(file7_path, 'r') as file:
         else:
             current_category = stripped_line
             categories[current_category] = []
+keywords={k: v for k, v in keywords.items() if v != ['']}
 
 print(keywords)
 
