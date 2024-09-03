@@ -55,7 +55,7 @@ Autres revenus
     Épargne & Prévoyance:
 Transport & Mobilité
     Prêt auto:
-    Assurance auto: ADAC, HUK
+    Assurance auto: ADAC, HUK-COBURG
     Péages:
     Transports en commun: Ruhrbahn, DB, Flix, vrr, sncf, rheinbahn, CTS
     Frais de stationnement: parken
