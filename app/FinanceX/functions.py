@@ -24,7 +24,8 @@ def load_categories(file_path):
     return categories
 
 def save_global(dataframe,file): #TODO remove duplicate functions with overview
-    dataframe['Buchungsdatum']=dataframe['Buchungsdatum'].dt.strftime('%d-%m-%Y')
+    dataframe['Buchungsdatum'] = pd.to_datetime(dataframe['Buchungsdatum'], format='%d.%m.%Y')
+    #dataframe['Buchungsdatum']=dataframe['Buchungsdatum'].dt.strftime('%d-%m-%Y')
     dataframe.to_csv(os.path.join(ressources_dir,file), index=False)
     return
 
