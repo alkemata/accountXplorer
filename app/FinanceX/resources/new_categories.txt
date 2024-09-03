@@ -1,76 +1,73 @@
-Non catégorisé
-    Non catégorisé
-    Virement interne
 Paiements en espèces et par carte de crédit
-    Paiements en espèces et par carte de crédit
-    Retrait d'argent:GA, BAT HOHENSTEIN, 
+    Paiements en espèces et par carte de crédit:
+    Retrait d'argent:GA, BAT HOHENSTEIN
     Carte de crédit: 
 Loisirs
     Livres: Thalia, ZENTRALBIBLIOTHEK,
-    Loisirs
+    Loisirs:
     Restauration & Hôtel: attika, asia mekong, HOSTELWORLD, booking, restaurant, 
-    Divertissement & Jeux
+    Divertissement & Jeux:
     Vacances: Preussische Schloesser
-    Événements: Theater und Philharmonie
-    Associations & Syndicats & Adhésions: Rot-Weiss Essen,
+    Événements: Theater und Philharmonie:
+    Associations & Syndicats & Adhésions: Rot-Weiss Essen
     Cinéma: cinemaxx
-    Jeux-concours
+    Jeux-concours:
 Salaire/Revenu
     Salaire/Revenu: european patent office
 Ménage & Coût de la vie
     Vêtements & Chaussures: deichmann
     Ordinateur & Accessoires: saturn
-    Cadeaux
+    Cadeaux:
     Santé: Zahnarztpraxis, mediserv, Gemeinschaftspraxis Schumann, PVB Klerks
-    Redevance audiovisuelle
-    Ménage & Coût de la vie
+    Redevance audiovisuelle: rundfunk
+    Ménage & Coût de la vie:
     Animaux domestiques
-    Internet: Paddle, 
-    Communication & Information: Rundfunk
+    Internet: Paddle
+    Communication & Information
     Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag
     Online-shopping: amazon, ebay
-    Soins & Nettoyage
-    Protection juridique
-    Dons
+    Soins & Nettoyage:
+    Protection juridique:
+    Dons:
     Téléphone: free mobile, congstar, 1+1
-    Assurances
-    Autres frais de santé: apotheke,
-    Médicaments
-    Assurance responsabilité civile privée
-    Frais de port
-    Assurance accident
-    Dépenses de bureau
-    Cadeaux & Dons
+    Assurances:
+    Autres frais de santé: apotheke
+    Médicaments:
+    Assurance responsabilité civile privée:
+    Frais de port:
+    Assurance accident:
+    Dépenses de bureau:
+    Cadeaux & Dons:
 Enfants
     Frais de scolarité & de formation: FRANZ.GYMNASIUMS 
-    Ecoles de musique: Musik schule, Teilnehmergebuehren Mu,
+    Ecoles de musique: Musik schule, Teilnehmergebuehren Mu
 Autres dépenses
-    Autres dépenses
-    Autre financement
+    Autres dépenses:
+    Autre financement:
 Autres revenus
-    Versement de crédit/prêt
+    Versement de crédit/prêt:
     Versement/Remboursement d'assurance: cigna
-    Autres revenus
+    Autres revenus:
 Épargne & Prévoyance
     Frais de compte & Intérêts: Kontofuehrung, Rechnungsabschluss
-    Assurance-vie
+    Assurance-vie:
     Épargne: LPV Lebensversicherung, AUFSTOCKUNG
-    Épargne & Prévoyance
+    Épargne & Prévoyance:
 Transport & Mobilité
     Prêt auto
     Assurance auto: ADAC, HUK
-    Péages
+    Péages:
     Transports en commun: Ruhrbahn, DB, Flix, vrr, sncf, rheinbahn, CTS
     Frais de stationnement: parken
-    Réparations
-    Amendes
+    Réparations:
+    Amendes:
     Carburant: esso, total, shell, aral, start, tankstelle, station
-    Transport & Mobilité
-    Taxe automobile (privée)
-    Réparations et accessoires auto
-    Acquisition auto: darlehensrate,
+    Transport & Mobilité:
+    Taxe automobile (privée):
+    Réparations et accessoires auto: fank
+    Acquisition auto: darlehensrate
 Habitat
     Aménagements extérieurs: shuhrgard
     Rénovation & Réparations: hellweg, bricolage
 Revenus du capital
-    Revenus du capital
+    Revenus du capital:
