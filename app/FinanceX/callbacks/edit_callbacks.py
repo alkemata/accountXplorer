@@ -116,37 +116,38 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
     Input('filter-input','value'),
     Input('calculate-button', 'n_clicks')],
     [State('table-global','data'),
-    State('saldo-input-table', 'data')]
+    State('saldo-input-table', 'data'),
+    State('data-global', 'derived_virtual_selected_rows')
+    ]
 )
-def update_global_table(n_clicks,filter_value,n_clicks2,data,saldo_input_data):
+def update_global_table(n_clicks,filter_value,n_clicks2,data,saldo_input_data,selected_row):
     ctx = callback_context
     if not ctx.triggered:
         return no_update
     else:
         button_id = ctx.triggered[0]['prop_id'].split('.')[0]
     if button_id == 'filter-input':
-        data2=update_table(n_clicks,filter_value,data)
+        data2=mark_table(n_clicks,filter_value,data,selected_row)
     if button_id=='calculate-button':
         data2=calculate_saldo(n_clicks2, saldo_input_data, data)
     return data2
 
-def update_table(n_clicks,filter_value,data):
+def mark_table(n_clicks,filter_value,data,selected_row):
     if n_clicks == 0:
         return no_update
     df=pd.DataFrame(data)
     if not filter_value:
         # Return the original data if no filter is provided
-        return df.to_dict('records')
+        return no_update
 
-    try:
         # Parse the filter input
-        col_name, filter_val = filter_value.split(':')
-        # Filter the dataframe
-        filtered_df = df[df[col_name].str.contains(filter_val, case=False, na=False)]
+        selected_row = rows[selected_rows[0]]
+        mask = ((df['Empfaenger'] == selected_row['Empfaenger']) &
+            (df['Buchungsdatum'] == selected_row['Buchungsdatum'] &
+            df['Vervendugszweck'] == selected_row['Vervendugszweck']
+            ))
+        filtered_df[mask]=filter_value
         return filtered_df.to_dict('records')
-    except Exception as e:
-        # Return an empty table or handle errors if the input format is wrong
-        return df.to_dict('records')
 
 def calculate_saldo(n_clicks, saldo_input_data, transaction_data):
     if n_clicks == 0:

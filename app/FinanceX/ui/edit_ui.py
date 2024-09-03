@@ -48,8 +48,8 @@ def layout_list_global(dataframe):
     layout= html.Div(
         children=[
             html.H1("DataFrame global"),
-            dcc.Input(id='filter-input', type='text', placeholder='Enter filter like column1:value'),
-            html.Button('Filter', id='filter-button', n_clicks=0),
+            dcc.Input(id='filter-input', type='text', placeholder='Enter Notiz for the selection'),
+            html.Button('ADD', id='filter-button', n_clicks=0),
 
                        
                 dash_table.DataTable(
@@ -61,6 +61,7 @@ def layout_list_global(dataframe):
                 style_cell={'minWidth': '150px', 'width': '150px', 'maxWidth': '150px'},  # Set column widths
                 fixed_rows={'headers': True},
                 filter_action='native',
+                row_selectable='single',
                 )])
     return layout
 
