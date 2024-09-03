@@ -74,7 +74,7 @@ df=merged_df
 
 df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'])
 df['Buchungsdatum']=df['Buchungsdatum'].dt.strftime('%d-%m-%Y')
-df.to_csv(os.path.join(ressources_dir,file2))
+df.to_csv(os.path.join(ressources_dir,file2),index=False)
 
 print('4 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
