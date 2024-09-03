@@ -131,9 +131,10 @@ def calculate_saldo():
     dfs = {k: v for k, v in df.groupby('Konto')}
     for k,v in dfs.items():
             initial_value = account_data[k[0:3]]['value']
-            dfs[k] = initial_value + (v.sort_values(by='Buchungsdatum', ascending=True))['Betrag'].cumsum()
+            dfs[k] = initial_value + (v.sort_values(by='Buchungsdatum'))['Betrag'].cumsum()
     merged_df = pd.concat(dfs.values(), axis=0, ignore_index=True)
     merged_df = merged_df.sort_values(by='Buchungsdatum').reset_index(drop=True)
+    return merged_df
 
 def load_budget(file):
     file_path=os.path.join(ressources_dir,file)
