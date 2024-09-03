@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger()
 
 def create_dash_app(flask_server):
-    appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/home/', external_stylesheets=[dbc.themes.BOOTSTRAP])
+    appedit= dash.Dash(__name__,  server=flask_server,url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
     
     style_data_conditional = [
@@ -61,5 +61,5 @@ def create_dash_app(flask_server):
         children=[layout_list_global])
         return layout
 
-    appdash.layout=layout_main()
-    return appdash
+    appedit.layout=layout_main()
+    return appedit
