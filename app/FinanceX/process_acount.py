@@ -72,6 +72,8 @@ merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
 df=merged_df
 
+df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'])
+df['Buchungsdatum']=df['Buchungsdatum'].dt.strftime('%d-%m-%Y')
 df.to_csv(os.path.join(ressources_dir,file2))
 
 print('4 - Calculating occurences')
