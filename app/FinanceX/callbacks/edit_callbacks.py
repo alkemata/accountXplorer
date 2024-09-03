@@ -117,7 +117,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
     Input('calculate-button', 'n_clicks')],
     [State('table-global','data'),
     State('saldo-input-table', 'data'),
-    State('data-global', 'derived_virtual_selected_rows')
+    State('table-global', 'derived_virtual_selected_rows')
     ]
 )
 def update_global_table(n_clicks,filter_value,n_clicks2,data,saldo_input_data,selected_row):
