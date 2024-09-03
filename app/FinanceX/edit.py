@@ -44,7 +44,7 @@ def create_dash_app(flask_server):
                       
             dag.AgGrid(
                 id='table',
-                columnDefs=df.columns,
+                columnDefs=df.columns.to_dict('records'),
                 rowData=df.to_dict('records'),
                 defaultColDef={"resizable": True},  # Make all columns resizable
             )
