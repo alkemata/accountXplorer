@@ -43,10 +43,10 @@ pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the orde
 
 print('3- Calculating saldo')
 rows = pd.read_csv(os.path.join(ressources_dir,file1),header=0,sep=';').to_dict(orient='records')
-print(rows)
+calculated_saldos = []
+merged_data = []
 
 for row in rows:
-    print(row)
     account = row['Account']
     start_date = pd.to_datetime(row['Date']) 
     initial_saldo = float(row['Saldo'])
