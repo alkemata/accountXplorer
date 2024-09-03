@@ -132,6 +132,7 @@ file7_path=os.path.join(ressources_dir,file7)
 with open(file7_path, 'r') as file:
     keywords = {}
     for line in file:
+        print(line)
         stripped_line = line.strip()
         if not stripped_line:
             continue
@@ -141,7 +142,7 @@ with open(file7_path, 'r') as file:
                 category, kw = stripped_line.split(':')
                 # Strip whitespace and split keywords by comma
                 keywords[category.strip()] = [k.strip() for k in kw.split(',')]
-                categories[current_category].append(keywords)
+                categories[current_category].append(category.strip())
         else:
             current_category = stripped_line
             categories[current_category] = []
