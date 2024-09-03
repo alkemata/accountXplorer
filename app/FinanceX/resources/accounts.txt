@@ -1,4 +1,5 @@
-DE39360100430206819439; Postbank
- PayPal (albanatita@gmail.com); PayPal
- 4907********4225;VISA
- DE47700400480857576300; COmmerzbank
+Account;Name;Date;Saldo
+DE39360100430206819439; Postbank;01-01-2024;8512.94
+ PayPal (albanatita@gmail.com); PayPal;0;0
+ 4907********4225;VISA;01-01-2024;0
+ DE47700400480857576300; COmmerzbank;01-01-2024;238.64
