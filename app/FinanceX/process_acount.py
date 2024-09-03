@@ -72,7 +72,7 @@ merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
 df=merged_df
 
-df.to_csv(s.path.join(ressources_dir,file2))
+df.to_csv(os.path.join(ressources_dir,file2))
 
 print('4 - Claculating occurences')
 data=functions.load_budget(file5).to_dict('records')
