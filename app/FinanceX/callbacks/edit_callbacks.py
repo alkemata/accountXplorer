@@ -92,7 +92,7 @@ def update_file_account(n_clicks, file1, file2, file3, file4):
         res=functions.merge_new_data(file1, file2)
         if res['code']==1:
             df=res['data']
-            print(df)
+            print(df.to_dict('records'))
         else:
             log_message=res['msg']
             return log_message, no_update, no_update,no_update,no_update
