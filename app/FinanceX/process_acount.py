@@ -73,9 +73,6 @@ merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
 df=merged_df
 
-df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'])
-df['Buchungsdatum']=df['Buchungsdatum'].dt.strftime('%d-%m-%Y')
-df.to_csv(os.path.join(ressources_dir,file2),index=False)
 
 print('4 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
@@ -165,6 +162,7 @@ def categorize_spending(receiver, description, categories):
 df['category'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), keywords), axis=1)
 print('Total number of elements: '+str(df.shape[0]))
 print('Uncategorized: '+str(df[df['category']=='Uncategorized'].shape[0]))
-print(df[df['category']=='Uncategorized'][['category','Empfaenger']])
 
-
+df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'])
+df['Buchungsdatum']=df['Buchungsdatum'].dt.strftime('%d-%m-%Y')
+df.to_csv(os.path.join(ressources_dir,file2),index=False)
