@@ -21,7 +21,7 @@ Ménage & Coût de la vie
     Santé: Zahnarztpraxis, mediserv, Gemeinschaftspraxis Schumann, PVB Klerks
     Redevance audiovisuelle: rundfunk
     Ménage & Coût de la vie:
-    Animaux domestiques
+    Animaux domestiques:
     Internet: Paddle
     Communication & Information
     Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag
