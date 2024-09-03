@@ -141,7 +141,7 @@ def mark_table(n_clicks,filter_value,data,selected_row):
         return no_update
     # Parse the filter input
     print(selected_row)
-    selected_row = data[selected_rows[0]]
+    selected_row = data[selected_row[0]]
     mask = ((df['Empfaenger'] == selected_row['Empfaenger']) &
         (df['Buchungsdatum'] == selected_row['Buchungsdatum'] &
         df['Vervendugszweck'] == selected_row['Vervendugszweck']
