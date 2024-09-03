@@ -77,7 +77,7 @@ def merge_new_data(file1, file2):
         df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
         df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
         df_existing['Kategorie'] = df_existing.apply(detect_transfers, axis=1) 
-        print(df_existing)
+        print(df_existing['Saldo'])
         if 'Month' not in df_existing.columns:
             df_existing['Month']=0
         if 'Saldo' not in df_existing.columns:
