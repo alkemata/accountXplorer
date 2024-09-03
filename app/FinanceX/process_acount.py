@@ -165,6 +165,6 @@ def categorize_spending(receiver, description, categories):
 df['category'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), keywords), axis=1)
 print('Total number of elements: '+str(df.shape[0]))
 print('Uncategorized: '+str(df[df['category']=='Uncategorized'].shape[0]))
-print(df[['category','Empfaenger']])
+print(df[df['category']=='Uncategorized'][['category','Empfaenger']])
 
 
