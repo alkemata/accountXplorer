@@ -54,7 +54,7 @@ Autres revenus
     Épargne: LPV Lebensversicherung, AUFSTOCKUNG
     Épargne & Prévoyance:
 Transport & Mobilité
-    Prêt auto
+    Prêt auto:
     Assurance auto: ADAC, HUK
     Péages:
     Transports en commun: Ruhrbahn, DB, Flix, vrr, sncf, rheinbahn, CTS
