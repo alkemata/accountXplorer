@@ -41,12 +41,11 @@ def create_dash_app(flask_server):
             html.H1("Yearly view"),
             dcc.Input(id='filter-input', type='text', placeholder='Enter Notiz for the selection'),
             html.Button('ADD', id='filter-button', n_clicks=0),
-
-                       
+                      
             dag.AgGrid(
                 id='table',
                 columnDefs=df.columns,
-                rowData=df,
+                rowData=df.to_dict('records'),
                 defaultColDef={"resizable": True},  # Make all columns resizable
             )
         ])
