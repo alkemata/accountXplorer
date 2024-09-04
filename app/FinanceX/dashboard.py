@@ -20,6 +20,7 @@ logger = logging.getLogger()
 
 
 def create_dash_app(flask_server):
+    global displayed_month
     appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/home/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
