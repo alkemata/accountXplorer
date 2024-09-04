@@ -82,7 +82,7 @@ def create_dash_app(flask_server):
 
     daily_sum= get_month_data(df,month,year)
     bar_chart_figure = create_bar_chart(daily_sum, month,year)
-    monthly_total = daily_month['total_amount'].sum()
+    monthly_total = df[df['Betrag']<0]['Betrag'].sum()
     today = last_update
     first_day_current_month = today.replace(day=1)
     current_month=month
