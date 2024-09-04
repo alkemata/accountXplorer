@@ -218,56 +218,10 @@ def create_dash_app(flask_server):
         ])
     ]) 
 
-    appdash.callback(
-        [Output('month-display', 'children'),
-        Output('left-arrow', 'style'),
-        Output('right-arrow', 'style'),
-        Output('bar-chart','figure'),
-        ],
-        [Input('left-arrow', 'n_clicks'),
-        Input('right-arrow', 'n_clicks')],
-        [State('month-display', 'children')]
-    )
-    def update_month(left_clicks, right_clicks, displayed_month):
-        # Initialize variables
-        if displayed_month is None:
-            month = current_month
-            year = current_year
-        else:
-            month_str = displayed_month.split()[0]
-            month = datetime.datetime.strptime(month_str, '%B').month
-        
-        # Adjust month based on arrow clicks
-        if left_clicks > right_clicks:
-            if month == 1:
-                month = 12
-                year -= 1
-            else:
-                month -= 1
-        elif right_clicks > left_clicks:
-            if month == 12:
-                month = 1
-                year += 1
-            else:
-                month += 1
-
-        # Convert month to full month name
-        month_name = datetime.datetime(year, month, 1).strftime('%B')
-
-        # Control visibility of the arrows
-        left_style = {}
-        right_style = {}
-        
-        if month == 1:
-            left_style = {'visibility': 'hidden'}
-        if month == current_month:
-            right_style = {'visibility': 'hidden'}
-
-        daily_sum= get_month_data(df,month,year)
-        fig=create_bar_chart(daily_sum,month,year)
+    
         
 
-        return f'{month_name} {year}', left_style, right_style, fig 
+
 
     def layout_main():
         layout=html.Div(
@@ -277,59 +231,55 @@ def create_dash_app(flask_server):
 
     appdash.layout=layout_main()
     return appdash
-
-"""     appdash.callback(
-        [Output('month-display', 'children'),
-        Output('left-arrow', 'style'),
-        Output('right-arrow', 'style'),
-        Output('bar-chart','figure'),
-        ],
-        [Input('left-arrow', 'n_clicks'),
-        Input('right-arrow', 'n_clicks')],
-        [State('month-display', 'children')]
-    )
-    def update_month(left_clicks, right_clicks, displayed_month):
-        # Initialize variables
-        if displayed_month is None:
-            month = current_month
-            year = current_year
-        else:
-            month_str = displayed_month.split()[0]
-            month = datetime.datetime.strptime(month_str, '%B').month
-        
-        # Adjust month based on arrow clicks
-        if left_clicks > right_clicks:
-            if month == 1:
-                month = 12
-                year -= 1
-            else:
-                month -= 1
-        elif right_clicks > left_clicks:
-            if month == 12:
-                month = 1
-                year += 1
-            else:
-                month += 1
-
-        # Convert month to full month name
-        month_name = datetime.datetime(year, month, 1).strftime('%B')
-
-        # Control visibility of the arrows
-        left_style = {}
-        right_style = {}
-        
+    
+appdash.callback(
+    [Output('month-display', 'children'),
+    Output('left-arrow', 'style'),
+    Output('right-arrow', 'style'),
+    Output('bar-chart','figure'),
+    ],
+    [Input('left-arrow', 'n_clicks'),
+    Input('right-arrow', 'n_clicks')],
+    [State('month-display', 'children')]
+)
+def update_month(left_clicks, right_clicks, displayed_month):
+    # Initialize variables
+    if displayed_month is None:
+        month = current_month
+        year = current_year
+    else:
+        month_str = displayed_month.split()[0]
+        month = datetime.datetime.strptime(month_str, '%B').month
+    
+    # Adjust month based on arrow clicks
+    if left_clicks > right_clicks:
         if month == 1:
-            left_style = {'visibility': 'hidden'}
-        if month == current_month:
-            right_style = {'visibility': 'hidden'}
+            month = 12
+            year -= 1
+        else:
+            month -= 1
+    elif right_clicks > left_clicks:
+        if month == 12:
+            month = 1
+            year += 1
+        else:
+            month += 1
 
-        daily_sum= get_month_data(df,month,year)
-        fig=create_bar_chart(daily_sum,month,year)
-        
+    # Convert month to full month name
+    month_name = datetime.datetime(year, month, 1).strftime('%B')
 
-        return f'{month_name} {year}', left_style, right_style, fig """
+    # Control visibility of the arrows
+    left_style = {}
+    right_style = {}
+    
+    if month == 1:
+        left_style = {'visibility': 'hidden'}
+    if month == current_month:
+        right_style = {'visibility': 'hidden'}
 
-
+    daily_sum= get_month_data(df,month,year)
+    fig=create_bar_chart(daily_sum,month,year)
+    return f'{month_name} {year}', left_style, right_style, fig 
 
 
 
