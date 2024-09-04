@@ -48,17 +48,8 @@ def create_dash_app(flask_server):
         # Group by day and sum amounts
         daily_sum = month_df.groupby(month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
         daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)
-        print(daily_sum)
         
-        # To ensure all days are represented (even with zero amounts)
-        num_days = calendar.monthrange(year, month)[1]
 
-        # Create a date range for the given month
-        all_days = pd.DataFrame(pd.date_range(start=f'{year}-{month:02d}-01', end=f'{year}-{month:02d}-{num_days}'), columns=['date'])
-
-        # Extract just the day part from the date
-        all_days['day'] = all_days['date'].dt.date  
-        daily_sum = pd.merge(all_days, daily_sum, on='day', how='left').fillna(0)
         
         return daily_sum
 
