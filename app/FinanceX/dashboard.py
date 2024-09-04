@@ -17,7 +17,7 @@ import plotly.express as px
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
-global displayed_month
+
 
 def create_dash_app(flask_server):
     appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/home/', external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -233,7 +233,7 @@ def create_dash_app(flask_server):
         [State('month-display', 'children')]
     )
     def update_month(left_clicks, right_clicks, toto):
-
+        global displayed_month
         # Initialize variables
         print(displayed_month)
         # Adjust month based on arrow clicks
