@@ -226,7 +226,7 @@ def create_dash_app(flask_server):
         ])
     ]) 
 
-    appdash.callback(
+appdash.callback(
         [Output('month-display', 'children'),
         Output('left-arrow', 'style'),
         Output('right-arrow', 'style'),
