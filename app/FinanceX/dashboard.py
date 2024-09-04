@@ -22,6 +22,8 @@ def create_dash_app(flask_server):
     appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/home/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
+    year=df['Buchungsdatum'].max().dt.year
+    month=df['Month'].max()
 
     param_layout=html.Div(
             id='div1',
@@ -37,29 +39,26 @@ def create_dash_app(flask_server):
             ]
         )
 
-    def get_last_month_data(df):
-        today = last_update
-        first_day_current_month = today.replace(day=1)
-        last_day_last_month = last_update
-        first_day_last_month = first_day_current_month
-
-        
+    def get_month_data(df,month,year):
+         
         # Filter DataFrame for last month
-        mask = (df['Buchungsdatum'] >= first_day_last_month) & (df['Buchungsdatum'] <= last_day_last_month)
-        last_month_df = df.loc[mask]
+        mask = (df['Month'] == month)
+        month_df = df.loc[mask]
         
         # Group by day and sum amounts
-        daily_sum = last_month_df.groupby(last_month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
+        daily_sum = month_df.groupby(last_month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
         daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)
         
         # To ensure all days are represented (even with zero amounts)
-        days_in_last_month = calendar.monthrange(last_day_last_month.year, last_day_last_month.month)[1]
-        all_days = pd.DataFrame({'day': range(1, days_in_last_month + 1)})
+        num_days = calendar.monthrange(year, month)[1]
+
+        # Create a date range for the given month
+        days = pd.date_range(start=f'{year}-{month:02d}-01', end=f'{year}-{month:02d}-{num_days}')
         daily_sum = pd.merge(all_days, daily_sum, on='day', how='left').fillna(0)
         
-        return daily_sum, last_day_last_month.strftime('%B %Y')
+        return daily_sum
 
-    def create_bar_chart(daily_sum, month_year):
+    def create_bar_chart(daily_sum, month,year):
         fig = go.Figure(data=[
             go.Bar(
                 x=daily_sum['day'],
@@ -69,27 +68,30 @@ def create_dash_app(flask_server):
         ])
         
         fig.update_layout(
-            title=f'Sum of Amounts per Day for {month_year}',
-            xaxis_title='Day of Month',
-            yaxis_title='Total Amount',
+            title=f'Dépense pour le mois numéro {month}',
+            xaxis_title='Jour',
+            yaxis_title='Dépenses',
             bargap=0.2,
             bargroupgap=0.1,
             autosize=True
         )     
         return fig
 
-    daily_sum, month_year = get_last_month_data(df)
-    bar_chart_figure = create_bar_chart(daily_sum, month_year)
-    last_month_data = get_last_month_data(df)[0]
-    monthly_total = last_month_data['total_amount'].sum()
+    daily_sum= get_month_data(df,month,year)
+    bar_chart_figure = create_bar_chart(daily_sum, month,year)
+    monthly_total = daily_month['total_amount'].sum()
     today = last_update
     first_day_current_month = today.replace(day=1)
+    current_month=month
 #todo add average spending per day
 #remove income
 
     current_spend_layout= html.Div(
             id='div2',
             children=[
+                        html.Button('←', id='left-arrow', n_clicks=0),
+        html.Span(id='month-display'),
+        html.Button('→', id='right-arrow', n_clicks=0),
                     dbc.Card(
                     dbc.CardBody([
                         html.H2(f"Total Amount Today: {monthly_total:.2f}", className="card-title", style={'font-size': '2em', 'text-align': 'center'}),
@@ -220,6 +222,55 @@ def create_dash_app(flask_server):
             )
         ])
     ]) 
+
+    app.callback(
+        [Output('month-display', 'children'),
+        Output('left-arrow', 'style'),
+        Output('right-arrow', 'style'),
+        Output('bar-chart','figure'),
+        ],
+        [Input('left-arrow', 'n_clicks'),
+        Input('right-arrow', 'n_clicks')],
+        [State('month-display', 'children')]
+    )
+    def update_month(left_clicks, right_clicks, displayed_month):
+        # Initialize variables
+        if displayed_month is None:
+            month = current_month
+            year = current_year
+        else:
+            month_str = displayed_month.split()[0]
+            month = datetime.datetime.strptime(month_str, '%B').month
+        
+        # Adjust month based on arrow clicks
+        if left_clicks > right_clicks:
+            if month == 1:
+                month = 12
+                year -= 1
+            else:
+                month -= 1
+        elif right_clicks > left_clicks:
+            if month == 12:
+                month = 1
+                year += 1
+            else:
+                month += 1
+
+        # Convert month to full month name
+        month_name = datetime.datetime(year, month, 1).strftime('%B')
+
+        # Control visibility of the arrows
+        left_style = {}
+        right_style = {}
+        
+        if month == 1:
+            left_style = {'visibility': 'hidden'}
+        if month == current_month:
+            right_style = {'visibility': 'hidden'}
+
+        fig=create_bar_chart(df,current_month)
+
+        return f'{month_name} {year}', left_style, right_style
 
 
     def layout_main():

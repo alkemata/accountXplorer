@@ -1,12 +1,19 @@
 type, datetype, description, amount,account
 1,01-01-24,OVH,6.89,Postbank
 1,02-01-24,OpenAI,23.00,VISA
-1,02-01-24,Deutschland ticket 1541312, 29,Postba
-1,02-01-24, Prêt voiture banque,400, Postbank
 1,02-01-24, Prêt de rattrapage, 263.47, Postbank
 3,01-01-24,HUK Rechtsschutz,45.91, Postbank
 01,02-01-24,OVH, 6.89,Postbank
 01,02-01-24,OVH, 3.69,Postbank
 00,20-08-24,Inscription ecole,900,Postbank
+1,08-01-24,Lagerraum,750,Postbank
+1,02-01-24,Sparen Yuna,300,Postbank
+1,02-01-24, Prêts voiture,800.12,Postbank
+1,02-01-24,Deutschland Ticket 1,49,Postbank
+1,02-01-24,Deutschland Ticket 2,49,Postbank
+1,02-01-24,Deutschland Ticket 3,29,Postbank
+2,01-01-24, Assurance voiture, 376.43,Postbank
+2,01-01-24, GEZ, 55.08,Postbank
+2,01-01-24, Rechtsschutzversicherung, 45.91, Postbank
 
 

@@ -25,7 +25,7 @@ Ménage & Coût de la vie
     Animaux domestiques:
     Internet: Paddle
     Communication & Information:
-    Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag, backen
+    Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag, backen, einzelhandels
     Online-shopping: amazon, ebay
     Soins & Nettoyage:
     Protection juridique:
@@ -40,7 +40,7 @@ Ménage & Coût de la vie
     Dépenses de bureau:
     Cadeaux & Dons:
 Enfants
-    Frais de scolarité & de formation: FRANZ.GYMNASIUMS 
+    Frais de scolarité & de formation: FRANZ.GYMNASIUMS , Franzoschen 
     Ecoles de musique: Musik schule, Teilnehmergebuehren Mu
     Cantine: vielfaltmenue
 Autres dépenses
