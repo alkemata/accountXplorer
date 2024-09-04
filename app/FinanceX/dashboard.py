@@ -23,7 +23,6 @@ def create_dash_app(flask_server):
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
     year=df['Buchungsdatum'].dt.year.max()
-    print(year)
     month=df['Month'].max()
 
     param_layout=html.Div(
@@ -82,6 +81,7 @@ def create_dash_app(flask_server):
         return fig
 
     daily_sum= get_month_data(df,month,year)
+    print(daily_sum)
     bar_chart_figure = create_bar_chart(daily_sum, month,year)
     monthly_total = df[df['Betrag']<0]['Betrag'].sum()
     today = last_update
