@@ -24,7 +24,8 @@ def create_dash_app(flask_server):
     last_update=df['Buchungsdatum'].max()
     year=df['Buchungsdatum'].dt.year.max()
     current_year=year
-    month=df['Month'].max()
+    current_month=df['Month'].max()
+    displayed_month=current_month
 
     param_layout=html.Div(
             id='div1',
@@ -45,14 +46,14 @@ def create_dash_app(flask_server):
         # Filter DataFrame for last month
         mask = (df['Month'] == month)
         month_df = df.loc[mask]
-        
+        print(month)
         # Group by day and sum amounts
         daily_sum = month_df.groupby(month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
+        print(daily_sum)
         daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)
-        
-
-        
+              
         return daily_sum
+
 
     def create_bar_chart(daily_sum, month,year):
         fig = go.Figure(data=[
@@ -73,12 +74,12 @@ def create_dash_app(flask_server):
         )     
         return fig
 
-    daily_sum= get_month_data(df,month,year)
-    bar_chart_figure = create_bar_chart(daily_sum, month,year)
+    daily_sum= get_month_data(df,displayed_month,year)
+    bar_chart_figure = create_bar_chart(daily_sum, displayed_month,year)
     monthly_total = df[df['Betrag']<0]['Betrag'].sum()
     today = last_update
     first_day_current_month = today.replace(day=1)
-    current_month=month
+
 #todo add average spending per day
 #remove income
 
@@ -230,7 +231,7 @@ def create_dash_app(flask_server):
         [State('month-display', 'children')]
     )
     def update_month(left_clicks, right_clicks, displayed_month):
-        global month, year
+
         # Initialize variables
         
         # Adjust month based on arrow clicks
