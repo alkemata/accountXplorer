@@ -26,6 +26,7 @@ def create_dash_app(flask_server):
     current_year=year
     current_month=df['Month'].max()
     displayed_month=current_month
+    print(displayed_month)
 
     param_layout=html.Div(
             id='div1',
@@ -233,7 +234,7 @@ def create_dash_app(flask_server):
     def update_month(left_clicks, right_clicks, toto):
 
         # Initialize variables
-        
+        print(displayed_month)
         # Adjust month based on arrow clicks
         if left_clicks > right_clicks:
             if displayed_month == 1:
