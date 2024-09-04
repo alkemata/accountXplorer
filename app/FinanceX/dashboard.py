@@ -23,6 +23,7 @@ def create_dash_app(flask_server):
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
     year=df['Buchungsdatum'].dt.year.max()
+    print(year)
     month=df['Month'].max()
 
     param_layout=html.Div(
@@ -226,7 +227,7 @@ def create_dash_app(flask_server):
         ])
     ]) 
 
-    appdash.callback(
+"""     appdash.callback(
         [Output('month-display', 'children'),
         Output('left-arrow', 'style'),
         Output('right-arrow', 'style'),
@@ -275,7 +276,7 @@ def create_dash_app(flask_server):
         fig=create_bar_chart(daily_sum,month,year)
         
 
-        return f'{month_name} {year}', left_style, right_style, fig
+        return f'{month_name} {year}', left_style, right_style, fig """
 
 
     def layout_main():
