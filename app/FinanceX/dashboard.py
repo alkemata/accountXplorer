@@ -48,6 +48,7 @@ def create_dash_app(flask_server):
         # Group by day and sum amounts
         daily_sum = month_df.groupby(month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
         daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)
+        print(daily_sum)
         
         # To ensure all days are represented (even with zero amounts)
         num_days = calendar.monthrange(year, month)[1]
@@ -81,7 +82,6 @@ def create_dash_app(flask_server):
         return fig
 
     daily_sum= get_month_data(df,month,year)
-    print(daily_sum)
     bar_chart_figure = create_bar_chart(daily_sum, month,year)
     monthly_total = df[df['Betrag']<0]['Betrag'].sum()
     today = last_update
