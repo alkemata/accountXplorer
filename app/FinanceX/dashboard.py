@@ -219,7 +219,7 @@ def create_dash_app(flask_server):
         ])
     ]) 
 
-    appedit.callback(
+    @appdash.callback(
         [Output('month-display', 'children'),
         Output('left-arrow', 'style'),
         Output('right-arrow', 'style'),
@@ -231,12 +231,6 @@ def create_dash_app(flask_server):
     )
     def update_month(left_clicks, right_clicks, displayed_month):
         # Initialize variables
-        if displayed_month is None:
-            month = current_month
-            year = current_year
-        else:
-            month_str = displayed_month.split()[0]
-            month = datetime.datetime.strptime(month_str, '%B').month
         
         # Adjust month based on arrow clicks
         if left_clicks > right_clicks:
@@ -252,8 +246,6 @@ def create_dash_app(flask_server):
             else:
                 month += 1
 
-        # Convert month to full month name
-        month_name = datetime.datetime(year, month, 1).strftime('%B')
 
         # Control visibility of the arrows
         left_style = {}
