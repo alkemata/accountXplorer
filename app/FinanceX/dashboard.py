@@ -227,6 +227,15 @@ def create_dash_app(flask_server):
         ])
     ]) 
 
+    def layout_main():
+        layout=html.Div(
+        style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
+        children=[param_layout,current_spend_layout,plan_layout,saldo_layout])
+    return layout
+
+    appdash.layout=layout_main()
+    return appdash
+
 """     appdash.callback(
         [Output('month-display', 'children'),
         Output('left-arrow', 'style'),
@@ -279,13 +288,6 @@ def create_dash_app(flask_server):
         return f'{month_name} {year}', left_style, right_style, fig """
 
 
-    def layout_main():
-        layout=html.Div(
-        style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
-        children=[param_layout,current_spend_layout,plan_layout,saldo_layout])
-        return layout
 
-    appdash.layout=layout_main()
-    return appdash
 
 
