@@ -231,7 +231,7 @@ def create_dash_app(flask_server):
         layout=html.Div(
         style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
         children=[param_layout,current_spend_layout,plan_layout,saldo_layout])
-    return layout
+        return layout
 
     appdash.layout=layout_main()
     return appdash
