@@ -230,37 +230,37 @@ def create_dash_app(flask_server):
         Input('right-arrow', 'n_clicks')],
         [State('month-display', 'children')]
     )
-    def update_month(left_clicks, right_clicks, displayed_month):
+    def update_month(left_clicks, right_clicks, toto):
 
         # Initialize variables
         
         # Adjust month based on arrow clicks
         if left_clicks > right_clicks:
-            if month == 1:
-                month = 12
+            if displayed_month == 1:
+                displayed_month = 12
                 year -= 1
             else:
-                month -= 1
+                displayed_month -= 1
         elif right_clicks > left_clicks:
-            if month == 12:
-                month = 1
+            if displayed_month == 12:
+                displayed_month = 1
                 year += 1
             else:
-                month += 1
+                displayed_month += 1
 
 
         # Control visibility of the arrows
         left_style = {}
         right_style = {}
         
-        if month == 1:
+        if displayed_month == 1:
             left_style = {'visibility': 'hidden'}
-        if month == current_month:
+        if displayed_month == current_month:
             right_style = {'visibility': 'hidden'}
 
-        daily_sum= get_month_data(df,month,year)
-        fig=create_bar_chart(daily_sum,month,year)
-        return f'{month_name} {year}', left_style, right_style, fig     
+        daily_sum= get_month_data(df,displayed_month,year)
+        fig=create_bar_chart(daily_sum,displayed_month,year)
+        return '', left_style, right_style, fig     
         
 
 
