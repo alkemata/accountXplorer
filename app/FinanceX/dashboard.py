@@ -23,6 +23,7 @@ def create_dash_app(flask_server):
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
     year=df['Buchungsdatum'].dt.year.max()
+    current_year=year
     month=df['Month'].max()
 
     param_layout=html.Div(
@@ -218,7 +219,7 @@ def create_dash_app(flask_server):
         ])
     ]) 
 
-    appdash.callback(
+    appedit.callback(
         [Output('month-display', 'children'),
         Output('left-arrow', 'style'),
         Output('right-arrow', 'style'),
