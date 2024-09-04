@@ -226,7 +226,7 @@ def create_dash_app(flask_server):
         ])
     ]) 
 
-    app.callback(
+    appdash.callback(
         [Output('month-display', 'children'),
         Output('left-arrow', 'style'),
         Output('right-arrow', 'style'),
@@ -271,9 +271,11 @@ def create_dash_app(flask_server):
         if month == current_month:
             right_style = {'visibility': 'hidden'}
 
-        fig=create_bar_chart(df,current_month)
+        daily_sum= get_month_data(df,month,year)
+        fig=create_bar_chart(daily_sum,month,year)
+        
 
-        return f'{month_name} {year}', left_style, right_style
+        return f'{month_name} {year}', left_style, right_style, fig
 
 
     def layout_main():
