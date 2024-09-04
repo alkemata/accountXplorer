@@ -236,18 +236,16 @@ def create_dash_app(flask_server):
     def update_month(left_clicks, right_clicks, toto):
         global displayed_month
         # Initialize variables
-        print(displayed_month)
         # Adjust month based on arrow clicks
         if left_clicks > right_clicks:
             if displayed_month == 1:
                 displayed_month = 12
-                year -= 1
             else:
                 displayed_month -= 1
         elif right_clicks > left_clicks:
             if displayed_month == 12:
                 displayed_month = 1
-                year += 1
+
             else:
                 displayed_month += 1
 
