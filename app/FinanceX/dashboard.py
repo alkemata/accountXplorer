@@ -230,6 +230,7 @@ def create_dash_app(flask_server):
         [State('month-display', 'children')]
     )
     def update_month(left_clicks, right_clicks, displayed_month):
+        global month, year
         # Initialize variables
         
         # Adjust month based on arrow clicks
