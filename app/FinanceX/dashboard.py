@@ -174,8 +174,7 @@ def create_dash_app(flask_server):
     # Define callback to update the table based on the selected bar
     @appdash.callback(
         Output('amounts-table', 'data'),
-        Input('bar-chart', 'clickData',allow_duplicate=True),
-        prevent_initial_call=True
+        Input('bar-chart', 'clickData'),
     )
     def update_table(clickData):
         if clickData is None:
@@ -231,7 +230,7 @@ def create_dash_app(flask_server):
         Output('right-arrow', 'style'),
         Output('bar-chart','figure'),
         Output('graph1','figure'),
-        Output('graph1','figure')
+        Output('graph2','figure')
         ],
         [Input('left-arrow', 'n_clicks'),
         Input('right-arrow', 'n_clicks')],
