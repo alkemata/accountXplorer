@@ -179,7 +179,7 @@ def create_dash_app(flask_server):
     def update_table(clickData):
         if clickData is None:
             return []
-
+        print('updating table')
         # Get the selected date from the bar chart
         selected_date = clickData['points'][0]['x']
         today = last_update
@@ -187,7 +187,7 @@ def create_dash_app(flask_server):
         last_day_last_month = last_update
         first_day_last_month = first_day_current_month
         # Filter the DataFrame for the selected date
-        mask = (df['Buchungsdatum'] >= first_day_last_month) & (df['Buchungsdatum'] <= last_day_last_month)
+        mask =  (df['Month'] == displayed_month)
         last_month_df = df.loc[mask]
         selected_data = last_month_df[last_month_df['Buchungsdatum'].dt.day.astype(int) == selected_date]
         selected_data=selected_data[["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie"]]
