@@ -71,7 +71,7 @@ for row in rows:
 merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
 #df=merged_df
-print(df_existing['Konto'].unique())
+print(df['Konto'].unique())
 
 print('4 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
