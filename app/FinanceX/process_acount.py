@@ -72,7 +72,7 @@ for row in rows:
     merged_data.append(account_merged)
 merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
-df=merged_df
+#df=merged_df
 
 
 print('4 - Calculating occurences')
