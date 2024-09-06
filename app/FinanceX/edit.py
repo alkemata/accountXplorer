@@ -48,6 +48,8 @@ def create_dash_app(flask_server):
                 columnDefs=column_defs,
                 rowData=df.to_dict('records'),
                 defaultColDef={"resizable": True},  # Make all columns resizable
+                dashGridOptions={
+                 'defaultColDef': {'filter': True, 'sortable': True}}
             )
         ])
 
