@@ -174,7 +174,8 @@ def create_dash_app(flask_server):
     # Define callback to update the table based on the selected bar
     @appdash.callback(
         Output('amounts-table', 'data'),
-        Input('bar-chart', 'clickData')
+        Input('bar-chart', 'clickData',allow_duplicate=True),
+        prevent_initial_call=True
     )
     def update_table(clickData):
         if clickData is None:
@@ -228,14 +229,14 @@ def create_dash_app(flask_server):
         [Output('month-display', 'children'),
         Output('left-arrow', 'style'),
         Output('right-arrow', 'style'),
-        Output('bar-chart','figure',allow_duplicate=True),
+        Output('bar-chart','figure'),
         Output('graph1','figure'),
         Output('graph1','figure')
         ],
         [Input('left-arrow', 'n_clicks'),
         Input('right-arrow', 'n_clicks')],
-        [State('month-display', 'children')],
-        prevent_initial_call=True
+        [State('month-display', 'children')]
+        
     )
     def update_month(left_clicks, right_clicks, toto):
         global displayed_month
