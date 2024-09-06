@@ -51,7 +51,8 @@ for row in rows:
     account = row['Account']
     start_date = pd.to_datetime(row['Date']) 
     initial_saldo = float(row['Saldo'])
-
+    after_start_date=pd.DataFrame()
+    defore_start_date=pd.DataFrame()
     before_start_date = df[
         (df['Konto'] == account)  & 
         (df['Buchungsdatum'] < start_date)
