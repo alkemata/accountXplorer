@@ -56,7 +56,8 @@ for row in rows:
         (df['Konto'] == account) & 
         (df['Buchungsdatum'] < start_date)
     ]
-    print(before_start_date)
+    print(account)
+    print(start_date)
 
     after_start_date = df[
         (df['Konto'] == account) & 
