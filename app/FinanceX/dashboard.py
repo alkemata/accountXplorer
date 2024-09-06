@@ -49,12 +49,9 @@ def create_dash_app(flask_server):
         # Filter DataFrame for last month
         mask = (df['Month'] == month)
         month_df = df.loc[mask]
-        print(month)
         # Group by day and sum amounts
         daily_sum = month_df.groupby(month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
-        print(daily_sum)
-        daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)
-              
+        daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)        
         return daily_sum
 
 
@@ -200,6 +197,7 @@ def create_dash_app(flask_server):
 
     df1=df[(df['Konto']=='DE39360100430206819439') & (df['Buchungsdatum']>=first_day_current_month)][['Buchungsdatum','Saldo']]
     df2=df[(df['Konto']=='DE47700400480857576300') & (df['Buchungsdatum']>=first_day_current_month)][['Buchungsdatum','Saldo']]
+    print(df2)
 
     fig1 = px.line(df1, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Postbank')
 
