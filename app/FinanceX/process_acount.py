@@ -16,6 +16,7 @@ file7='new_categories.txt'
 
 print('1 - Loading data')
 df_existing = pd.read_csv(os.path.join(ressources_dir,file0),sep=';') #todo merge with load_data
+print(df_existing['Konto'].unique())
 df_existing['Buchungsdatum'] = pd.to_datetime(df_existing['Buchungsdatum'], format='%d.%m.%Y')
 df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',regex=True), errors='coerce')
 df_existing['Betrag']=df_existing['Betrag'].astype(float)
