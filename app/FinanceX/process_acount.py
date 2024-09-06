@@ -59,7 +59,7 @@ for row in rows:
         (df['Konto'] == account) & 
         (df['Buchungsdatum'] >= start_date)
     ].sort_values(by='Buchungsdatum',ascending=True).copy()# Make a copy to avoid modifying the original DataFrame
-
+    print(after_start_date)
     # Calculate the saldo for the transactions after the start date
     after_start_date['Saldo'] = initial_saldo + after_start_date['Betrag'].cumsum()
 
