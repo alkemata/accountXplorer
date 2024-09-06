@@ -264,7 +264,8 @@ def create_dash_app(flask_server):
 
         daily_sum= get_month_data(df,displayed_month,year)
         fig=create_bar_chart(daily_sum,displayed_month,year)
-        return '', left_style, right_style, fig     
+        fig1, fig2=account_saldo()
+        return '', left_style, right_style, fig, fig1, fig2     
         
 
 
