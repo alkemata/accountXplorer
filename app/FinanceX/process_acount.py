@@ -61,6 +61,7 @@ for row in rows:
         (df['Konto'] == account) & 
         (df['Buchungsdatum'] >= start_date)
     ].sort_values(by='Buchungsdatum',ascending=True)# Make a copy to avoid modifying the original DataFrame
+    print(after_start_date)
 
     # Calculate the saldo for the transactions after the start date
     after_start_date['Saldo'] = initial_saldo + after_start_date['Betrag'].cumsum()
@@ -71,7 +72,6 @@ for row in rows:
 merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
 #df=merged_df
-print(df['Konto'].unique())
 
 print('4 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
@@ -143,7 +143,6 @@ with open(file7_path, 'r') as file:
             categories[current_category] = []
 keywords={k: v for k, v in keywords.items() if v != ['']}
 
-print(keywords)
 
 def categorize_spending(receiver, description, categories):
     # Combine receiver and description for keyword search
