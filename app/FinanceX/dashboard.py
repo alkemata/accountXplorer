@@ -228,13 +228,14 @@ def create_dash_app(flask_server):
         [Output('month-display', 'children'),
         Output('left-arrow', 'style'),
         Output('right-arrow', 'style'),
-        Output('bar-chart','figure'),
+        Output('bar-chart','figure',allow_duplicate=True),
         Output('graph1','figure'),
         Output('graph1','figure')
         ],
         [Input('left-arrow', 'n_clicks'),
         Input('right-arrow', 'n_clicks')],
-        [State('month-display', 'children')]
+        [State('month-display', 'children')],
+        prevent_initial_call=True
     )
     def update_month(left_clicks, right_clicks, toto):
         global displayed_month
