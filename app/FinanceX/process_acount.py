@@ -24,7 +24,6 @@ df_existing['Kategorie'] = df_existing.apply(functions.detect_transfers, axis=1)
 df_existing['Month']=0
 df_existing['Saldo']=0
 df=df_existing
-print(df['Konto'].unique())
 
 print('2 - creating pivot table for categories')
 categories = functions.load_categories(os.path.join(ressources_dir,file4))
@@ -68,13 +67,11 @@ for row in rows:
 
     # Combine before and after DataFrames
     account_merged = pd.concat([before_start_date, after_start_date])
-    print(account)
-    print(account_merged)
     merged_data.append(account_merged)
 merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
 #df=merged_df
-
+print(df_existing['Konto'].unique())
 
 print('4 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
