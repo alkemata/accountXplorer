@@ -67,7 +67,8 @@ for row in rows:
 
     # Combine before and after DataFrames
     account_merged = pd.concat([before_start_date, after_start_date])
-
+    print(account)
+    print(account_merged)
     merged_data.append(account_merged)
 merged_df = pd.concat(merged_data)
 merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
