@@ -195,15 +195,18 @@ def create_dash_app(flask_server):
         return selected_data.to_dict('records')
 
 
-    df1=df[(df['Konto']=='DE39360100430206819439') & (df['Buchungsdatum']>=first_day_current_month)][['Buchungsdatum','Saldo']]
-    df2=df[(df['Konto']=='DE47700400480857576300') & (df['Buchungsdatum']>=first_day_current_month)][['Buchungsdatum','Saldo']]
-    print(df2)
+    def account_saldo():
+        df1=df[(df['Konto']=='DE39360100430206819439') & (df['Month']==displayed_month)][['Buchungsdatum','Saldo']]
+        df2=df[(df['Konto']=='DE47700400480857576300') & (df['Month']==displayed_month)][['Buchungsdatum','Saldo']]
+        print(df2)
 
-    fig1 = px.line(df1, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Postbank')
+        fig1 = px.line(df1, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Postbank')
 
-    # Create the second graph
-    fig2 = px.line(df2, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Commerzbank')
+        # Create the second graph
+        fig2 = px.line(df2, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Commerzbank')
+        return fig1, fig2
 
+    fig1, fig2=account_saldo()
     # Define the layout of the app
     saldo_layout = html.Div(children=[
         html.Div(children=[
@@ -226,6 +229,8 @@ def create_dash_app(flask_server):
         Output('left-arrow', 'style'),
         Output('right-arrow', 'style'),
         Output('bar-chart','figure'),
+        Output('graph1','figure'),
+        Output('graph1','figure')
         ],
         [Input('left-arrow', 'n_clicks'),
         Input('right-arrow', 'n_clicks')],
