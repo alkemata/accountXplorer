@@ -44,31 +44,25 @@ pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the orde
 
 print('3- Calculating saldo')
 rows = pd.read_csv(os.path.join(ressources_dir,file1),header=0,sep=';').to_dict(orient='records')
-calculated_saldos = []
-merged_data = []
+rows= pd.read_csv('your_data_file.csv')
+# Ensure that the 'date' column is in datetime format (if not already)
+rows['date'] = pd.to_datetime(rows['date'])
+# Create a dictionary in the desired format
+account_dict = {
+    row['account']: {'date': row['date'], 'saldo': row['saldo']}
+    for _, row in rows.iterrows()
+}
 
-for row in rows:
-    account = row['Account']
-    start_date = pd.to_datetime(row['Date']) 
-    initial_saldo = float(row['Saldo'])
-    before_start_date = df[
-        (df['Konto'] == account)  & 
-        (df['Buchungsdatum'] < start_date)
-    ].copy()
-    after_start_date = df[
-        (df['Konto'] == account) & 
-        (df['Buchungsdatum'] >= start_date)
-    ].sort_values(by='Buchungsdatum',ascending=True).copy()# Make a copy to avoid modifying the original DataFrame
-    print(after_start_date)
-    # Calculate the saldo for the transactions after the start date
-    after_start_date['Saldo'] = initial_saldo + after_start_date['Betrag'].cumsum()
 
-    # Combine before and after DataFrames
-    account_merged = pd.concat([before_start_date, after_start_date])
-    merged_data.append(account_merged)
-merged_df = pd.concat(merged_data)
-merged_df = merged_df.sort_values(by='Buchungsdatum', ascending=False)
-#df=merged_df
+initial_date=date = account_dict[account]['date']
+df_calc=df[df['Buchungsdatum']>=initial_date]
+
+def calculate_saldo(group, initial_saldo):
+    group['Saldo'] = initial_saldo + group['Betrag'].cumsum()
+    return group
+
+df = df_calc[].groupby('Konto', group_keys=False).apply(lambda g: calculate_saldo(g, initial_saldo[g.name]['saldo']))
+print(df)
 
 print('4 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
