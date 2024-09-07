@@ -44,11 +44,12 @@ pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the orde
 
 print('3- Calculating saldo')
 rows = pd.read_csv(os.path.join(ressources_dir,file1),header=0,sep=';').to_dict(orient='records')
+print(rows)
 # Ensure that the 'date' column is in datetime format (if not already)
-rows['date'] = pd.to_datetime(rows['date'])
+rows['Date'] = pd.to_datetime(rows['Date'])
 # Create a dictionary in the desired format
 account_dict = {
-    row['account']: {'date': row['date'], 'saldo': row['saldo']}
+    row['Account']: {'date': row['Date'], 'saldo': row['Saldo']}
     for _, row in rows.iterrows()
 }
 
