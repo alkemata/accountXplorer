@@ -54,7 +54,7 @@ account_dict = {
 }
 
 
-initial_date=date = account_dict[account]['date']
+initial_date=date = rows ['Date'].first() # to modify after in the accounts file
 df_calc=df[df['Buchungsdatum']>=initial_date]
 
 def calculate_saldo(group, initial_saldo):
