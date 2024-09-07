@@ -54,7 +54,7 @@ account_dict = {
 print(account_dict)
 
 initial_date=date = rows ['Date'][0] # to modify after in the accounts file
-df_calc=df[df['Buchungsdatum']>=initial_date]..sort_values(by='Buchungsdatum', ascending=True)
+df_calc=df[df['Buchungsdatum']>=initial_date].sort_values(by='Buchungsdatum', ascending=True)
 
 def calculate_saldo(group, initial_saldo):
     group['Saldo'] = initial_saldo + group['Betrag'].cumsum()
