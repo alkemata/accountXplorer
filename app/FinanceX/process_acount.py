@@ -46,7 +46,7 @@ print('3- Calculating saldo')
 rows = pd.read_csv(os.path.join(ressources_dir,file1),header=0,sep=';').to_dict(orient='records')
 print(rows)
 # Ensure that the 'date' column is in datetime format (if not already)
-rows['Date'] = pd.to_datetime(rows['Date'])
+rows['Date'] = pd.to_datetime(rows['Date'], format='%d.%m.%Y')
 # Create a dictionary in the desired format
 account_dict = {
     row['Account']: {'date': row['Date'], 'saldo': row['Saldo']}
