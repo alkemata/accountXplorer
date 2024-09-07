@@ -61,7 +61,7 @@ def calculate_saldo(group, initial_saldo):
     return group
 
 df = df_calc.groupby('Konto', group_keys=False).apply(lambda g: calculate_saldo(g, account_dict[g.name]['saldo']))
-print(df)
+
 
 print('4 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
