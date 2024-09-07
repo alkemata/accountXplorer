@@ -61,7 +61,7 @@ def calculate_saldo(group, initial_saldo):
     group['Saldo'] = initial_saldo + group['Betrag'].cumsum()
     return group
 
-df = df_calc[].groupby('Konto', group_keys=False).apply(lambda g: calculate_saldo(g, initial_saldo[g.name]['saldo']))
+df = df_calc[].groupby('Konto', group_keys=False).apply(lambda g: calculate_saldo(g, initial_saldo[g.name]))
 print(df)
 
 print('4 - Calculating occurences')
