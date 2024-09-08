@@ -33,21 +33,33 @@ def create_dash_app(flask_server):
 
     # Step 1: Group by 'Month number' and sum the 'Betrag' for each month
     monthly_spending = df[(df['Betrag']<=0)].groupby('Month')['Betrag'].sum().reset_index()
+    monthly_earning = df[(df['Betrag']>=0)].groupby('Month')['Betrag'].sum().reset_index()
 
     # Step 2: Calculate the cumulative spending
     #monthly_spending['Cumulative Spending'] = monthly_spending['Betrag'].cumsum()
-    monthly_spending['Cumulative Spending']=-monthly_spending['Betrag']
+    monthly_spending['Spending']=-monthly_spending['Betrag']
+    monthly_earning['Earning']=-monthly_spending['Betrag']
 
     # Step 3: Create a bar chart with plotly
     fig = go.Figure(data=[
-        go.Bar(x=monthly_spending['Month'], y=monthly_spending['Cumulative Spending'], marker_color='blue')
+        go.Bar(x=monthly_spending['Month'], y=monthly_spending['Spending'], marker_color='red')
     ])
+    fig2 = go.Figure(data=[
+        go.Bar(x=monthly_earning['Month'], y=monthly_earning['Earning'], marker_color='green')
+    ])
+
 
     # Add titles and labels
     fig.update_layout(
-        title='Cumulative Monthly Spending',
+        title='Monthly Spending',
         xaxis_title='Month Number',
-        yaxis_title='Cumulative Spending'
+        yaxis_title='Spending'
+    )
+        # Add titles and labels
+    fig2.update_layout(
+        title='Monthly Earning',
+        xaxis_title='Month Number',
+        yaxis_title='Spending'
     )
 
     spending_layout = html.Div(children=[
@@ -56,7 +68,11 @@ def create_dash_app(flask_server):
     dcc.Graph(
         id='cumulative-spending-bar-chart',
         figure=fig
-    )
+    ),
+        dcc.Graph(
+        id='cumulative-earning-bar-chart',
+        figure=fig2
+    ),
     ])
 
 
