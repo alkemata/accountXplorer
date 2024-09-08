@@ -21,7 +21,7 @@ logger = logging.getLogger()
 
 def create_dash_app(flask_server):
     global displayed_month
-    appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/year/', external_stylesheets=[dbc.themes.BOOTSTRAP])
+    appyear = dash.Dash(__name__,  server=flask_server,url_base_pathname='/year/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
     year=df['Buchungsdatum'].dt.year.max()
@@ -50,7 +50,7 @@ def create_dash_app(flask_server):
         yaxis_title='Cumulative Spending'
     )
 
-    app.layout = html.Div(children=[
+    appyear.layout = html.Div(children=[
     html.H1(children='Monthly Spendings'),
     
     dcc.Graph(
@@ -61,14 +61,16 @@ def create_dash_app(flask_server):
 
 
 
+
+
     def layout_main():
         layout=html.Div(
         style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
         children=[spending_layout])
         return layout
 
-    appdash.layout=layout_main()
-    return appdash
+    appyear.layout=layout_main()
+    return appyear
 
 
 
