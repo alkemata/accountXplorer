@@ -64,7 +64,7 @@ def create_dash_app(flask_server):
     def get_month_data(df,month,year):
          
         # Filter DataFrame for last month
-        mask = (df['Month'] == month)
+        mask = (df['Month'] == month) & (df['Betrag']<0)
         month_df = df.loc[mask]
         # Group by day and sum amounts
         daily_sum = month_df.groupby(month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
