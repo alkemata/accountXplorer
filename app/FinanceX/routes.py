@@ -75,15 +75,6 @@ def delete_user(user_id):
     db.session.commit()
     return redirect(url_for('main.list_users'))
 
-@main_blueprint.route('/management')
-@admin_required
-def management_dashboard():
-    return render_template('management_dashboard.html')  
-
-@main_blueprint.route('/edit')
-@admin_required
-def management_dashboard():
-    return  
 
 
 
