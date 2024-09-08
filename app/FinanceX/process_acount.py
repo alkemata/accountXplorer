@@ -141,6 +141,7 @@ print('Uncategorized: '+str(df[df['Category']=='Uncategorized'].shape[0]))
 
 df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'])
 df['Buchungsdatum']=df['Buchungsdatum'].dt.strftime('%d-%m-%Y')
+print(df['Month'])
 df.to_csv(os.path.join(ressources_dir,file2),index=False)
 
 print('5 - creating pivot table for categories')
