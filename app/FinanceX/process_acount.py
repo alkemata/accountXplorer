@@ -152,7 +152,7 @@ df['Month']=df['Buchungsdatum'].dt.month
 df['Category'] = pd.Categorical(df['Category'], categories=all_categories, ordered=True)
 pivot_table = df.pivot_table(values='Betrag', index='Category', columns='Month', aggfunc='sum', fill_value=0)
 pivot_table.columns = pivot_table.columns.astype(str)  # Convert Period to str
-pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
+pivot_table = pivot_table.reindex(all_categories)  # Reindex to enforce the order
 #    for col in pivot_table.select_dtypes(include=['float', 'int']).columns:
 #        pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
 print(pivot_table)
