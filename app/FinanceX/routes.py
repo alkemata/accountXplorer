@@ -18,7 +18,7 @@ def admin_required(f):
 
 main_blueprint = Blueprint('main', __name__)
 
-@app.before_request
+@main_blueprint.before_request
 def restrict_dash_apps():
     if request.path.startswith('/dashboard') or request.path.startswith('/edit') or request.path.startswith('/year'):
         if not current_user.is_authenticated:
@@ -46,12 +46,11 @@ def create_user():
         password = request.form['password']
  
 
-        new_user = User(username=name, email=email, password=password, authorized_apps=apps)
+        new_user = User(username=name,  password=password)
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('main.list_users'))
 
-    apps = App.query.all()
     return render_template('create_user.html', apps=apps)
 
 @main_blueprint.route('/user/<int:user_id>/edit', methods=['GET', 'POST'])
@@ -60,10 +59,7 @@ def edit_user(user_id):
     user = User.query.get_or_404(user_id)
     if request.method == 'POST':
         user.name = request.form['name']
-        user.email = request.form['email']
         user.password = request.form['password']
-        app_ids = request.form.getlist('apps')
-        user.authorized_apps = App.query.filter(App.id.in_(app_ids)).all()
 
         db.session.commit()
         return redirect(url_for('main.list_users'))
