@@ -155,11 +155,11 @@ def create_dash_app(flask_server):
             row = active_cell['row']
             col = active_cell['column_id']
             pivot_table=pd.DataFrame(pivot).reset_index()
-            category = pivot_table.iloc[row]['Kategorie']
+            category = pivot_table.iloc[row]['Category']
             month=col
             #month = pd.Period(col, freq='M')  # Convert string back to Period
             # Filter the dataframe based on the selected category and month
-            filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == int(month))]
+            filtered_df = df[(df['Category'] == category) & (df['Month'] == int(month))]
             filtered_df = filtered_df.drop(columns=['Month'])
              #filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
             return filtered_df.to_dict('records')
