@@ -157,4 +157,4 @@ pivot_table = pivot_table.reindex(all_categories)  # Reindex to enforce the orde
 #        pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
 print(pivot_table)
 file8_path=os.path.join(ressources_dir,file8)
-pivot_table.to_csv(file8_path, index=False)
+pivot_table.to_csv(file8_path)
