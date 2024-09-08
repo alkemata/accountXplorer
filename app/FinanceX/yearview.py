@@ -30,7 +30,7 @@ def create_dash_app(flask_server):
 
     # Navbar
     html.Div([
-        dcc.Link('Home', href='/home/',refresh=True),
+        dcc.Link('Home', href='/dashboard/',refresh=True),
         ' | ',
         dcc.Link('Year', href='/year/',refresh=True),
         ' | ',
