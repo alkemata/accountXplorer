@@ -1,9 +1,7 @@
-from appmanager import create_app
-from appmanager.models import db, User, App
+from appmanager.models import db, User
 import os
-from appmanager import create_app
 from pathlib import Path
-from app import create_app
+from FinanceX import create_app
 
 
 app=create_app()
