@@ -26,25 +26,7 @@ df_existing['Month']=0
 df_existing['Saldo']=0
 df=df_existing
 
-print('2 - creating pivot table for categories')
-categories = functions.load_categories(os.path.join(ressources_dir,file4))
-category_order = []
-for sublist in categories.values():
-    category_order.extend(sublist)
-df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d-%m-%Y')
-df['Month']=df['Buchungsdatum'].dt.month
-#df['Betrag'] = pd.to_numeric(df['Betrag'].str.replace(',', '.'))
-# Set the category order
-df['Kategorie'] = pd.Categorical(df['Kategorie'], categories=category_order, ordered=True)
-pivot_table = df.pivot_table(values='Betrag', index='Kategorie', columns='Month', aggfunc='sum', fill_value=0)
-pivot_table.columns = pivot_table.columns.astype(str)  # Convert Period to str
-pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
-#    for col in pivot_table.select_dtypes(include=['float', 'int']).columns:
-#        pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
-file8_path=os.path.join(ressources_dir,file8)
-pivot_table.to_csv(file8_path, index=False)
-
-print('3- Calculating saldo')
+print('2- Calculating saldo')
 rows = pd.read_csv(os.path.join(ressources_dir,file1),header=0,sep=';')
 # Ensure that the 'date' column is in datetime format (if not already)
 rows['Date'] = pd.to_datetime(rows['Date'], format='%d-%m-%Y')
@@ -65,7 +47,7 @@ def calculate_saldo(group, initial_saldo):
 df = df_calc.groupby('Konto', group_keys=False).apply(lambda g: calculate_saldo(g, account_dict[g.name]['saldo']))
 
 
-print('4 - Calculating occurences')
+print('3 - Calculating occurences')
 data=functions.load_budget(file5).to_dict('records')
 occurrences = []
 for row in data:
@@ -119,6 +101,7 @@ file7_path=os.path.join(ressources_dir,file7)
 
 with open(file7_path, 'r') as file:
     keywords = {}
+    all_categories={}
     for line in file:
         stripped_line = line.strip()
         if not stripped_line:
@@ -130,6 +113,7 @@ with open(file7_path, 'r') as file:
                 # Strip whitespace and split keywords by comma
                 keywords[category.strip()] = [k.strip().lower() for k in kw.split(',')]
                 categories[current_category].append(category.strip())
+                all_categories.append(category.strip())
         else:
             current_category = stripped_line
             categories[current_category] = []
@@ -149,6 +133,7 @@ def categorize_spending(receiver, description, categories):
     # Default category if no keywords match
     return 'Uncategorized'
 
+
 df['Category'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), keywords), axis=1)
 print('Total number of elements: '+str(df.shape[0]))
 print('Uncategorized: '+str(df[df['Category']=='Uncategorized'].shape[0]))
@@ -156,3 +141,19 @@ print('Uncategorized: '+str(df[df['Category']=='Uncategorized'].shape[0]))
 df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'])
 df['Buchungsdatum']=df['Buchungsdatum'].dt.strftime('%d-%m-%Y')
 df.to_csv(os.path.join(ressources_dir,file2),index=False)
+
+print('5 - creating pivot table for categories')
+
+df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'], format='%d-%m-%Y')
+df['Month']=df['Buchungsdatum'].dt.month
+#df['Betrag'] = pd.to_numeric(df['Betrag'].str.replace(',', '.'))
+# Set the category order
+df['Category'] = pd.Categorical(df['Category'], categories=all_categories, ordered=True)
+pivot_table = df.pivot_table(values='Betrag', index='Category', columns='Month', aggfunc='sum', fill_value=0)
+pivot_table.columns = pivot_table.columns.astype(str)  # Convert Period to str
+pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
+#    for col in pivot_table.select_dtypes(include=['float', 'int']).columns:
+#        pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
+print(pivot_table)
+file8_path=os.path.join(ressources_dir,file8)
+pivot_table.to_csv(file8_path, index=False)
