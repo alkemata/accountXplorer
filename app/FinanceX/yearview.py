@@ -30,11 +30,11 @@ def create_dash_app(flask_server):
 
     # Navbar
     html.Div([
-        dcc.Link('Home', href='/home'),
+        dcc.Link('Home', href='/home/'),
         ' | ',
-        dcc.Link('Year', href='/year'),
+        dcc.Link('Year', href='/year/'),
         ' | ',
-        dcc.Link('Edit', href='/edit'),
+        dcc.Link('Edit', href='/edit/'),
     ], style={'padding': '10px', 'fontSize': '20px'}),
 
     # Content will be displayed here based on URL
