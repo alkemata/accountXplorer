@@ -27,9 +27,8 @@ def restrict_dash_apps():
 @main_blueprint.route('/')
 @login_required
 def index():
-    user = current_user
-    apps = user.authorized_apps
-    return render_template('home.html',apps=apps)
+
+    return redirect('/dashboard')
 
 @main_blueprint.route('/users')
 @admin_required
