@@ -82,7 +82,7 @@ def create_dash_app(flask_server):
                     dash_table.DataTable(
                         id='pivot-table',
                         columns=[{"name": str(i), "id": str(i)} for i in pivot_table.reset_index().columns],
-                        data=pivot_table.to_dict('records'),
+                        data=pivot_table.reset_index().to_dict('records'),
                         style_table={'overflowX': 'auto', 'height': '300px', 'overflowY': 'auto'},
                         style_data_conditional=[
                             {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
@@ -150,11 +150,10 @@ def create_dash_app(flask_server):
         Input('pivot-table','data')
         ]
     )
-    def display_details(active_cell,pivot):
+    def display_details(active_cell):
         if active_cell:
             row = active_cell['row']
             col = active_cell['column_id']
-            pivot_table=pd.DataFrame(pivot).reset_index()
             category = pivot_table.iloc[row]['Category']
             month=col
             #month = pd.Period(col, freq='M')  # Convert string back to Period
