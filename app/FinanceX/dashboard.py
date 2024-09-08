@@ -68,7 +68,8 @@ def create_dash_app(flask_server):
         month_df = df.loc[mask]
         # Group by day and sum amounts
         daily_sum = month_df.groupby(month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
-        daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)        
+        daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True) 
+        print(daily_sum)       
         return daily_sum
 
 
