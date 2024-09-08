@@ -145,7 +145,7 @@ def create_dash_app(flask_server):
 
     ])
 
-    @app.callback(
+    @appyear.callback(
         Output('detail-table', 'data'),
         [Input('pivot-table', 'active_cell'),
         Input('pivot-table','data')
