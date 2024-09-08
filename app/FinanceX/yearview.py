@@ -28,12 +28,11 @@ def create_dash_app(flask_server):
     df2=df[df['Konto']!='4907********4225']
     monthly_spending = df2[(df2['Betrag']<0)].groupby('Month')['Betrag'].sum().reset_index() #remove visa - different approach
     monthly_earning = df2[(df2['Betrag']>0)].groupby('Month')['Betrag'].sum().reset_index()
-    print(monthly_spending)
 
     # Step 2: Calculate the cumulative spending
     #monthly_spending['Cumulative Spending'] = monthly_spending['Betrag'].cumsum()
     monthly_spending['Spending']=-monthly_spending['Betrag']
-    monthly_earning['Earning']=(monthly_earning['Betrag']-monthly_spending['Betrag'])
+    monthly_earning['Earning']=(monthly_earning['Betrag']+monthly_spending['Betrag'])
 
     # Step 3: Create a bar chart with plotly
     fig = go.Figure(data=[
