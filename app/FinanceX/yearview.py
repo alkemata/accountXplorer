@@ -50,7 +50,7 @@ def create_dash_app(flask_server):
         yaxis_title='Cumulative Spending'
     )
 
-    appyear.layout = html.Div(children=[
+    spending_layout = html.Div(children=[
     html.H1(children='Monthly Spendings'),
     
     dcc.Graph(
