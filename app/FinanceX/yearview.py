@@ -25,7 +25,7 @@ def create_dash_app(flask_server):
     df=functions.load_data('processed.csv')
 
     # Step 1: Group by 'Month number' and sum the 'Betrag' for each month
-    df2=df[df['Konto'!='4907********4225']]
+    df2=df[df['Konto']!='4907********4225']
     monthly_spending = df2[(df2['Betrag']<0)].groupby('Month')['Betrag'].sum().reset_index() #remove visa - different approach
     monthly_earning = df2[(df2['Betrag']>0)].groupby('Month')['Betrag'].sum().reset_index()
     print(monthly_spending)
