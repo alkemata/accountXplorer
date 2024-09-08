@@ -20,7 +20,7 @@ main_blueprint = Blueprint('main', __name__)
 
 @main_blueprint.before_request
 def restrict_dash_apps():
-    if request.path.startswith('/dashboard') or request.path.startswith('/edit') or request.path.startswith('/year'):
+    if request.path.startswith('/dashboard/') or request.path.startswith('/edit/') or request.path.startswith('/year/'):
         if not current_user.is_authenticated:
             return redirect(url_for('login'))
 

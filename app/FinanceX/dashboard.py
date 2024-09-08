@@ -21,7 +21,7 @@ logger = logging.getLogger()
 
 def create_dash_app(flask_server):
     global displayed_month
-    appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/home/', external_stylesheets=[dbc.themes.BOOTSTRAP])
+    appdash = dash.Dash(__name__,  server=flask_server,url_base_pathname='/dashboard/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
     last_update=df['Buchungsdatum'].max()
     year=df['Buchungsdatum'].dt.year.max()
@@ -36,7 +36,7 @@ def create_dash_app(flask_server):
 
     # Navbar
     html.Div([
-        dcc.Link('Home', href='/home/',refresh=True),
+        dcc.Link('Home', href='/dashboard/',refresh=True),
         ' | ',
         dcc.Link('Year', href='/year/',refresh=True),
         ' | ',
