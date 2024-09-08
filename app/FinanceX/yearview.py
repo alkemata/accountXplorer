@@ -158,7 +158,7 @@ def create_dash_app(flask_server):
             # Filter the dataframe based on the selected category and month
             filtered_df = df[(df['Category'] == category) & (df['Month'] == int(month))]
             filtered_df = filtered_df.drop(columns=['Month'])
-            print(filtered_df)
+            print(df)
              #filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
             return filtered_df.to_dict('records')
         return no_update
