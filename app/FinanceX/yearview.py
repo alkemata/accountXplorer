@@ -40,7 +40,7 @@ def create_dash_app(flask_server):
 
     # Step 3: Create a bar chart with plotly
     fig = go.Figure(data=[
-        go.Bar(x=monthly_spending['Month number'], y=monthly_spending['Cumulative Spending'], marker_color='blue')
+        go.Bar(x=monthly_spending['Month'], y=monthly_spending['Cumulative Spending'], marker_color='blue')
     ])
 
     # Add titles and labels
