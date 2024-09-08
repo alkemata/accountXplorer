@@ -25,14 +25,14 @@ def create_dash_app(flask_server):
     df=functions.load_data('processed.csv')
 
     # Step 1: Group by 'Month number' and sum the 'Betrag' for each month
-    monthly_spending = df[(df['Betrag']<=0)].groupby('Month')['Betrag'].sum().reset_index()
-    monthly_earning = df[(df['Betrag']>=0)].groupby('Month')['Betrag'].sum().reset_index()
+    monthly_spending = df[(df['Betrag']<0)].groupby('Month')['Betrag'].sum().reset_index()
+    monthly_earning = df[(df['Betrag']>0)].groupby('Month')['Betrag'].sum().reset_index()
     print(monthly_spending)
 
     # Step 2: Calculate the cumulative spending
     #monthly_spending['Cumulative Spending'] = monthly_spending['Betrag'].cumsum()
     monthly_spending['Spending']=-monthly_spending['Betrag']
-    monthly_earning['Earning']=-monthly_spending['Betrag']
+    monthly_earning['Earning']=monthly_spending['Betrag']
 
     # Step 3: Create a bar chart with plotly
     fig = go.Figure(data=[
