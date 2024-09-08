@@ -74,7 +74,7 @@ def create_dash_app(flask_server):
 
 # ============= display categories
 
-    pivot_table=pd.read_csv(os.path.join(ressources_dir,'pivot.csv'))
+    pivot_table=pd.read_csv(os.path.join(ressources_dir,'pivot.csv'),sep=',')
 
     categories_layout= html.Div([
             dbc.Row([
