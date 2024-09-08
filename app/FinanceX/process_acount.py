@@ -13,6 +13,7 @@ file4='categories.txt'
 file5='budget.txt'
 file6='occurences.csv'
 file7='new_categories.txt'
+file8='pivot.csv'
 
 print('1 - Loading data')
 df_existing = pd.read_csv(os.path.join(ressources_dir,file0),sep=';') #todo merge with load_data
@@ -40,7 +41,8 @@ pivot_table.columns = pivot_table.columns.astype(str)  # Convert Period to str
 pivot_table = pivot_table.reindex(category_order)  # Reindex to enforce the order
 #    for col in pivot_table.select_dtypes(include=['float', 'int']).columns:
 #        pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
-
+file8_path=os.path.join(ressources_dir,file8)
+pivot_table.to_csv(file8_path, index=False)
 
 print('3- Calculating saldo')
 rows = pd.read_csv(os.path.join(ressources_dir,file1),header=0,sep=';')
@@ -51,7 +53,7 @@ account_dict = {
     row['Account']: {'date': row['Date'], 'saldo': row['Saldo']}
     for _, row in rows.iterrows()
 }
-print(account_dict)
+
 
 initial_date=date = rows ['Date'][0] # to modify after in the accounts file
 df_calc=df[df['Buchungsdatum']>=initial_date].sort_values(by='Buchungsdatum', ascending=True)

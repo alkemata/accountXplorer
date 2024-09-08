@@ -71,7 +71,101 @@ def create_dash_app(flask_server):
 
 
 
+# ============= display categories
 
+pivot_table=pd.read_csv(os.path.join(ressources_dir,'pivot.csv'))
+
+def layout_categories(pivot_table, df, category_order):
+    layout = html.Div([
+            dbc.Row([
+                dbc.Col(html.H2('Spending by category'), width=12),
+                dbc.Col(
+                    dash_table.DataTable(
+                        id='pivot-table',
+                        columns=[{"name": str(i), "id": str(i)} for i in pivot_table.reset_index().columns],
+                        data=pivot_table.to_dict('records'),
+                        style_table={'overflowX': 'auto', 'height': '300px', 'overflowY': 'auto'},
+                        style_data_conditional=[
+                            {'if': {'row_index': 'odd'}, 'backgroundColor': 'rgb(248, 248, 248)'}
+                        ],
+                        style_cell={
+                            'textAlign': 'left',
+                            'padding': '2px',
+                            'fontSize': '12px',
+                            'height': 'auto',
+                            'whiteSpace': 'normal'
+                        },
+                        style_header={
+                            'backgroundColor': 'lightgrey',
+                            'fontWeight': 'bold',
+                            'fontSize': '12px',
+                            'padding': '2px'
+                        },
+                        style_data={
+                            'padding': '2px',
+                            'fontSize': '12px',
+                            'height': 'auto',
+                            'whiteSpace': 'normal'
+                        },
+                        cell_selectable=True
+                    ), width=12
+                )
+            ], className="mb-4"),
+            html.Div([
+            dbc.Row([
+                html.Hr(style={'border': '1px solid black'}),
+                dbc.Col(html.H2('List of transactions for a category'), width=12),
+                dbc.Col(
+                    dash_table.DataTable(
+                        id='detail-table',
+                  #      columns=[{"name": col, "id": col} for col in df.drop(columns=['Month']).columns],
+                        style_table={'overflowX': 'auto', 'height': '300px', 'overflowY': 'auto'},
+                        style_cell={
+                            'textAlign': 'left',
+                            'padding': '2px',
+                            'fontSize': '12px',
+                            'height': 'auto',
+                            'whiteSpace': 'normal'
+                        },
+                        style_header={
+                            'backgroundColor': 'lightgrey',
+                            'fontWeight': 'bold',
+                            'fontSize': '12px',
+                            'padding': '2px'
+                        },
+                        style_data={
+                            'padding': '2px',
+                            'fontSize': '12px',
+                            'height': 'auto',
+                            'whiteSpace': 'normal'
+                        },
+                        row_selectable='multi'
+                    ), width=12
+                )
+            ], className="mb-4"),
+
+            ])
+
+    @app.callback(
+        Output('detail-table', 'data'),
+        [Input('pivot-table', 'active_cell'),
+        Input('pivot-table','data')
+        ]
+    )
+    def display_details(active_cell,pivot):
+        if active_cell:
+            row = active_cell['row']
+            col = active_cell['column_id']
+            pivot_table=pd.DataFrame(pivot).reset_index()
+            category = pivot_table.iloc[row]['Kategorie']
+            month=col
+            #month = pd.Period(col, freq='M')  # Convert string back to Period
+            # Filter the dataframe based on the selected category and month
+            filtered_df = df[(df['Kategorie'] == category) & (df['Month'] == int(month))]
+            filtered_df = filtered_df.drop(columns=['Month'])
+             #filtered_df['Buchungsdatum'] = filtered_df['Buchungsdatum'].astype(str)
+            return filtered_df.to_dict('records')
+        return no_update
 
     def layout_main():
         layout=html.Div(
