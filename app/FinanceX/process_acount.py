@@ -22,7 +22,7 @@ df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',rege
 df_existing['Betrag']=df_existing['Betrag'].astype(float)
 df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
 df_existing['Kategorie'] = df_existing.apply(functions.detect_transfers, axis=1) 
-df_existing['Month']=0
+df['Month']=df['Buchungsdatum'].dt.month
 df_existing['Saldo']=0
 df=df_existing
 
@@ -141,7 +141,6 @@ print('Uncategorized: '+str(df[df['Category']=='Uncategorized'].shape[0]))
 
 df['Buchungsdatum'] = pd.to_datetime(df['Buchungsdatum'])
 df['Buchungsdatum']=df['Buchungsdatum'].dt.strftime('%d-%m-%Y')
-print(df['Month'])
 df.to_csv(os.path.join(ressources_dir,file2),index=False)
 
 print('5 - creating pivot table for categories')
