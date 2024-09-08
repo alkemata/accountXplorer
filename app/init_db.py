@@ -1,4 +1,4 @@
-from appmanager.models import db, User
+from .models import db, User
 import os
 from pathlib import Path
 from FinanceX import create_app
