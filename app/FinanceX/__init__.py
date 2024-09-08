@@ -30,6 +30,7 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+
     # Register blueprints
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)

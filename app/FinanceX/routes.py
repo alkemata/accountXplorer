@@ -2,9 +2,10 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, current_app
 from flask_login import login_required,current_user
 from functools import wraps
-from .models import User,App
+from .models import User
 from .edit import create_dash_app
 from .dashboard import create_dash_app as create_dash_app_2
+from .yearview import create_dash_app as create_dash_app_3
 
 def admin_required(f):
     @wraps(f)
@@ -16,6 +17,12 @@ def admin_required(f):
 
 
 main_blueprint = Blueprint('main', __name__)
+
+@app.before_request
+def restrict_dash_apps():
+    if request.path.startswith('/dashboard') or request.path.startswith('/edit') or request.path.startswith('/year'):
+        if not current_user.is_authenticated:
+            return redirect(url_for('login'))
 
 @main_blueprint.route('/')
 @login_required
@@ -77,7 +84,7 @@ def delete_user(user_id):
 def management_dashboard():
     return render_template('management_dashboard.html')  
 
-main_blueprint.route('/edit')
+@main_blueprint.route('/edit')
 @admin_required
 def management_dashboard():
     return  
