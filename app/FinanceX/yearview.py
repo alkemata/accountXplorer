@@ -17,6 +17,7 @@ import plotly.express as px
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
+ressources_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),'resources')
 
 
 def create_dash_app(flask_server):
