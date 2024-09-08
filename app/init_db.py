@@ -46,8 +46,9 @@ def modify_user(username, app_name):
 
         print(f"Added {app.name} to {user.username}")
 
-def create_database():
-    db.create_all()
+def clear_database():
+    with app.app_context():
+        db.drop_all()
 
 
 def create_db():
