@@ -23,17 +23,11 @@ def create_dash_app(flask_server):
     global displayed_month
     appyear = dash.Dash(__name__,  server=flask_server,url_base_pathname='/year/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
-    last_update=df['Buchungsdatum'].max()
-    year=df['Buchungsdatum'].dt.year.max()
-    current_year=year
-    current_month=df['Month'].max()
-    displayed_month=current_month
-    print(displayed_month)
-
 
     # Step 1: Group by 'Month number' and sum the 'Betrag' for each month
     monthly_spending = df[(df['Betrag']<=0)].groupby('Month')['Betrag'].sum().reset_index()
     monthly_earning = df[(df['Betrag']>=0)].groupby('Month')['Betrag'].sum().reset_index()
+    print(monthly_spending)
 
     # Step 2: Calculate the cumulative spending
     #monthly_spending['Cumulative Spending'] = monthly_spending['Betrag'].cumsum()
