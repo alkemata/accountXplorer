@@ -6,9 +6,9 @@ from FinanceX import create_app
 
 app=create_app()
 
-def create_user(user1, email, password,is_admin=False):
+def create_user(user1, password,is_admin=False):
     with app.app_context():
-        user1 = User(username=user1, email=email,is_admin=is_admin)
+        user1 = User(username=user1, is_admin=is_admin)
         user1.set_password(password)
 
         # Commit to the database
