@@ -109,7 +109,7 @@ def create_dash_app(flask_server):
         html.Button('→', id='right-arrow', n_clicks=0),
                     dbc.Card(
                     dbc.CardBody([
-                        html.H2(f"Total Amount Today: {monthly_total:.2f}", className="card-title", style={'font-size': '2em', 'text-align': 'center'}),
+                        html.H2(f"Total dépenses du mois: {monthly_total:.2f}", className="card-title", style={'font-size': '2em', 'text-align': 'center'}),
                     ]),
                     style={'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
                 ),
