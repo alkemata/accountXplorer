@@ -54,7 +54,7 @@ def create_dash_app(flask_server):
                     dbc.CardBody([
                         html.H4("Date Information", className="card-title"),
                         html.P(f"Present Date: {datetime.now().strftime('%d-%m-%Y')}", className="card-text"),
-                        html.P(f"Last Date in DataFrame: {last_update.strftime('%d-%m-%Y')}", className="card-text")
+                        html.P(f"Last Update: {last_update.strftime('%d-%m-%Y')}", className="card-text")
                     ]),
                 style={'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
                 )
@@ -93,7 +93,7 @@ def create_dash_app(flask_server):
 
     daily_sum= get_month_data(df,displayed_month,year)
     bar_chart_figure = create_bar_chart(daily_sum, displayed_month,year)
-    monthly_total = df[df['Betrag']<0]['Betrag'].sum()
+    monthly_total = df[(df['Betrag']<0) & df['Month'==displayed_month]]['Betrag'].sum()
     today = last_update
     first_day_current_month = today.replace(day=1)
 
