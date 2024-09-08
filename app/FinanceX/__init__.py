@@ -37,6 +37,5 @@ def create_app():
     appedit=create_dash_app(app)
     appedit2=create_dash_app_2(app)
     appedit3=create_dash_app_3(app)
-    import FinanceX.callbacks.edit_callbacks
 
     return app
