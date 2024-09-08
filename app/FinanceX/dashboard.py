@@ -28,7 +28,24 @@ def create_dash_app(flask_server):
     current_year=year
     current_month=df['Month'].max()
     displayed_month=current_month
-    print(displayed_month)
+
+
+#============== navbar layout
+    navbar_layout = html.Div([
+    dcc.Location(id='url', refresh=False),  # This tracks the current page location
+
+    # Navbar
+    html.Div([
+        dcc.Link('Home', href='/home/',refresh=True),
+        ' | ',
+        dcc.Link('Year', href='/year/',refresh=True),
+        ' | ',
+        dcc.Link('Edit', href='/edit/',refresh=True),
+    ], style={'padding': '10px', 'fontSize': '20px'}),
+
+    # Content will be displayed here based on URL
+    html.Div(id='page-content')
+    ])
 
     param_layout=html.Div(
             id='div1',
@@ -273,7 +290,7 @@ def create_dash_app(flask_server):
     def layout_main():
         layout=html.Div(
         style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
-        children=[param_layout,current_spend_layout,plan_layout,saldo_layout])
+        children=[navbar_layout,param_layout,current_spend_layout,plan_layout,saldo_layout])
         return layout
 
     appdash.layout=layout_main()

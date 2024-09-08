@@ -23,6 +23,23 @@ def create_dash_app(flask_server):
     appedit= dash.Dash(__name__,  server=flask_server,url_base_pathname='/edit/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
     
+#============== navbar layout
+    navbar_layout = html.Div([
+    dcc.Location(id='url', refresh=False),  # This tracks the current page location
+
+    # Navbar
+    html.Div([
+        dcc.Link('Home', href='/home/',refresh=True),
+        ' | ',
+        dcc.Link('Year', href='/year/',refresh=True),
+        ' | ',
+        dcc.Link('Edit', href='/edit/',refresh=True),
+    ], style={'padding': '10px', 'fontSize': '20px'}),
+
+    # Content will be displayed here based on URL
+    html.Div(id='page-content')
+    ])
+
     style_data_conditional = [
         {
             'if': {'filter_query': '{Betrag} > 0'},
@@ -54,7 +71,7 @@ def create_dash_app(flask_server):
     def layout_main():
         layout=html.Div(
         style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
-        children=[layout_list_global])
+        children=[navbar_layout,layout_list_global])
         return layout
 
     appedit.layout=layout_main()

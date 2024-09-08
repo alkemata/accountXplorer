@@ -82,7 +82,5 @@ main_blueprint.route('/edit')
 def management_dashboard():
     return  
 
-main_blueprint.route('/')
-def management_dashboard():
-    return render_template('management_dashboard.html')  
+
 
