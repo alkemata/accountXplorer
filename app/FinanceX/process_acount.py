@@ -22,7 +22,7 @@ df_existing['Betrag'] = pd.to_numeric(df_existing['Betrag'].replace(',','.',rege
 df_existing['Betrag']=df_existing['Betrag'].astype(float)
 df_existing=df_existing[['Buchungsdatum','Empfaenger','Verwendungszweck','Buchungstext','Betrag','IBAN','Kategorie','Konto','Umbuchung','Notiz','Schlagworte']]
 df_existing['Kategorie'] = df_existing.apply(functions.detect_transfers, axis=1) 
-df['Month']=df['Buchungsdatum'].dt.month
+df_existing['Month']=df_existing['Buchungsdatum'].dt.month
 df_existing['Saldo']=0
 df=df_existing
 
