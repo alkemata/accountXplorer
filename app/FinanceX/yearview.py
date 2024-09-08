@@ -33,7 +33,7 @@ def create_dash_app(flask_server):
     # Step 2: Calculate the cumulative spending
     #monthly_spending['Cumulative Spending'] = monthly_spending['Betrag'].cumsum()
     monthly_spending['Spending']=-monthly_spending['Betrag']
-    monthly_earning['Earning']=monthly_earning['Betrag']
+    monthly_earning['Earning']=monthly_earning['Betrag']-monthly_spending['Betrag']
 
     # Step 3: Create a bar chart with plotly
     fig = go.Figure(data=[
@@ -52,9 +52,9 @@ def create_dash_app(flask_server):
     )
         # Add titles and labels
     fig2.update_layout(
-        title='Monthly Earning',
+        title='Monthly Excedent',
         xaxis_title='Month Number',
-        yaxis_title='Spending'
+        yaxis_title='Excedent'
     )
 
     spending_layout = html.Div(children=[
