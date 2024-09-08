@@ -101,7 +101,7 @@ file7_path=os.path.join(ressources_dir,file7)
 
 with open(file7_path, 'r') as file:
     keywords = {}
-    all_categories={}
+    all_categories=[]
     categories={}
     for line in file:
         stripped_line = line.strip()
