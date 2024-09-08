@@ -24,6 +24,23 @@ def create_dash_app(flask_server):
     appyear = dash.Dash(__name__,  server=flask_server,url_base_pathname='/year/', external_stylesheets=[dbc.themes.BOOTSTRAP])
     df=functions.load_data('processed.csv')
 
+#============== navbar layout
+    navbar_layout = html.Div([
+    dcc.Location(id='url', refresh=False),  # This tracks the current page location
+
+    # Navbar
+    html.Div([
+        dcc.Link('Home', href='/home'),
+        ' | ',
+        dcc.Link('Year', href='/year'),
+        ' | ',
+        dcc.Link('Edit', href='/edit'),
+    ], style={'padding': '10px', 'fontSize': '20px'}),
+
+    # Content will be displayed here based on URL
+    html.Div(id='page-content')
+])
+
     # Step 1: Group by 'Month number' and sum the 'Betrag' for each month
     df2=df[df['Konto']!='4907********4225']
     monthly_spending = df2[(df2['Betrag']<0)].groupby('Month')['Betrag'].sum().reset_index() #remove visa - different approach
@@ -164,7 +181,7 @@ def create_dash_app(flask_server):
     def layout_main():
         layout=html.Div(
         style={'display': 'flex', 'flex-direction': 'column', 'padding': '10px'},  # Makes layout responsive
-        children=[spending_layout,categories_layout])
+        children=[navbar_layout,spending_layout,categories_layout])
         return layout
 
     appyear.layout=layout_main()
