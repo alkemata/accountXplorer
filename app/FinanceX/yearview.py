@@ -3,8 +3,7 @@ import logging
 import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import dash_bootstrap_components as dbc
-from dash import html
-from dash import dcc, html, dash_table
+from dash import dcc, html, dash_table, no_update
 from FinanceX import functions as functions
 import dash
 from datetime import datetime, timedelta
