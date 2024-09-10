@@ -6,10 +6,10 @@ Paiements en espèces et par carte de crédit
 Loisirs
     Livres: Thalia, ZENTRALBIBLIOTHEK, doeblingers, hugendubel, buchhandlung
     Loisirs: decathlon
-    Restauration & Hôtel: attika, asia mekong, HOSTELWORLD, booking, restaurant, hotel, mcdonalds, cafe, takeaway, betriebe, road stop, sushi, scheppen
-    Divertissement & Jeux: CINE, cinema, theater, musee, aquapark, museum
-    Vacances: Preussische Schloesser, wien, como, milano, kirchberg, rivera, bellagio
-    Événements: Theater und Philharmonie
+    Restauration & Hôtel: attika, asia mekong, HOSTELWORLD, booking, restaurant, hotel, mcdonalds, cafe, takeaway, betriebe, road stop, sushi, scheppen, ristorante, pizzeria, burgerheart
+    Divertissement & Jeux: CINE, cinema,  musee, aquapark, museum, kino
+    Vacances: Preussische Schloesser, wien, como, milano, kirchberg, rivera, bellagio, eisenac, carros,driburg
+    Événements: Theater,Philharmonie, viagogo
     Associations & Syndicats & Adhésions: Rot-Weiss Essen
     Cinéma: cinemaxx
     Jeux-concours:
@@ -18,14 +18,14 @@ Salaire/Revenu
 Ménage & Coût de la vie
     Vêtements & Chaussures: deichmann, retail, fashion, woolworth
     Ordinateur & Accessoires: saturn, media markt
-    Cadeaux: promofoot, bvb, blumen, ogc nice
-    Santé: Zahnarztpraxis, mediserv, Gemeinschaftspraxis Schumann, PVB Klerks, augenaerzte, kieferorthop. Labor
+    Cadeaux: promofoot, bvb, blumen, ogc nice, bijou
+    Santé: Zahnarztpraxis, mediserv, Gemeinschaftspraxis Schumann, PVB Klerks, augenaerzte, kieferorthop. Labor, kluge, uk meds, orthopae
     Redevance audiovisuelle: rundfunk
     Ménage & Coût de la vie:
     Animaux domestiques: fressnapf
     Internet: Paddle
     Communication & Information:
-    Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag, backen, einzelhandels, buchholzhof, cora, auchan, leclerc, tchibo, yorma, rewe, baeckerei
+    Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag, backen, einzelhandels, buchholzhof, cora, auchan, leclerc, tchibo, yorma, rewe, baeckerei, kik
     Online-shopping: amazon, ebay
     Soins & Nettoyage:
     Protection juridique:
@@ -42,7 +42,7 @@ Ménage & Coût de la vie
 Enfants
     Frais de scolarité & de formation: FRANZ.GYMNASIUMS , Franzosischen 
     Ecoles de musique: Musik schule, Teilnehmergebuehren Mu, geigenbau, Landesmusikakademie, taeuber
-    Sport: fitx, unschlagbar, turnerbund, schachfreunde
+    Sport: fitx, unschlagbar, turnerbund, schachfreunde, ass. carantec
     Cantine: vielfaltmenue
 Autres dépenses
     Autres dépenses:
@@ -54,12 +54,12 @@ Autres revenus
 Épargne & Prévoyance
     Frais de compte & Intérêts: Kontofuehrung, Rechnungsabschluss
     Assurance-vie:
-    Épargne: LPV Lebensversicherung, AUFSTOCKUNG, AEDAN SILAS, MAEL CIPRIAN, Alouenn lotta, Erell emma
+    Épargne: LPV Lebensversicherung, AUFSTOCKUNG, AEDAN, MAEL, Alouenn, Erell, notfall
     Épargne & Prévoyance:
 Transport & Mobilité
     Prêt auto:
     Assurance auto: ADAC, HUK-COBURG
-    Péages: autob., sanef
+    Péages: autob., sanef, cofiroute
     Transports en commun: Ruhrbahn, DB, Flix, vrr, sncf, rheinbahn, CTS, ratp, mvv
     Frais de stationnement: parken, easypark
     Réparations:
