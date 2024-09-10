@@ -4,11 +4,11 @@ Paiements en espèces et par carte de crédit
     Carte de crédit: 
     Paiements en ligne: paypal, spotify
 Loisirs
-    Livres: Thalia, ZENTRALBIBLIOTHEK
+    Livres: Thalia, ZENTRALBIBLIOTHEK, doeblingers
     Loisirs: decathlon
     Restauration & Hôtel: attika, asia mekong, HOSTELWORLD, booking, restaurant, hotel, mcdonalds, cafe, takeaway, betriebe
     Divertissement & Jeux: CINE, cinema, theater, musee, aquapark
-    Vacances: Preussische Schloesser
+    Vacances: Preussische Schloesser, wien
     Événements: Theater und Philharmonie
     Associations & Syndicats & Adhésions: Rot-Weiss Essen
     Cinéma: cinemaxx
