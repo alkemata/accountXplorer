@@ -25,7 +25,7 @@ Ménage & Coût de la vie
     Animaux domestiques: fressnapf
     Internet: Paddle
     Communication & Information:
-    Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag, backen, einzelhandels, buchholzhof, cora, auchan, leclerc, tchibo, yorma
+    Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag, backen, einzelhandels, buchholzhof, cora, auchan, leclerc, tchibo, yorma, rewe
     Online-shopping: amazon, ebay
     Soins & Nettoyage:
     Protection juridique:
@@ -37,7 +37,7 @@ Ménage & Coût de la vie
     Assurance responsabilité civile privée:
     Frais de port:
     Assurance accident:
-    Dépenses de bureau:  ovh, chatgpt
+    Dépenses de bureau:  ovh, chatgpt, consulat
     Cadeaux & Dons: johanniter
 Enfants
     Frais de scolarité & de formation: FRANZ.GYMNASIUMS , Franzoschen 
@@ -54,7 +54,7 @@ Autres revenus
 Épargne & Prévoyance
     Frais de compte & Intérêts: Kontofuehrung, Rechnungsabschluss
     Assurance-vie:
-    Épargne: LPV Lebensversicherung, AUFSTOCKUNG, AEDAN SILAS, MAEL CIPRIAN, 
+    Épargne: LPV Lebensversicherung, AUFSTOCKUNG, AEDAN SILAS, MAEL CIPRIAN 
     Épargne & Prévoyance:
 Transport & Mobilité
     Prêt auto:
@@ -68,7 +68,7 @@ Transport & Mobilité
     Transport & Mobilité:
     Taxe automobile (privée):
     Réparations et accessoires auto: fank
-    Acquisition auto: darlehensrate
+    Acquisition auto: darlehensrate, bank11
     avion: eurowings
 Habitat
     Aménagements extérieurs: shuhrgard
