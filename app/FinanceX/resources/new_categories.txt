@@ -63,7 +63,7 @@ Transport & Mobilité
     Transports en commun: Ruhrbahn, DB, Flix, vrr, sncf, rheinbahn, CTS, ratp, mvv
     Frais de stationnement: parken, easypark
     Réparations:
-    Amendes: uri, amende, 
+    Amendes: uri, amende
     Carburant: esso, total, shell, aral, start, tankstelle, station, jet, bp
     Transport & Mobilité:
     Taxe automobile (privée):
