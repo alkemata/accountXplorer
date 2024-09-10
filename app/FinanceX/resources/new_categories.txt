@@ -1,6 +1,6 @@
 Paiements en espèces et par carte de crédit
     Paiements en espèces et par carte de crédit:
-    Retrait d'argent:GA, BAT HOHENSTEIN, bargeld, automate, auslandseinsa
+    Retrait d'argent:BAT HOHENSTEIN, bargeld, automate, auslandseinsa, ic cash
     Carte de crédit: 
     Paiements en ligne: paypal, spotify
 Loisirs
@@ -23,10 +23,10 @@ Ménage & Coût de la vie
     Redevance audiovisuelle: rundfunk
     Ménage & Coût de la vie:
     Animaux domestiques: fressnapf
-    Internet: Paddle
+    Internet: Paddle, screentimelabs
     Communication & Information:
     Alimentation & Boissons: aldi, lidl, edeka, go asia, Kaufland, action, dm, backwaren, backwerk, rossman, Buchholzhof, netto, Le Crobag, backen, einzelhandels, buchholzhof, cora, auchan, leclerc, tchibo, yorma, rewe, baeckerei, kik
-    Online-shopping: amazon, ebay
+    Online-shopping: amazon, ebay, vinted
     Soins & Nettoyage:
     Protection juridique:
     Dons:
