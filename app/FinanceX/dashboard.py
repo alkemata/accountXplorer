@@ -143,7 +143,7 @@ def create_dash_app(flask_server):
                                     {"name": "Empfaenger", "id": "Empfaenger"},                     
                                     {"name": "Verwendungszweck", "id": "Verwendungszweck"},
                                     {"name": "Betrag", "id": "Betrag"}, 
-                                    {"name": "Kategorie", "id": "Kategorie"},
+                                    {"name": "Category", "id": "Category"},
                                     {"name": "Notiz", "id": "Notiz"},
                                      ],
                                 data=[],
@@ -227,7 +227,7 @@ def create_dash_app(flask_server):
         mask =  (df['Month'] == displayed_month)
         last_month_df = df.loc[mask]
         selected_data = last_month_df[last_month_df['Buchungsdatum'].dt.day.astype(int) == selected_date]
-        selected_data=selected_data[["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Kategorie","Notiz"]]
+        selected_data=selected_data[["Buchungsdatum", "Empfaenger","Verwendungszweck","Betrag","Category","Notiz"]]
  
         return selected_data.to_dict('records')
 
