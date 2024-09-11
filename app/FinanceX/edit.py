@@ -40,18 +40,20 @@ def create_dash_app(flask_server):
     html.Div(id='page-content')
     ])
 
-    style_data_conditional = [
-        {
-            'if': {'filter_query': '{Betrag} > 0'},
-            'backgroundColor': 'green',
-            'color': 'white'
-        },
-        {
-            'if': {'filter_query': '{Kategorie} = Umbuchung'},
-            'backgroundColor': 'blue',
-            'color': 'white'
+    grid_options = {
+        "getRowClass": """
+        function(params) {
+            if (params.data.Betrag > 0) {
+                return 'row-green';
+            }
+            if (params.data.Kategorie== 'Umbuchung') 
+            return 'row-yellow';
         }
-    ]
+        """
+    }
+
+
+
     column_defs = [{"headerName": col, "field": col, "resizable": True} for col in df.columns]
 
     layout_list_global= html.Div(
@@ -65,7 +67,21 @@ def create_dash_app(flask_server):
                 columnDefs=column_defs,
                 rowData=df.to_dict('records'),
                 defaultColDef={"resizable": True,'filter': True, 'sortable': True},  # Make all columns resizable
-            )
+                gridOptions=grid_options,
+            ),
+                    html.Style(
+            """
+            .row-green {
+                background-color: lightgreen !important;
+            }
+            .row-yellow {
+                background-color: lightyellow !important;
+            }
+            .row-red {
+                background-color: lightcoral !important;
+            }
+            """
+        ),
         ])
 
     def layout_main():
