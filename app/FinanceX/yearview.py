@@ -74,7 +74,7 @@ def create_dash_app(flask_server):
     )
 
     spending_layout = html.Div(children=[
-    html.H1(children='Year overview'),
+    html.H1(children='Vue par mois'),
     
     dcc.Graph(
         id='cumulative-spending-bar-chart',
