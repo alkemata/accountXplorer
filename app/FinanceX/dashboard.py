@@ -236,10 +236,10 @@ def create_dash_app(flask_server):
         df1=df[(df['Konto']=='DE39360100430206819439') & (df['Month']==displayed_month)][['Buchungsdatum','Saldo']]
         df2=df[(df['Konto']=='DE47700400480857576300') & (df['Month']==displayed_month)][['Buchungsdatum','Saldo']]
 
-        fig1 = px.line(df1, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Postbank')
+        fig1 = px.line(df1, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Postbank',markers=True)
 
         # Create the second graph
-        fig2 = px.line(df2, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Commerzbank')
+        fig2 = px.line(df2, x='Buchungsdatum', y='Saldo', title='Saldo Evolution - Commerzbank', markers=True)
         return fig1, fig2
 
     fig1, fig2=account_saldo()
