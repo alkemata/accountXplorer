@@ -70,20 +70,7 @@ def create_dash_app(flask_server):
                 rowData=df.to_dict('records'),
                 defaultColDef={"resizable": True,'filter': True, 'sortable': True},  # Make all columns resizable
                 getRowStyle=getRowStyle,
-            ),
-                    style=
-            """
-            .row-green {
-                background-color: lightgreen !important;
-            }
-            .row-yellow {
-                background-color: lightyellow !important;
-            }
-            .row-red {
-                background-color: lightcoral !important;
-            }
-            """
-        ),
+            ),             
         ])
 
     def layout_main():
