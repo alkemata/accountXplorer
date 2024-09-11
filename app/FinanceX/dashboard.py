@@ -74,9 +74,8 @@ def create_dash_app(flask_server):
         month_df_nonfix['Notiz']='Fixe'
         # Group by day and sum amounts
         daily_sum_nonfix = month_df_nonfix.groupby(month_df_nonfix['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()    
-        daly_sum= pd.concat([daily_sum_fix, daily_sum_nonfix], ignore_index=True)   
-        daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True) 
-        print(daily_sum)       
+        daily_sum= pd.concat([daily_sum_fix, daily_sum_nonfix], ignore_index=True)   
+        daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True)        
         return daily_sum
 
 
