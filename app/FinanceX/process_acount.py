@@ -175,6 +175,6 @@ print('5 - Process visa account')
 df1=df[df['Empfaenger']=='ABRECHNUNG KREDITKARTE'][['Buchungsdatum','Betrag']]
 df2=df[df['Konto']=='4907********4225'][['Buchungsdatum','Betrag']]
 combined_df = pd.concat([df1, df2])
-result_df = combined_df.groupby('date', as_index=False)['Betrag'].sum().sort_values(by='Buchungsdatum', ascending=True)
+result_df = combined_df.groupby('Buchungsdatum', as_index=False)['Betrag'].sum().sort_values(by='Buchungsdatum', ascending=True)
 result_df.apply(lambda g: calculate_saldo(g, account_dict[g.name]['saldo']))
 print(result_df)
