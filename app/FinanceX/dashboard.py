@@ -102,6 +102,16 @@ def create_dash_app(flask_server):
 
 #todo add average spending per day
 #remove income
+    style_data_conditional=[
+    {
+        'if': {
+            'filter_query': '{Notiz} = "-"',  # Conditional for 'Notiz' column
+            'column_id': 'Notiz',
+        },
+        'backgroundColor': 'grey',  # Grey background for the row
+        'color': 'white'  # Optional: white text to make it more readable
+    }
+    ]
 
     current_spend_layout= html.Div(
             id='div2',
@@ -124,6 +134,10 @@ def create_dash_app(flask_server):
             children=[
                     dash_table.DataTable(
                                 id='amounts-table',
+                                    style_data={
+                                        'whiteSpace': 'normal',
+                                        'height': 'auto',
+                                    },
                                 columns=[                         
                                      {"name": "Buchungsdatum", "id": "Buchungsdatum"},
                                     {"name": "Empfaenger", "id": "Empfaenger"},                     
@@ -131,6 +145,7 @@ def create_dash_app(flask_server):
                                     {"name": "Betrag", "id": "Betrag"}, 
                                     {"name": "Kategorie", "id": "Kategorie"}, ],
                                 data=[],
+                                style_data_conditional=style_data_conditional
                                 style_table={'overflowX': 'auto'},
                                 style_header={
                                     'backgroundColor': 'rgb(230, 230, 230)',

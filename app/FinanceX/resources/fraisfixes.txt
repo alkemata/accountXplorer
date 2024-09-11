@@ -11,4 +11,4 @@ Assurance auto: ADAC, HUK-COBURG
 Deutschland Ticket:
 Bahncard:
 Prêts: darlehensrate, bank11
-Lagerraum: shuhrgard
+Lagerraum: shurgard
