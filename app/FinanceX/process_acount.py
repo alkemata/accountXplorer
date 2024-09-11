@@ -119,7 +119,7 @@ with open(file9_path, 'r') as file:
         keywords[category.strip()] = [k.strip().lower() for k in kw.split(',')]
 keywords={k: v for k, v in keywords.items() if v != ['']}
 
-df['Notiz'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), keywords,default=''), axis=1)
+df['Notiz'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), keywords,default='-'), axis=1)
 
 
 print('4 - New categorizing')

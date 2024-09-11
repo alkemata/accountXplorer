@@ -51,7 +51,7 @@ def create_dash_app(flask_server):
                 "style": {"backgroundColor": "grey"}
             },
                         {
-                "condition": "params.data.Notiz == ''",
+                "condition": "params.data.Notiz != '-'",
                 "style": {"backgroundColor": "sandybrown"}
             },
         ],
