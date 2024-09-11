@@ -67,7 +67,7 @@ def create_dash_app(flask_server):
                 columnDefs=column_defs,
                 rowData=df.to_dict('records'),
                 defaultColDef={"resizable": True,'filter': True, 'sortable': True},  # Make all columns resizable
-                gridOptions=grid_options,
+                dashGridOptions=grid_options,
             ),
                     html.Style(
             """
