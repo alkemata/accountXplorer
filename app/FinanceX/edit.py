@@ -50,6 +50,10 @@ def create_dash_app(flask_server):
                 "condition": "params.data.Kategorie == 'Umbuchung'",
                 "style": {"backgroundColor": "grey"}
             },
+                        {
+                "condition": "params.data.Notiz != ''",
+                "style": {"backgroundColor": "sandybrown"}
+            },
         ],
         "defaultStyle": {"backgroundColor": "white", "color": "black"}
     }

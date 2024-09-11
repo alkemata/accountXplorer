@@ -14,6 +14,7 @@ file5='budget.txt'
 file6='occurences.csv'
 file7='new_categories.txt'
 file8='pivot.csv'
+file9='fraisfixes.txt'
 
 print('1 - Loading data')
 df_existing = pd.read_csv(os.path.join(ressources_dir,file0),sep=';') #todo merge with load_data
@@ -95,6 +96,31 @@ occ= pd.DataFrame(occurrences)
 file2_path=os.path.join(ressources_dir,file6)
 occ.to_csv(file2_path, index=False)
 
+def categorize_spending(receiver, description, categories,default='Uncategorized'):
+    # Combine receiver and description for keyword search
+    combined_text = f"{receiver.lower()} {description.lower()}"
+
+    # Iterate through categories and their keywords
+    for category, keywords in categories.items():
+        for keyword in keywords:
+            if keyword in combined_text:
+                return category
+    
+    # Default category if no keywords match
+    return default
+
+print('3bis - Frais fixes')
+file9_path=os.path.join(ressources_dir,file9)
+with open(file9_path, 'r') as file:
+    keywords={}   
+    for line in file:
+        stripped_line = line.strip()
+        category, kw = stripped_line.split(':')
+        keywords[category.strip()] = [k.strip().lower() for k in kw.split(',')]
+keywords={k: v for k, v in keywords.items() if v != ['']}
+
+df['Notiz'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), keywords,default=''), axis=1)
+
 
 print('4 - New categorizing')
 file7_path=os.path.join(ressources_dir,file7)
@@ -119,20 +145,6 @@ with open(file7_path, 'r') as file:
             current_category = stripped_line
             categories[current_category] = []
 keywords={k: v for k, v in keywords.items() if v != ['']}
-
-
-def categorize_spending(receiver, description, categories):
-    # Combine receiver and description for keyword search
-    combined_text = f"{receiver.lower()} {description.lower()}"
-
-    # Iterate through categories and their keywords
-    for category, keywords in categories.items():
-        for keyword in keywords:
-            if keyword in combined_text:
-                return category
-    
-    # Default category if no keywords match
-    return 'Uncategorized'
 
 
 df['Category'] = df.apply(lambda x: categorize_spending(str(x['Empfaenger']), str(x['Verwendungszweck']), keywords), axis=1)
