@@ -167,7 +167,6 @@ pivot_table.columns = pivot_table.columns.astype(str)  # Convert Period to str
 pivot_table = pivot_table.reindex(all_categories)  # Reindex to enforce the order
 #    for col in pivot_table.select_dtypes(include=['float', 'int']).columns:
 #        pivot_table[col] = pivot_table[col].map('{:.2f}'.format)
-print(pivot_table)
 file8_path=os.path.join(ressources_dir,file8)
 pivot_table.to_csv(file8_path)
 
@@ -177,5 +176,8 @@ df2=df[df['Konto']=='4907********4225'][['Buchungsdatum','Betrag']]
 combined_df = pd.concat([df1, df2])
 result_df = combined_df.groupby('Buchungsdatum', as_index=False)['Betrag'].sum().sort_values(by='Buchungsdatum', ascending=True)
 initial_saldo=0 # to modfiy in config file
-result_dfp['Saldo'] = initial_saldo + group['Betrag'].cumsum()
+
+result_df['Saldo'] = initial_saldo + result_df['Betrag'].cumsum()
+
+
 print(result_df)
