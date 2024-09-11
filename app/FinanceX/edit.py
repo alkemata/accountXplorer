@@ -69,7 +69,7 @@ def create_dash_app(flask_server):
                 defaultColDef={"resizable": True,'filter': True, 'sortable': True},  # Make all columns resizable
                 dashGridOptions=grid_options,
             ),
-                    html.Style(
+                    style=
             """
             .row-green {
                 background-color: lightgreen !important;
