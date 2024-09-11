@@ -82,14 +82,7 @@ def create_dash_app(flask_server):
 
 
     def create_bar_chart(daily_sum, month,year):
-        fig = go.Figure(data=[
-            go.Bar(
-                x=daily_sum['day'],
-                y=daily_sum['total_amount'],
-                marker_color='indianred',
-                color=daily_sum['Notiz']
-            )
-        ])
+        fig = px.bar(daily_sum,x='day',y='total_amount',color='Notiz',title='Dépenses par jour')
         
         fig.update_layout(
             title=f'Dépense pour le mois numéro {month}',
