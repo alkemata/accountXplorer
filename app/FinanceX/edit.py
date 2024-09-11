@@ -40,16 +40,18 @@ def create_dash_app(flask_server):
     html.Div(id='page-content')
     ])
 
-    grid_options = {
-        "getRowClass": """
-        function(params) {
-            if (params.data.Betrag > 0) {
-                return 'row-green';
-            }
-            if (params.data.Kategorie== 'Umbuchung') 
-            return 'row-yellow';
-        }
-        """
+    getRowStyle = {
+        "styleConditions": [
+            {
+                "condition": "params.data.Betrag > 0",
+                "style": {"backgroundColor": "lightcoral"},
+            },
+            {
+                "condition": "params.data.Kategorie == 'Umbuchung'",
+                "style": {"backgroundColor": "grey"}
+            },
+        ],
+        "defaultStyle": {"backgroundColor": "white", "color": "black"}
     }
 
 
@@ -67,7 +69,7 @@ def create_dash_app(flask_server):
                 columnDefs=column_defs,
                 rowData=df.to_dict('records'),
                 defaultColDef={"resizable": True,'filter': True, 'sortable': True},  # Make all columns resizable
-                dashGridOptions=grid_options,
+                getRowStyle=getRowStyle,
             ),
                     style=
             """
