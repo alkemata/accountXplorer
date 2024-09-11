@@ -105,10 +105,10 @@ def create_dash_app(flask_server):
     style_data_conditional=[
     {
         'if': {
-            'filter_query': '{Notiz} = "-"',  # Conditional for 'Notiz' column
+            'filter_query': '{Notiz} != "-"',  # Conditional for 'Notiz' column
             'column_id': 'Notiz',
         },
-        'backgroundColor': 'grey',  # Grey background for the row
+        'backgroundColor': 'blue',  # Grey background for the row
         'color': 'white'  # Optional: white text to make it more readable
     }
     ]
