@@ -145,7 +145,7 @@ def create_dash_app(flask_server):
                                     {"name": "Betrag", "id": "Betrag"}, 
                                     {"name": "Kategorie", "id": "Kategorie"}, ],
                                 data=[],
-                                style_data_conditional=style_data_conditional
+                                style_data_conditional=style_data_conditional,
                                 style_table={'overflowX': 'auto'},
                                 style_header={
                                     'backgroundColor': 'rgb(230, 230, 230)',
