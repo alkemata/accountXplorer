@@ -64,10 +64,17 @@ def create_dash_app(flask_server):
     def get_month_data(df,month,year):
          
         # Filter DataFrame for last month
-        mask = (df['Month'] == month) & (df['Betrag']<0)
-        month_df = df.loc[mask]
+        mask_fix = (df['Month'] == month) & (df['Betrag']<0) &(df['Notiz']=='-')
+        month_df_fix = df.loc[mask_fix]
+        month_df_fix['Notiz']='Variable'
         # Group by day and sum amounts
-        daily_sum = month_df.groupby(month_df['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
+        daily_sum_fix = month_df_fix.groupby(month_df_fix['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()
+        mask_nonfix = (df['Month'] == month) & (df['Betrag']<0) &(df['Notiz']!='-')
+        month_df_nonfix = df.loc[mask_nonfix]
+        month_df_nonfix['Notiz']='Fixe'
+        # Group by day and sum amounts
+        daily_sum_nonfix = month_df_nonfix.groupby(month_df_nonfix['Buchungsdatum'].dt.day)['Betrag'].sum().reset_index()    
+        daly_sum= = pd.concat([daly_sum_fix, daly_sum_nonfix], ignore_index=True)   
         daily_sum.rename(columns={'Buchungsdatum': 'day', 'Betrag': 'total_amount'}, inplace=True) 
         print(daily_sum)       
         return daily_sum
@@ -78,7 +85,8 @@ def create_dash_app(flask_server):
             go.Bar(
                 x=daily_sum['day'],
                 y=daily_sum['total_amount'],
-                marker_color='indianred'
+                marker_color='indianred',
+                color=daily_sum['Notiz']
             )
         ])
         
