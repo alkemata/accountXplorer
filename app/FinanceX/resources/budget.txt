@@ -17,3 +17,4 @@ type, datetype, description, amount,account
 2,01-01-24, Rechtsschutzversicherung, 45.91, Postbank
 
 
+

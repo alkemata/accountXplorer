@@ -36,9 +36,9 @@ def create_dash_app(flask_server):
 
     # Navbar
     html.Div([
-        dcc.Link('Home', href='/dashboard/',refresh=True),
+        dcc.Link('Dashboard', href='/dashboard/',refresh=True),
         ' | ',
-        dcc.Link('Year', href='/year/',refresh=True),
+        dcc.Link('Année', href='/year/',refresh=True),
         ' | ',
         dcc.Link('Edit', href='/edit/',refresh=True),
     ], style={'padding': '10px', 'fontSize': '20px'}),
@@ -53,8 +53,8 @@ def create_dash_app(flask_server):
                 dbc.Card(
                     dbc.CardBody([
                         html.H4("Date Information", className="card-title"),
-                        html.P(f"Present Date: {datetime.now().strftime('%d-%m-%Y')}", className="card-text"),
-                        html.P(f"Last Update: {last_update.strftime('%d-%m-%Y')}", className="card-text")
+                        html.P(f"Date actuelle: {datetime.now().strftime('%d-%m-%Y')}", className="card-text"),
+                        html.P(f"Dernière mise à jour: {last_update.strftime('%d-%m-%Y')}", className="card-text")
                     ]),
                 style={'margin-bottom': '10px', 'padding': '10px', 'border': '1px solid #ddd'}
                 )

@@ -30,9 +30,9 @@ def create_dash_app(flask_server):
 
     # Navbar
     html.Div([
-        dcc.Link('Home', href='/dashboard/',refresh=True),
+        dcc.Link('Dashboard', href='/dashboard/',refresh=True),
         ' | ',
-        dcc.Link('Year', href='/year/',refresh=True),
+        dcc.Link('Année', href='/year/',refresh=True),
         ' | ',
         dcc.Link('Edit', href='/edit/',refresh=True),
     ], style={'padding': '10px', 'fontSize': '20px'}),
@@ -62,13 +62,13 @@ def create_dash_app(flask_server):
 
     # Add titles and labels
     fig.update_layout(
-        title='Monthly Spending',
+        title='Dépenses mensuelles',
         xaxis_title='Month Number',
         yaxis_title='Spending'
     )
         # Add titles and labels
     fig2.update_layout(
-        title='Monthly Excedent',
+        title='Excedent mensuel',
         xaxis_title='Month Number',
         yaxis_title='Excedent'
     )
@@ -94,7 +94,7 @@ def create_dash_app(flask_server):
 
     categories_layout= html.Div([
             dbc.Row([
-                dbc.Col(html.H2('Spending by category'), width=12),
+                dbc.Col(html.H2('Dépenses par catégorie'), width=12),
                 dbc.Col(
                     dash_table.DataTable(
                         id='pivot-table',
@@ -129,7 +129,7 @@ def create_dash_app(flask_server):
             ], className="mb-4"),
              dbc.Row([
                 html.Hr(style={'border': '1px solid black'}),
-                dbc.Col(html.H2('List of transactions for a category'), width=12),
+                dbc.Col(html.H2('Liste des transactions pour une catégorie'), width=12),
                 dbc.Col(
                     dash_table.DataTable(
                         id='detail-table',

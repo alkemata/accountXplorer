@@ -172,6 +172,7 @@ pivot_table.to_csv(file8_path)
 
 print('5 - Process visa account')
 df1=df[df['Empfaenger']=='ABRECHNUNG KREDITKARTE'][['Buchungsdatum','Betrag']]
+df1['Betrag']=-df1['Betrag']
 df2=df[df['Konto']=='4907********4225'][['Buchungsdatum','Betrag']]
 combined_df = pd.concat([df1, df2])
 result_df = combined_df.groupby('Buchungsdatum', as_index=False)['Betrag'].sum().sort_values(by='Buchungsdatum', ascending=True)
