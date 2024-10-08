@@ -3,7 +3,7 @@ import re
 
 # Load the variable mappings
 variable_mappings = {}
-with open('variables.txt', 'r') as f:
+with open('./resources/variables.txt', 'r') as f:
     for line in f:
         original, replacement = line.strip().split('=')
         variable_mappings[original] = replacement
