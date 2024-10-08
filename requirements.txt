@@ -10,3 +10,4 @@ dash
 dash-bootstrap-components
 pandas
 dash_ag_grid 
+git-filter-repo #todo remove afterwards

@@ -1,3 +1,4 @@
 # Ignore .env
 config.env
-./app/config.txt
+./FinanceX/resources
+
